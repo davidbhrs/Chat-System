@@ -8,6 +8,8 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,7 +34,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void checkForUserGivesPositiveResult() {
+    public void testCheckForUserGivesPositiveResult() {
         // Arrange
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
@@ -45,7 +47,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void checkForUserThrowsError() {
+    public void testCheckForUserThrowsError() {
         // Act
         Exception exception = Assertions.assertThrows(UserNotFoundException.class, () ->
                 this.controller.checkForUser(TEST_USERNAME_NOT_IN_DB)
@@ -55,6 +57,23 @@ public class UserControllerTest {
         String expectedMessage = String.format("Could not find user %s", TEST_USERNAME_NOT_IN_DB);
 
         Assertions.assertEquals(expectedMessage, exception.getMessage());
+    }
+
+    @Test
+    public void testGetAllUsers() {
+        // Arrange
+        List<User> listOfUsers = new ArrayList<>();
+        listOfUsers.add(this.user);
+
+        Mockito.when(this.repository.findAll()).thenReturn(listOfUsers);
+
+        // Act
+        ResponseEntity<List<User>> responseEntity = this.controller.getAllUsers();
+
+        // Assert
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertFalse(responseEntity.getBody().isEmpty());
+        Assertions.assertEquals(this.user, responseEntity.getBody().get(0));
     }
 
 }
