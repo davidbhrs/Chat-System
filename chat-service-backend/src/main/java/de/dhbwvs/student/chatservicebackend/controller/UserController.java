@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author      Julian Gommlich <carljulian.gommlich@student.dhbw-vs.de>
  * @version     1.0
@@ -30,7 +32,7 @@ public class UserController {
      * a UserNotFoundException is thrown
      *
      * @param incomingUsername The username of the user which shall be found
-     * @return A ResponseEntity with HTTPStatus.OK and the User in the Body
+     * @return A ResponseEntity with HTTPStatus.OK and the user in the Body
      */
     @GetMapping("/users")
     public ResponseEntity<User> checkForUser(@RequestBody String incomingUsername) {
@@ -38,5 +40,19 @@ public class UserController {
             .orElseThrow(() -> new UserNotFoundException(incomingUsername));
 
         return ResponseEntity.ok(user);
+    }
+
+    /**
+     * Method getting all users stored in the database
+     * <p>
+     * All users which are stored in the database are considered online
+     *
+     * @return A ResponseEntity with HTTPStatus.OK and a List of all users
+     */
+    @GetMapping("/users/online")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> listOfUsers = repository.findAll();
+
+        return ResponseEntity.ok(listOfUsers);
     }
 }
