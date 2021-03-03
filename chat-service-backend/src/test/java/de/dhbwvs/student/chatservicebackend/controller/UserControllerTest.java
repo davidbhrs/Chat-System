@@ -4,8 +4,6 @@ import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
 import de.dhbwvs.student.chatservicebackend.models.User;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

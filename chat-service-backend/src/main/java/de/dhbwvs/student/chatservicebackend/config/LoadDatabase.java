@@ -15,18 +15,18 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(UserRepository repository) {
+    CommandLineRunner initDatabase(UserRepository userRepository) {
 
         return args -> {
-            log.info("Preloading " + repository.save(new User("Frodo Baggins")));
-            log.info("Preloading " + repository.save(new User("Marty McFly")));
-            log.info("Preloading " + repository.save(new User("Arthur Dent")));
-            log.info("Preloading " + repository.save(new User("Zaphod Beeblebrox")));
-            log.info("Preloading " + repository.save(new User("Captain James T. Kirk")));
-            log.info("Preloading " + repository.save(new User("Mr. Spock")));
-            log.info("Preloading " + repository.save(new User("Qui-Gon Jinn")));
-            log.info("Preloading " + repository.save(new User("Obi-Wan Kenobi")));
-            log.info("Preloading " + repository.save(new User("Der sprechende Hut")));
+            log.info("Preloading " + userRepository.save(new User("Frodo Baggins")));
+            log.info("Preloading " + userRepository.save(new User("Marty McFly")));
+            log.info("Preloading " + userRepository.save(new User("Arthur Dent")));
+            log.info("Preloading " + userRepository.save(new User("Zaphod Beeblebrox")));
+            log.info("Preloading " + userRepository.save(new User("Captain James T. Kirk")));
+            log.info("Preloading " + userRepository.save(new User("Mr. Spock")));
+            log.info("Preloading " + userRepository.save(new User("Qui-Gon Jinn")));
+            log.info("Preloading " + userRepository.save(new User("Obi-Wan Kenobi")));
+            log.info("Preloading " + userRepository.save(new User("Der sprechende Hut")));
         };
     }
 
