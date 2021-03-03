@@ -33,7 +33,7 @@ public class UserControllerTest {
 
     @Test
     public void checkForUserGivesPositiveResult() {
-        // Prepare
+        // Arrange
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
         // Act

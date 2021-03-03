@@ -8,12 +8,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
+/**
+ * @author      Julian Gommlich <carljulian.gommlich@student.dhbw-vs.de>
+ * @version     1.0
+ * @since       1.0
+ */
 @Configuration
 public class LoadDatabase {
 
+    /**
+     * A Logger that is supposed to log events concerning interactions with the database
+     */
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
+    /**
+     * Database initialisation
+     *
+     * @param userRepository The repository which is needed to save the data in the database
+     * @return The CommandLineRunner which persists the data inside the database
+     */
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository) {
 
