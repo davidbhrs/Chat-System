@@ -22,6 +22,7 @@ public class LoadDatabase {
             log.info("Preloading " + repository.save(new User("Marty McFly")));
             log.info("Preloading " + repository.save(new User("Arthur Dent")));
             log.info("Preloading " + repository.save(new User("Zaphod Beeblebrox")));
+            log.info("Preloading " + repository.save(new User("Captain James T. Kirk")));
             log.info("Preloading " + repository.save(new User("Mr. Spock")));
             log.info("Preloading " + repository.save(new User("Qui-Gon Jinn")));
             log.info("Preloading " + repository.save(new User("Obi-Wan Kenobi")));
