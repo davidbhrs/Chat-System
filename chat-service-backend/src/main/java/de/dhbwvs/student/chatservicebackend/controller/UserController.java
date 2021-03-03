@@ -6,7 +6,7 @@ import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,8 +34,8 @@ public class UserController {
      * @param incomingUsername The username of the user which shall be found
      * @return A ResponseEntity with HTTPStatus.OK and the user in the Body
      */
-    @GetMapping("/users")
-    public ResponseEntity<User> checkForUser(@RequestBody String incomingUsername) {
+    @GetMapping("/users/{incomingUsername}")
+    public ResponseEntity<User> checkForUser(@PathVariable String incomingUsername) {
         User user = repository.findByName(incomingUsername)
             .orElseThrow(() -> new UserNotFoundException(incomingUsername));
 
@@ -49,7 +49,7 @@ public class UserController {
      *
      * @return A ResponseEntity with HTTPStatus.OK and a List of all users
      */
-    @GetMapping("/users/online")
+    @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> listOfUsers = repository.findAll();
 
