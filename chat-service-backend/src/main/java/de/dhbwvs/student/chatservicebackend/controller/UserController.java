@@ -1,6 +1,6 @@
 package de.dhbwvs.student.chatservicebackend.controller;
 
-import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
+import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
 import de.dhbwvs.student.chatservicebackend.models.User;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -38,7 +38,7 @@ public class UserController {
             User newUser = repository.save(new User(incomingUsername));
             return ResponseEntity.ok(newUser);
         } else {
-            throw(new UserNotFoundException(incomingUsername));
+            throw(new UserAlreadyExistsException(incomingUsername));
         }
     }
 
@@ -48,7 +48,7 @@ public class UserController {
      * Tries to find the User by the given incomingUsername
      *
      * @param incomingUsername The username of the user which shall be found
-     * @return A Boolean value which is True when there is no user with this name
+     * @return A Boolean value which is True when there is a user with this name
      */
     public Boolean checkForUser(String incomingUsername) {
         Optional<User> user = repository.findByName(incomingUsername);

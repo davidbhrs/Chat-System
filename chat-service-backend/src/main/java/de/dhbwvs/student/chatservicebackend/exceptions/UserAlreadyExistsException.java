@@ -5,15 +5,15 @@ package de.dhbwvs.student.chatservicebackend.exceptions;
  * @version     1.0
  * @since       1.0
  */
-public class UserNotFoundException extends RuntimeException {
+public class UserAlreadyExistsException extends RuntimeException {
 
     /**
      * Definition of the exception thrown when there is no user found with the given username
      *
      * @param username Username of the user which shall be found
      */
-    public UserNotFoundException(String username) {
-        super("Could not find user " + username);
+    public UserAlreadyExistsException(String username) {
+        super(String.format("User %s already exists", username));
     }
 
 }

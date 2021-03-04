@@ -1,6 +1,6 @@
 package de.dhbwvs.student.chatservicebackend.controller;
 
-import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
+import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
 import de.dhbwvs.student.chatservicebackend.models.User;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
@@ -54,7 +54,7 @@ public class UserControllerTest {
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
         // Act
-        Exception exception = Assertions.assertThrows(UserNotFoundException.class, () ->
+        Exception exception = Assertions.assertThrows(UserAlreadyExistsException.class, () ->
             this.controller.createNewUser(TEST_USERNAME)
         );
 
