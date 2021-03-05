@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter @Setter @NoArgsConstructor
 public class ChatRoom {
 
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private User participantOne;
@@ -23,4 +23,8 @@ public class ChatRoom {
         this.participantTwo = participantTwo;
     }
 
+    @Override
+    public String toString() {
+        return String.format("ChatRoom(%d, %s, %s)", this.id, this.participantOne, this.participantTwo);
+    }
 }
