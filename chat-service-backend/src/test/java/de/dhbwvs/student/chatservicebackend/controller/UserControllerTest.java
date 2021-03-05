@@ -70,7 +70,7 @@ public class UserControllerTest {
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
         // Act
-        Boolean isUserInDB = this.controller.checkForUser(TEST_USERNAME);
+        Boolean isUserInDB = this.controller.doesUserExist(TEST_USERNAME);
 
         // Assert
         Assertions.assertTrue(isUserInDB);
@@ -79,7 +79,7 @@ public class UserControllerTest {
     @Test
     public void testCheckForUserFalse() {
         // Act
-        Boolean isUserInDB = this.controller.checkForUser(TEST_USERNAME_NOT_IN_DB);
+        Boolean isUserInDB = this.controller.doesUserExist(TEST_USERNAME_NOT_IN_DB);
 
         // Assert
         Assertions.assertFalse(isUserInDB);

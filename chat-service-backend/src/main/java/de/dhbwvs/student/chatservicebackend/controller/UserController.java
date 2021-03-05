@@ -34,7 +34,7 @@ public class UserController {
      */
     @PostMapping("/users/{incomingUsername}")
     public ResponseEntity<User> createNewUser(@PathVariable String incomingUsername) {
-        if (!checkForUser(incomingUsername)) {
+        if (!doesUserExist(incomingUsername)) {
             User newUser = repository.save(new User(incomingUsername));
             return ResponseEntity.ok(newUser);
         } else {
@@ -50,7 +50,7 @@ public class UserController {
      * @param incomingUsername The username of the user which shall be found
      * @return A Boolean value which is True when there is a user with this name
      */
-    public Boolean checkForUser(String incomingUsername) {
+    public Boolean doesUserExist(String incomingUsername) {
         Optional<User> user = repository.findByName(incomingUsername);
 
         return user.isPresent();
