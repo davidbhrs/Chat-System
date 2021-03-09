@@ -44,7 +44,7 @@ public class UserControllerTest {
         ResponseEntity<User> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
 
         // Assert
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getBody() instanceof User);
     }
 
@@ -59,7 +59,7 @@ public class UserControllerTest {
         );
 
         // Assert
-        String expectedMessage = String.format("Could not find user %s", TEST_USERNAME);
+        String expectedMessage = String.format("User %s already exists", TEST_USERNAME);
 
         Assertions.assertEquals(expectedMessage, exception.getMessage());
     }

@@ -35,8 +35,7 @@ public class ChatRoomController {
             @RequestBody User participantOne,
             @RequestBody User participantTwo
     ) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = getUserById(userId);
 
         if (participantOne == participantTwo || (user != participantOne && user != participantTwo)) {
             throw new ChatRoomCreationException();
@@ -48,8 +47,7 @@ public class ChatRoomController {
 
     @GetMapping("/users/{userId}/chat-rooms")
     public ResponseEntity<List<ChatRoom>> getAllChatRoomsByUser(@PathVariable Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = getUserById(userId);
 
         List<ChatRoom> listOfChatRooms = chatRoomRepository.findAllByParticipantOneOrParticipantTwo(user, user);
         return ResponseEntity.ok(listOfChatRooms);
@@ -57,8 +55,7 @@ public class ChatRoomController {
 
     @GetMapping("/users/{userId}/chat-rooms/{chatRoomId}")
     public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable Long userId, @PathVariable Long chatRoomId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = getUserById(userId);
 
         ChatRoom chatRoom = chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, chatRoomId)
                 .orElseThrow(() -> new ChatRoomNotFoundException(chatRoomId));
@@ -67,10 +64,14 @@ public class ChatRoomController {
 
     @DeleteMapping("/users/{userId}/chat-rooms/{chatRoomId}")
     public void deleteChatRoomsById(@PathVariable Long userId, @PathVariable Long chatRoomId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = getUserById(userId);
 
         chatRoomRepository.deleteByParticipantOneOrParticipantTwoAndId(user, user, chatRoomId);
+    }
+
+    public User getUserById(Long id) throws UserNotFoundException {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
 }
