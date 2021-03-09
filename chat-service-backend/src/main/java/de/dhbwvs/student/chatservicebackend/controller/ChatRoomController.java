@@ -14,10 +14,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author      Julian Gommlich <carljulian.gommlich@student.dhbw-vs.de>
+ * @version     1.0
+ * @since       1.0
+ */
 @RestController
 @AllArgsConstructor
 public class ChatRoomController {
 
+    /**
+     * Instance of the user and chat room repositories that can manipulate the data inside the database
+     */
     private final UserRepository userRepository;
     private final ChatRoomRepository chatRoomRepository;
 

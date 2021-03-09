@@ -8,7 +8,7 @@ package de.dhbwvs.student.chatservicebackend.exceptions;
 public class UserAlreadyExistsException extends RuntimeException {
 
     /**
-     * Definition of the exception thrown when there is no user found with the given username
+     * Definition of the exception thrown when there is already a user with the given username
      *
      * @param username Username of the user which shall be found
      */

@@ -4,6 +4,7 @@ import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsExceptio
 import de.dhbwvs.student.chatservicebackend.models.User;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,13 +31,13 @@ public class UserController {
      * Throws UserAlreadyExistsException, when there is a user with the demanded username
      *
      * @param incomingUsername The username the new user should get
-     * @return A ResponseEntity with HTTPStatus.OK and the new User in the Body
+     * @return A ResponseEntity with HTTPStatus.CREATED and the new User in the Body
      */
     @PostMapping("/users/{incomingUsername}")
     public ResponseEntity<User> createNewUser(@PathVariable String incomingUsername) {
         if (!doesUserExist(incomingUsername)) {
             User newUser = repository.save(new User(incomingUsername));
-            return ResponseEntity.ok(newUser);
+            return new ResponseEntity(newUser, HttpStatus.CREATED);
         } else {
             throw(new UserAlreadyExistsException(incomingUsername));
         }

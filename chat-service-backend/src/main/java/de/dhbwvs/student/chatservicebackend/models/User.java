@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class User {
 
     /**
-     * Entities Attributes
+     * Entity's Attributes
      */
     private @Id @GeneratedValue(strategy= GenerationType.IDENTITY) Long id;
     private String name;

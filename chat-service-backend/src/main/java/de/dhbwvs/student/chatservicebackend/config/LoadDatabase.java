@@ -28,7 +28,9 @@ public class LoadDatabase {
     /**
      * Database initialisation
      *
-     * @param userRepository The repository which is needed to save the data in the database
+     * @param userRepository The repository which is needed to save the user data in the database
+     * @param chatRoomRepository The repository which is needed to save the chat room data in the database
+     * @param textMessageRepository The repository which is needed to save the text message data in the database
      * @return The CommandLineRunner which persists the data inside the database
      */
     @Bean
@@ -57,5 +59,4 @@ public class LoadDatabase {
             log.info("Preloading " + textMessageRepository.save(new TextMessage("Hello World!", user1, chatRoom1)));
         };
     }
-
 }
