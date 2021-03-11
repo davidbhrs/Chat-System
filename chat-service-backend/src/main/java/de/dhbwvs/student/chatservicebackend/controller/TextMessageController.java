@@ -49,11 +49,9 @@ public class TextMessageController {
             @PathVariable Long chatRoomId,
             @RequestBody String textMessage
     ) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = getUserById(userId);
 
-        ChatRoom chatRoom = chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, chatRoomId)
-                .orElseThrow(() -> new ChatRoomNotFoundException(chatRoomId));
+        ChatRoom chatRoom = getChatRoomByUserAndId(user, chatRoomId);
 
         TextMessage newTextMessage = textMessageRepository.save(new TextMessage(textMessage, user, chatRoom));
         return new ResponseEntity(newTextMessage, HttpStatus.CREATED);
@@ -75,14 +73,41 @@ public class TextMessageController {
             @PathVariable Long userId,
             @PathVariable Long chatRoomId
     ) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = getUserById(userId);
 
-        ChatRoom chatRoom = chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, chatRoomId)
-                .orElseThrow(() -> new ChatRoomNotFoundException(chatRoomId));
+        ChatRoom chatRoom = getChatRoomByUserAndId(user, chatRoomId);
 
         List<TextMessage> listOfTextMessages = textMessageRepository.findAllByChatRoom(chatRoom);
         return ResponseEntity.ok(listOfTextMessages);
+    }
+
+    /**
+     * Method trying to find a user by the given id
+     * <p>
+     * Throws a UserNotFoundException if there is no user with the given id
+     *
+     * @param id The id of the user to be found
+     * @return User with the given id
+     * @throws UserNotFoundException
+     */
+    public User getUserById(Long id) throws UserNotFoundException {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    /**
+     * Method trying to find a chat room by the given user entity and id
+     * <p>
+     * Throws a ChatRoomNotFoundException if there is no chat room with the given user entity or id
+     *
+     * @param user The user that participates in the chat which shall be found
+     * @param id The id of the chat room to be found
+     * @return ChatRoom with the given id
+     * @throws ChatRoomNotFoundException
+     */
+    public ChatRoom getChatRoomByUserAndId(User user, Long id) throws ChatRoomNotFoundException {
+        return chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, id)
+                .orElseThrow(() -> new ChatRoomNotFoundException(id));
     }
 
 }
