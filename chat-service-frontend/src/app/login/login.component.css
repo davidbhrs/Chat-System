@@ -1,0 +1,18 @@
+/* Body of Component */
+:host {
+    display: flex;
+}
+
+.login {
+    width: 33.33%;
+    float: left;
+}
+
+.welcomeImg {
+    float: right;
+    width: 66.66%;
+}
+
+.welcomeImg img {
+    width: 100%;
+}
