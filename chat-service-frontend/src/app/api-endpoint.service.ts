@@ -22,8 +22,12 @@ export class ApiEndpointService {
 
   constructor(private http: HttpClient) {   }
 
-  login(username: String) {
-    return this.http.post("/", username, httpOptions);
+  findUser(username: String): Observable<any> {
+    return this.http.get("/users/" + username);
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get("/users");
   }
 
 }
