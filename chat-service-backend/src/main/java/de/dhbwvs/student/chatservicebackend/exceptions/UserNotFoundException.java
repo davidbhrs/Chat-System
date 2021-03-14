@@ -8,12 +8,12 @@ package de.dhbwvs.student.chatservicebackend.exceptions;
 public class UserNotFoundException extends RuntimeException {
 
     /**
-     * Definition of the exception thrown when there is no user found with the given username
+     * Definition of the exception which is thrown when the user cannot be found
      *
-     * @param username Username of the user which shall be found
+     * @param id Identifier of the user
      */
-    public UserNotFoundException(String username) {
-        super("Could not find user " + username);
+    public UserNotFoundException(Long id) {
+        super(String.format("No user with id %d found", id));
     }
 
 }
