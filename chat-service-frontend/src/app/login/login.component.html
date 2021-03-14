@@ -1,5 +1,5 @@
 <div class="flexElement login">
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value.username)">
         <h2>Nutzername</h2>
         <input type="text" name="username" ngModel>
         <input type="submit" vlaue="submit">

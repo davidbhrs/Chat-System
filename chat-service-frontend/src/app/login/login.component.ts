@@ -14,11 +14,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(username: String) {
-    // Post to Backend
-    let result: any
-    this.api.getAllUsers().subscribe(data => {
-      result = data;
-      console.log(result);
+    let response: any
+    this.api.findUser(username).subscribe(data => {
+      response = data;
+      console.log(response);
     });
   }
 

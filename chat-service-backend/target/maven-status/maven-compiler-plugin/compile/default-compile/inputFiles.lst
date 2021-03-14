@@ -1,0 +1,6 @@
+/home/david/Git_Repositories/Chat-System/chat-service-backend/src/main/java/de/dhbwvs/student/chatservicebackend/models/User.java
+/home/david/Git_Repositories/Chat-System/chat-service-backend/src/main/java/de/dhbwvs/student/chatservicebackend/config/LoadDatabase.java
+/home/david/Git_Repositories/Chat-System/chat-service-backend/src/main/java/de/dhbwvs/student/chatservicebackend/controller/UserController.java
+/home/david/Git_Repositories/Chat-System/chat-service-backend/src/main/java/de/dhbwvs/student/chatservicebackend/ChatServiceBackendApplication.java
+/home/david/Git_Repositories/Chat-System/chat-service-backend/src/main/java/de/dhbwvs/student/chatservicebackend/exceptions/UserNotFoundException.java
+/home/david/Git_Repositories/Chat-System/chat-service-backend/src/main/java/de/dhbwvs/student/chatservicebackend/repositories/UserRepository.java
