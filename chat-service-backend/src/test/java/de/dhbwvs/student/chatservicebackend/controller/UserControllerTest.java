@@ -1,6 +1,6 @@
 package de.dhbwvs.student.chatservicebackend.controller;
 
-import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
+import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
 import de.dhbwvs.student.chatservicebackend.models.User;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
@@ -19,6 +19,7 @@ public class UserControllerTest {
     private static final String TEST_USERNAME_NOT_IN_DB = "Nicht in der Datenbank";
 
     private User user;
+    private User newUser;
     private UserController controller;
     private UserRepository repository;
 
@@ -26,6 +27,7 @@ public class UserControllerTest {
     public void setUp() {
         this.repository = Mockito.mock(UserRepository.class);
         this.user = new User(TEST_USERNAME);
+        this.newUser = new User(TEST_USERNAME_NOT_IN_DB);
     }
 
     @BeforeEach
@@ -34,29 +36,53 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCheckForUserGivesPositiveResult() {
+    public void testCreateNewUserGivesPositiveResult() {
+        // Arrange
+        Mockito.when(this.repository.save(Mockito.any())).thenReturn(this.newUser);
+
+        // Act
+        ResponseEntity<User> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
+
+        // Assert
+        Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        Assertions.assertTrue(responseEntity.getBody() instanceof User);
+    }
+
+    @Test
+    public void testCreateNewUserThrowsError() {
         // Arrange
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
         // Act
-        ResponseEntity<User> responseEntity = this.controller.checkForUser(TEST_USERNAME);
-
-        // Assert
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assertions.assertEquals(this.user, responseEntity.getBody());
-    }
-
-    @Test
-    public void testCheckForUserThrowsError() {
-        // Act
-        Exception exception = Assertions.assertThrows(UserNotFoundException.class, () ->
-                this.controller.checkForUser(TEST_USERNAME_NOT_IN_DB)
+        Exception exception = Assertions.assertThrows(UserAlreadyExistsException.class, () ->
+            this.controller.createNewUser(TEST_USERNAME)
         );
 
         // Assert
-        String expectedMessage = String.format("Could not find user %s", TEST_USERNAME_NOT_IN_DB);
+        String expectedMessage = String.format("User %s already exists", TEST_USERNAME);
 
         Assertions.assertEquals(expectedMessage, exception.getMessage());
+    }
+
+    @Test
+    public void testCheckForUserTrue() {
+        // Arrange
+        Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
+
+        // Act
+        Boolean isUserInDB = this.controller.doesUserExist(TEST_USERNAME);
+
+        // Assert
+        Assertions.assertTrue(isUserInDB);
+    }
+
+    @Test
+    public void testCheckForUserFalse() {
+        // Act
+        Boolean isUserInDB = this.controller.doesUserExist(TEST_USERNAME_NOT_IN_DB);
+
+        // Assert
+        Assertions.assertFalse(isUserInDB);
     }
 
     @Test

@@ -22,8 +22,8 @@ export class ApiEndpointService {
 
   constructor(private http: HttpClient) {   }
 
-  findUser(username: String): Observable<any> {
-    return this.http.get("/users/" + username);
+  login(username: String): Observable<any> {
+    return this.http.post<String>(("/users/" + username), username, httpOptions);
   }
 
   getAllUsers(): Observable<any> {

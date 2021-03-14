@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   login(username: String) {
     let response: any
-    this.api.findUser(username).subscribe(data => {
+    this.api.login(username).subscribe(data => {
       response = data;
       console.log(response);
     });
