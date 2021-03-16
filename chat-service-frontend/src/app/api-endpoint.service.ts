@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import{ HttpClient, HttpHeaders }from'@angular/common/http';
 import{ Observable }from'rxjs';
 import { logging } from 'selenium-webdriver';
+import { User } from './user-model';
 
 
 
@@ -28,6 +29,10 @@ export class ApiEndpointService {
 
   getAllUsers(): Observable<any> {
     return this.http.get("/users");
+  }
+
+  logOut(user: User): Observable<any> {
+    return this.http.delete(`/users/${user.id}`);
   }
 
 }
