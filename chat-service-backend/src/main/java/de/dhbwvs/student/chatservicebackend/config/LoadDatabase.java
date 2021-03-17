@@ -53,10 +53,10 @@ public class LoadDatabase {
             log.info("Preloading " + userRepository.save(new User("Obi-Wan Kenobi")));
             log.info("Preloading " + userRepository.save(new User("Der sprechende Hut")));
 
-            ChatRoom chatRoom1 = new ChatRoom(user1, user2);
-            log.info("Preloading " + chatRoomRepository.save(chatRoom1));
+            //ChatRoom chatRoom1 = new ChatRoom(user1, user2);
+            //log.info("Preloading " + chatRoomRepository.save(chatRoom1));
 
-            log.info("Preloading " + textMessageRepository.save(new TextMessage("Hello World!", user1, chatRoom1)));
+            //log.info("Preloading " + textMessageRepository.save(new TextMessage("Hello World!", user1, chatRoom1)));
         };
     }
 }

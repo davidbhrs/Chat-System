@@ -2,6 +2,7 @@ package de.dhbwvs.student.chatservicebackend.controller;
 
 import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
 import de.dhbwvs.student.chatservicebackend.models.User;
+import de.dhbwvs.student.chatservicebackend.models.payrole.UserPayRole;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -41,11 +43,11 @@ public class UserControllerTest {
         Mockito.when(this.repository.save(Mockito.any())).thenReturn(this.newUser);
 
         // Act
-        ResponseEntity<User> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
+        ResponseEntity<UserPayRole> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
 
         // Assert
         Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        Assertions.assertTrue(responseEntity.getBody() instanceof User);
+        Assertions.assertNotNull(responseEntity.getBody());
     }
 
     @Test
@@ -94,12 +96,12 @@ public class UserControllerTest {
         Mockito.when(this.repository.findAll()).thenReturn(listOfUsers);
 
         // Act
-        ResponseEntity<List<User>> responseEntity = this.controller.getAllUsers();
+        ResponseEntity<List<UserPayRole>> responseEntity = this.controller.getAllUsers();
 
         // Assert
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assertions.assertFalse(responseEntity.getBody().isEmpty());
-        Assertions.assertEquals(this.user, responseEntity.getBody().get(0));
+        Assertions.assertFalse(Objects.requireNonNull(responseEntity.getBody()).isEmpty());
+        Assertions.assertEquals(this.user.getId(), responseEntity.getBody().get(0).getId());
     }
 
 }

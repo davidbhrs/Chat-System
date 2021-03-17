@@ -2,12 +2,14 @@ package de.dhbwvs.student.chatservicebackend.controller;
 
 import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
 import de.dhbwvs.student.chatservicebackend.models.User;
+import de.dhbwvs.student.chatservicebackend.models.payrole.UserPayRole;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,10 +36,14 @@ public class UserController {
      * @return A ResponseEntity with HTTPStatus.CREATED and the new User in the Body
      */
     @PostMapping("/users/{incomingUsername}")
-    public ResponseEntity<User> createNewUser(@PathVariable String incomingUsername) {
+    public ResponseEntity<UserPayRole> createNewUser(@PathVariable String incomingUsername) {
         if (!doesUserExist(incomingUsername)) {
             User newUser = repository.save(new User(incomingUsername));
-            return new ResponseEntity(newUser, HttpStatus.CREATED);
+
+            UserPayRole payRole = new UserPayRole();
+            payRole.setId(newUser.getId());
+            payRole.setName(newUser.getName());
+            return new ResponseEntity(payRole, HttpStatus.CREATED);
         } else {
             throw(new UserAlreadyExistsException(incomingUsername));
         }
@@ -65,10 +71,18 @@ public class UserController {
      * @return A ResponseEntity with HTTPStatus.OK and a List of all users
      */
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<UserPayRole>> getAllUsers() {
         List<User> listOfUsers = repository.findAll();
+        List<UserPayRole> listOfPayRoles = new ArrayList<>();
 
-        return ResponseEntity.ok(listOfUsers);
+        for (User user : listOfUsers) {
+            UserPayRole payRole = new UserPayRole();
+            payRole.setId(user.getId());
+            payRole.setName(user.getName());
+            listOfPayRoles.add(payRole);
+        }
+
+        return ResponseEntity.ok(listOfPayRoles);
     }
 
     /**
