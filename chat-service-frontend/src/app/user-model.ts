@@ -6,6 +6,7 @@ export class User {
     id: number;
     name: String;
 
+    //Constructor for test purposes
     constructor(id: number, name: String) {
         this.id = id;
         this.name = name;

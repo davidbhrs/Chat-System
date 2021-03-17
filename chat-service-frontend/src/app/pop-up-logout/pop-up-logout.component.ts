@@ -10,10 +10,19 @@ import { User } from '../user-model';
 })
 export class PopUpLogoutComponent {
 
+  // Current user -- Initialization is for test purposes
   @Input() user: User = new User(1, "James T. Kirk");
 
+  /**
+   * Constructor
+   * @param {ApiEndpointService} api    service to send http requests to the backend
+   * @param {Router}             router routing service to navigate to other components
+   */
   constructor(public api: ApiEndpointService, private router: Router) { }
 
+  /**
+   * Deletes the current user and navigates to the login page
+   */
   logOut(): void {
     this.api.logOut(this.user).subscribe(() => {
       this.router.navigateByUrl('/login');
