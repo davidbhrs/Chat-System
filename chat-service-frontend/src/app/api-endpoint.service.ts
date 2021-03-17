@@ -23,8 +23,8 @@ export class ApiEndpointService {
 
   constructor(private http: HttpClient) {   }
 
-  login(username: String): Observable<any> {
-    return this.http.post<String>(("/users/" + username), username, httpOptions);
+  login(username: String): Observable<User> {
+    return this.http.post<User>(("/users/" + username), username, httpOptions);
   }
 
   getAllUsers(): Observable<any> {
@@ -33,6 +33,10 @@ export class ApiEndpointService {
 
   logOut(user: User): Observable<any> {
     return this.http.delete(`/users/${user.id}`);
+  }
+
+  createNewChatRoom(participantOne: User, participantTwo: User): Observable<any> {
+    return this.http.post(`/users/${participantOne.id}/chat-rooms`, { participantOne, participantTwo });
   }
 
 }
