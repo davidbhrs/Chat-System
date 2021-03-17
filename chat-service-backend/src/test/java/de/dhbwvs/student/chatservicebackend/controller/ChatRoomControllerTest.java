@@ -6,7 +6,7 @@ import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
 import de.dhbwvs.student.chatservicebackend.models.ChatRoom;
 import de.dhbwvs.student.chatservicebackend.models.User;
 import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomParticipants;
-import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomPayRole;
+import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomDto;
 import de.dhbwvs.student.chatservicebackend.repositories.ChatRoomRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
@@ -111,7 +111,7 @@ public class ChatRoomControllerTest {
         ChatRoomParticipants chatRoomParticipants = new ChatRoomParticipants(userInDB, userInDBToo);
 
         // Act
-        ResponseEntity<ChatRoomPayRole> responseEntity =
+        ResponseEntity<ChatRoomDto> responseEntity =
                 this.controller.createChatRoom(userInDB.getId(), chatRoomParticipants);
 
         // Assert
@@ -132,7 +132,7 @@ public class ChatRoomControllerTest {
                 .thenReturn(listOfChatRooms);
 
         // Act
-        ResponseEntity<List<ChatRoomPayRole>> responseEntity =
+        ResponseEntity<List<ChatRoomDto>> responseEntity =
                 this.controller.getAllChatRoomsByUser(userInDB.getId());
 
         // Assert
@@ -167,7 +167,7 @@ public class ChatRoomControllerTest {
                 userInDB, userInDB, this.newChatRoom.getId())).thenReturn(Optional.ofNullable(this.newChatRoom));
 
         // Act
-        ResponseEntity<ChatRoomPayRole> responseEntity = this.controller.getChatRoomById(userInDB.getId(), newChatRoom.getId());
+        ResponseEntity<ChatRoomDto> responseEntity = this.controller.getChatRoomById(userInDB.getId(), newChatRoom.getId());
 
         // Assert
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());

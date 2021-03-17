@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: de.dhbwvs.student.chatservicebackend.controller.UserControllerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in de.dhbwvs.student.chatservicebackend.controller.UserControllerTest
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.012 s <<< FAILURE! - in de.dhbwvs.student.chatservicebackend.controller.UserControllerTest
+testCreateNewUserGivesPositiveResult  Time elapsed: 0.011 s  <<< ERROR!
+java.lang.ExceptionInInitializerError
+	at de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.testCreateNewUserGivesPositiveResult(UserControllerTest.java:46)
+Caused by: java.lang.RuntimeException: java.lang.ClassNotFoundException: Cannot find implementation for de.dhbwvs.student.chatservicebackend.mapper.UserUserPayRoleMapper
+	at de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.testCreateNewUserGivesPositiveResult(UserControllerTest.java:46)
+Caused by: java.lang.ClassNotFoundException: Cannot find implementation for de.dhbwvs.student.chatservicebackend.mapper.UserUserPayRoleMapper
+	at de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.testCreateNewUserGivesPositiveResult(UserControllerTest.java:46)
+

@@ -10,14 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * @author      Julian Gommlich <carljulian.gommlich@student.dhbw-vs.de>
+ * @version     1.0
+ * @since       1.0
+ */
 @Getter @Setter @NoArgsConstructor
-public class ChatRoomPayRole {
+public class ChatRoomDto {
 
     /**
      * Entity's Attributes
      */
-    private @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY) Long id;
+    private Long id;
 
     @ManyToOne
     private User participantOne;

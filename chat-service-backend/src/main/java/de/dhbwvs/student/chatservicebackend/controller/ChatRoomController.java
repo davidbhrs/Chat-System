@@ -3,10 +3,11 @@ package de.dhbwvs.student.chatservicebackend.controller;
 import de.dhbwvs.student.chatservicebackend.exceptions.ChatRoomCreationException;
 import de.dhbwvs.student.chatservicebackend.exceptions.ChatRoomNotFoundException;
 import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
+import de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapper;
 import de.dhbwvs.student.chatservicebackend.models.ChatRoom;
 import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomParticipants;
 import de.dhbwvs.student.chatservicebackend.models.User;
-import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomPayRole;
+import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomDto;
 import de.dhbwvs.student.chatservicebackend.repositories.ChatRoomRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -44,7 +45,7 @@ public class ChatRoomController {
      * @return A ResponseEntity with HTTPStatus.CREATED and the new ChatRoom in the Body
      */
     @PostMapping("/users/{userId}/chat-rooms")
-    public ResponseEntity<ChatRoomPayRole> createChatRoom(
+    public ResponseEntity<ChatRoomDto> createChatRoom(
             @PathVariable Long userId,
             @RequestBody ChatRoomParticipants chatRoomParticipants
     ) {
@@ -60,11 +61,8 @@ public class ChatRoomController {
             throw new ChatRoomCreationException();
         } else {
             ChatRoom newChatRoom = chatRoomRepository.save(new ChatRoom(participantOne, participantTwo));
-            ChatRoomPayRole payRole = new ChatRoomPayRole();
-            payRole.setId(newChatRoom.getId());
-            payRole.setParticipantOne(newChatRoom.getParticipantOne());
-            payRole.setParticipantTwo(newChatRoom.getParticipantTwo());
-            return new ResponseEntity(payRole, HttpStatus.CREATED);
+            ChatRoomDto chatRoomDto = ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(newChatRoom);
+            return new ResponseEntity(chatRoomDto, HttpStatus.CREATED);
         }
     }
 
@@ -77,19 +75,15 @@ public class ChatRoomController {
      * @return A ResponseEntity with HTTPStatus.OK and the a List of ChatRooms in the Body
      */
     @GetMapping("/users/{userId}/chat-rooms")
-    public ResponseEntity<List<ChatRoomPayRole>> getAllChatRoomsByUser(@PathVariable Long userId) {
+    public ResponseEntity<List<ChatRoomDto>> getAllChatRoomsByUser(@PathVariable Long userId) {
         User user = getUserById(userId);
 
         List<ChatRoom> listOfChatRooms = chatRoomRepository.findAllByParticipantOneOrParticipantTwo(user, user);
-        List<ChatRoomPayRole> listOfPayRoles = new ArrayList<>();
-        for (ChatRoom chatroom: listOfChatRooms) {
-            ChatRoomPayRole payRole = new ChatRoomPayRole();
-            payRole.setId(chatroom.getId());
-            payRole.setParticipantOne(chatroom.getParticipantOne());
-            payRole.setParticipantTwo(chatroom.getParticipantTwo());
-            listOfPayRoles.add(payRole);
+        List<ChatRoomDto> listOfDtos = new ArrayList<>();
+        for (ChatRoom chatRoom: listOfChatRooms) {
+            listOfDtos.add(ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(chatRoom));
         }
-        return ResponseEntity.ok(listOfPayRoles);
+        return ResponseEntity.ok(listOfDtos);
     }
 
     /**
@@ -104,17 +98,14 @@ public class ChatRoomController {
      * @return A ResponseEntity with HTTPStatus.OK and the a ChatRooms in the Body
      */
     @GetMapping("/users/{userId}/chat-rooms/{chatRoomId}")
-    public ResponseEntity<ChatRoomPayRole> getChatRoomById(@PathVariable Long userId, @PathVariable Long chatRoomId) {
+    public ResponseEntity<ChatRoomDto> getChatRoomById(@PathVariable Long userId, @PathVariable Long chatRoomId) {
         User user = getUserById(userId);
 
         ChatRoom chatRoom = chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, chatRoomId)
                 .orElseThrow(() -> new ChatRoomNotFoundException(chatRoomId));
 
-        ChatRoomPayRole payRole = new ChatRoomPayRole();
-        payRole.setId(chatRoom.getId());
-        payRole.setParticipantOne(chatRoom.getParticipantOne());
-        payRole.setParticipantTwo(chatRoom.getParticipantTwo());
-        return ResponseEntity.ok(payRole);
+        ChatRoomDto chatRoomDto = ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(chatRoom);
+        return ResponseEntity.ok(chatRoomDto);
     }
 
     /**

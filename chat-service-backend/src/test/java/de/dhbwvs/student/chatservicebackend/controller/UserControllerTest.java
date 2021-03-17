@@ -2,7 +2,7 @@ package de.dhbwvs.student.chatservicebackend.controller;
 
 import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
 import de.dhbwvs.student.chatservicebackend.models.User;
-import de.dhbwvs.student.chatservicebackend.models.payrole.UserPayRole;
+import de.dhbwvs.student.chatservicebackend.models.payrole.UserDto;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
@@ -43,7 +43,7 @@ public class UserControllerTest {
         Mockito.when(this.repository.save(Mockito.any())).thenReturn(this.newUser);
 
         // Act
-        ResponseEntity<UserPayRole> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
+        ResponseEntity<UserDto> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
 
         // Assert
         Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
@@ -96,7 +96,7 @@ public class UserControllerTest {
         Mockito.when(this.repository.findAll()).thenReturn(listOfUsers);
 
         // Act
-        ResponseEntity<List<UserPayRole>> responseEntity = this.controller.getAllUsers();
+        ResponseEntity<List<UserDto>> responseEntity = this.controller.getAllUsers();
 
         // Assert
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());

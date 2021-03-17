@@ -4,18 +4,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+/**
+ * @author      Julian Gommlich <carljulian.gommlich@student.dhbw-vs.de>
+ * @version     1.0
+ * @since       1.0
+ */
 @Getter @Setter @NoArgsConstructor
-public class UserPayRole {
+public class UserDto {
 
     /**
      * Entity's Attributes
      */
-    private @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY) Long id;
+    private Long id;
     private String name;
 
 }

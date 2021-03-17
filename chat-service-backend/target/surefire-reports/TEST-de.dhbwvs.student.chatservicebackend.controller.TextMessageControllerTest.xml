@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.127" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest" time="0.024" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -56,11 +56,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="testGetChatRoomByIdSuccess" classname="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.027"/>
-  <testcase name="testGetChatRoomByIdFails" classname="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.002"/>
-  <testcase name="testCreateChatRoomThrowsErrorWhenTheUsersAreEqual" classname="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.002"/>
-  <testcase name="testErrorIsThrownWhenUserCannotBeFound" classname="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.001"/>
-  <testcase name="testGetAllChatRoomsByUser" classname="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.003"/>
-  <testcase name="testCreateChatRoomThrowsErrorWhenUsersDoNotMatchTheId" classname="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.002"/>
-  <testcase name="testCreateChatRoomSuccess" classname="de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest" time="0.002"/>
+  <testcase name="testErrorIsThrownWhenChatRoomCannotBeFound" classname="de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest" time="0.002"/>
+  <testcase name="testErrorIsThrownWhenUserCannotBeFound" classname="de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest" time="0.001"/>
+  <testcase name="testPostNewTextMessageSuccess" classname="de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest" time="0.002"/>
+  <testcase name="testGetAllTextMessages" classname="de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest" time="0.001"/>
 </testsuite>

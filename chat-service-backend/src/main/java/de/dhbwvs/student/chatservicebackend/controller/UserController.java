@@ -1,8 +1,9 @@
 package de.dhbwvs.student.chatservicebackend.controller;
 
 import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
+import de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapper;
 import de.dhbwvs.student.chatservicebackend.models.User;
-import de.dhbwvs.student.chatservicebackend.models.payrole.UserPayRole;
+import de.dhbwvs.student.chatservicebackend.models.payrole.UserDto;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,14 +37,12 @@ public class UserController {
      * @return A ResponseEntity with HTTPStatus.CREATED and the new User in the Body
      */
     @PostMapping("/users/{incomingUsername}")
-    public ResponseEntity<UserPayRole> createNewUser(@PathVariable String incomingUsername) {
+    public ResponseEntity<UserDto> createNewUser(@PathVariable String incomingUsername) {
         if (!doesUserExist(incomingUsername)) {
             User newUser = repository.save(new User(incomingUsername));
 
-            UserPayRole payRole = new UserPayRole();
-            payRole.setId(newUser.getId());
-            payRole.setName(newUser.getName());
-            return new ResponseEntity(payRole, HttpStatus.CREATED);
+            UserDto userDto = UserUserDtoMapper.INSTANCE.userToUserPayRole(newUser);
+            return new ResponseEntity(userDto, HttpStatus.CREATED);
         } else {
             throw(new UserAlreadyExistsException(incomingUsername));
         }
@@ -71,18 +70,15 @@ public class UserController {
      * @return A ResponseEntity with HTTPStatus.OK and a List of all users
      */
     @GetMapping("/users")
-    public ResponseEntity<List<UserPayRole>> getAllUsers() {
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         List<User> listOfUsers = repository.findAll();
-        List<UserPayRole> listOfPayRoles = new ArrayList<>();
+        List<UserDto> listOfDtos = new ArrayList<>();
 
         for (User user : listOfUsers) {
-            UserPayRole payRole = new UserPayRole();
-            payRole.setId(user.getId());
-            payRole.setName(user.getName());
-            listOfPayRoles.add(payRole);
+            listOfDtos.add(UserUserDtoMapper.INSTANCE.userToUserPayRole(user));
         }
 
-        return ResponseEntity.ok(listOfPayRoles);
+        return ResponseEntity.ok(listOfDtos);
     }
 
     /**
