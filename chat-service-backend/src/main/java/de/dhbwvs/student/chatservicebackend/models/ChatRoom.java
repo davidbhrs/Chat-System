@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author      Julian Gommlich <carljulian.gommlich@student.dhbw-vs.de>
@@ -20,11 +21,15 @@ public class ChatRoom {
      */
     private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private User participantOne;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private User participantTwo;
+
+    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<TextMessage> textMessages;
+
 
     /**
      * Constructor
