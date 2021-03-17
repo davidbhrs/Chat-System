@@ -6,13 +6,13 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-17T10:50:02+0100",
+    date = "2021-03-17T11:00:32+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 public class UserUserDtoMapperImpl implements UserUserDtoMapper {
 
     @Override
-    public UserDto userToUserPayRole(User user) {
+    public UserDto userToUserDto(User user) {
         if ( user == null ) {
             return null;
         }

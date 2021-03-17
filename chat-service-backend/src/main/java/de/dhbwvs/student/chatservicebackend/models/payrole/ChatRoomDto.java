@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
@@ -24,9 +21,9 @@ public class ChatRoomDto {
     private Long id;
 
     @ManyToOne
-    private User participantOne;
+    private UserDto participantOne;
 
     @ManyToOne
-    private User participantTwo;
+    private UserDto participantTwo;
 
 }

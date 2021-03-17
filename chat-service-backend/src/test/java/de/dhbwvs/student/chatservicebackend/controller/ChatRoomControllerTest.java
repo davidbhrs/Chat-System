@@ -117,8 +117,8 @@ public class ChatRoomControllerTest {
         // Assert
         Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         Assertions.assertNotNull(responseEntity.getBody());
-        Assertions.assertEquals(userInDB, responseEntity.getBody().getParticipantOne());
-        Assertions.assertEquals(userInDBToo, responseEntity.getBody().getParticipantTwo());
+        Assertions.assertEquals(userInDB.getName(), responseEntity.getBody().getParticipantOne().getName());
+        Assertions.assertEquals(userInDBToo.getName(), responseEntity.getBody().getParticipantTwo().getName());
     }
 
     @Test
@@ -172,8 +172,8 @@ public class ChatRoomControllerTest {
         // Assert
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertNotNull(responseEntity.getBody());
-        Assertions.assertEquals(userInDB, responseEntity.getBody().getParticipantOne());
-        Assertions.assertEquals(userInDBToo, responseEntity.getBody().getParticipantTwo());
+        Assertions.assertEquals(userInDB.getName(), responseEntity.getBody().getParticipantOne().getName());
+        Assertions.assertEquals(userInDBToo.getName(), responseEntity.getBody().getParticipantTwo().getName());
     }
 
 }

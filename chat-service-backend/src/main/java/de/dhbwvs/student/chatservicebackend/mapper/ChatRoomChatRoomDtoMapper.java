@@ -3,6 +3,7 @@ package de.dhbwvs.student.chatservicebackend.mapper;
 import de.dhbwvs.student.chatservicebackend.models.ChatRoom;
 import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -24,6 +25,8 @@ public interface ChatRoomChatRoomDtoMapper {
      * @param chatRoom The ChatRoom object which shall be mapped
      * @return A ChatRoomDto object which is send via REST API
      */
+    @Mapping(target = "participantOne", expression = "java(UserUserDtoMapper.INSTANCE.userToUserDto(chatRoom.getParticipantOne()))")
+    @Mapping(target = "participantTwo", expression = "java(UserUserDtoMapper.INSTANCE.userToUserDto(chatRoom.getParticipantTwo()))")
     ChatRoomDto chatRoomToChatRoomDto(ChatRoom chatRoom);
 
 }

@@ -24,5 +24,5 @@ public interface UserUserDtoMapper {
      * @param user The User object which shall be mapped
      * @return A UserDto object which is send via REST API
      */
-    UserDto userToUserPayRole(User user);
+    UserDto userToUserDto(User user);
 }

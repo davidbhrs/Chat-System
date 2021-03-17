@@ -26,7 +26,7 @@ public class ChatRoomChatRoomDtoMapperTest {
         // Assert
         Assertions.assertNotNull(chatRoomDto);
         Assertions.assertEquals(chatRoom.getId(), chatRoomDto.getId());
-        Assertions.assertEquals(chatRoom.getParticipantOne(), chatRoomDto.getParticipantOne());
-        Assertions.assertEquals(chatRoom.getParticipantTwo(), chatRoomDto.getParticipantTwo());
+        Assertions.assertEquals(chatRoom.getParticipantOne().getName(), chatRoomDto.getParticipantOne().getName());
+        Assertions.assertEquals(chatRoom.getParticipantTwo().getName(), chatRoomDto.getParticipantTwo().getName());
     }
 }

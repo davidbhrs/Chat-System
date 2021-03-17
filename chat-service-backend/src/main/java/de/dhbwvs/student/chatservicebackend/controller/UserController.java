@@ -41,7 +41,7 @@ public class UserController {
         if (!doesUserExist(incomingUsername)) {
             User newUser = repository.save(new User(incomingUsername));
 
-            UserDto userDto = UserUserDtoMapper.INSTANCE.userToUserPayRole(newUser);
+            UserDto userDto = UserUserDtoMapper.INSTANCE.userToUserDto(newUser);
             return new ResponseEntity(userDto, HttpStatus.CREATED);
         } else {
             throw(new UserAlreadyExistsException(incomingUsername));
@@ -75,7 +75,7 @@ public class UserController {
         List<UserDto> listOfDtos = new ArrayList<>();
 
         for (User user : listOfUsers) {
-            listOfDtos.add(UserUserDtoMapper.INSTANCE.userToUserPayRole(user));
+            listOfDtos.add(UserUserDtoMapper.INSTANCE.userToUserDto(user));
         }
 
         return ResponseEntity.ok(listOfDtos);

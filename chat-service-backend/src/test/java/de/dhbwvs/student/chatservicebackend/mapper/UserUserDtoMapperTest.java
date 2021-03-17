@@ -18,7 +18,7 @@ public class UserUserDtoMapperTest {
         user.setName(name);
 
         // Act
-        UserDto userDto = UserUserDtoMapper.INSTANCE.userToUserPayRole(user);
+        UserDto userDto = UserUserDtoMapper.INSTANCE.userToUserDto(user);
 
         // Assert
         Assertions.assertNotNull(userDto);
