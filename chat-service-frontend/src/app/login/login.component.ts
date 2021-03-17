@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiEndpointService } from '../api-endpoint.service'
 
 @Component({
@@ -6,12 +6,9 @@ import { ApiEndpointService } from '../api-endpoint.service'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor(public api: ApiEndpointService) { }
-
-  ngOnInit(): void {
-  }
 
   /**
    * Login Method

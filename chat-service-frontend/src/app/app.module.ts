@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PopUpLogoutComponent } from './pop-up-logout/pop-up-logout.component';
 import { PopUpNewChatComponent } from './pop-up-new-chat/pop-up-new-chat.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PopUpNewChatComponent } from './pop-up-new-chat/pop-up-new-chat.compone
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,7 +12,7 @@ export class PopUpNewChatComponent implements OnInit {
   displayedColumns: string[] = ['name'];
   listOfActiveUsers: User[];
 
-  @Input() user: User;
+  @Input() user: User = new User(1, "James T. Kirk");
 
   constructor(private api: ApiEndpointService) { }
 

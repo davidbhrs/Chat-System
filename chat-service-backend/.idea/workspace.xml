@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/payrole/ChatRoomDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/payrole/ChatRoomDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/config/LoadDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/config/LoadDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
-  <component name="RunManager" selected="JUnit.All in chat-service-backend">
+  <component name="RunManager" selected="Spring Boot.ChatServiceBackendApplication">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -130,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.ChatServiceBackendApplication" />
         <item itemvalue="JUnit.All in chat-service-backend" />
         <item itemvalue="JUnit.ChatRoomChatRoomDtoMapperTest.testMappingChatRoomToChatRoomDto" />
         <item itemvalue="JUnit.UserUserDtoMapperTest.testMappingUserToUserDto" />
         <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="Spring Boot.ChatServiceBackendApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -147,7 +149,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615570342948</updated>
       <workItem from="1615922747786" duration="5417000" />
-      <workItem from="1615967327844" duration="6928000" />
+      <workItem from="1615967327844" duration="9096000" />
     </task>
     <servers />
   </component>
