@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -26,11 +27,13 @@ import { ChatRoomListComponent } from './chat-room-list/chat-room-list.component
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     MatDialogModule,
     MatTableModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PopUpNewChatComponent]
 })
 export class AppModule { }
