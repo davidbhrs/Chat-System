@@ -24,13 +24,21 @@ export class HeaderComponent implements OnInit {
 
   newChat(): void {
     this.dataSharing.currentUser.subscribe((message: User) => {
-      this.dialog.open(PopUpNewChatComponent, { data: message });
+      this.dialog.open(PopUpNewChatComponent, { 
+        data: message,
+        width: '600px',
+        height: '800px'
+      });
     });
   }
 
   logOut(): void {
     this.dataSharing.currentUser.subscribe((message: User) => {
-      this.dialog.open(PopUpLogoutComponent, { data: message });
+      this.dialog.open(PopUpLogoutComponent, { 
+        data: message,
+        width: '600px',
+        height: '300px'
+      });
     });
   }
 }

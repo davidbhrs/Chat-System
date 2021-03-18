@@ -1,0 +1,28 @@
+mat-dialog-content {
+    margin-top: 20px;
+}
+
+mat-dialog-content p {
+    font-size: x-large;
+    font-weight: 400;
+    text-align: center;
+}
+
+mat-dialog-actions button {
+    width: 90%;
+    height: 42px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    color: white;
+    font-size: large;
+    border: none;
+}
+
+mat-dialog-actions button#cancel {
+    background-color: darkgrey;
+}
+
+mat-dialog-actions button#logOut {
+    background-color: red;
+}
