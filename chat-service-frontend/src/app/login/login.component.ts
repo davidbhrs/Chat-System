@@ -9,12 +9,15 @@ import { ApiEndpointService } from '../api-endpoint.service'
 })
 export class LoginComponent {
 
-  constructor(public api: ApiEndpointService, private router: Router) { }
+  /**
+   * Constructor
+   * @param {ApiEndpointService} api service to send http requests to the backend
+   */
+  constructor(public api: ApiEndpointService) { }
 
   /**
    * Login Method
    * Calls the Login Method of the api-endpoint. --> Creates new User in Backend 
-   * 
    * 
    * @param username 
    */
