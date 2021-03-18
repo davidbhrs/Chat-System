@@ -1,10 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 import{ HttpClient, HttpHeaders } from '@angular/common/http';
 import{ Observable } from 'rxjs';
 import { logging } from 'selenium-webdriver';
 import { User } from './user-model';
+import { Router } from '@angular/router';
 
 
 
@@ -23,10 +24,20 @@ const httpOptions = {
 })
 export class ApiEndpointService {
 
-  constructor(private http: HttpClient) {   }
+  /**
+   * Constructor
+   * @param {HttpClient} http   Angular library to send http requests to a server
+   * @param {Router}     router routing service to navigate to other components
+   */
+  constructor(private http: HttpClient, private router: Router) {   }
 
+  /**
+   * Login-function sending a post request to the user resource in backend
+   * After positive response is given, the function navigates to the ChatRoomListComponent
+   * @param {String} username The name of the new user which tries to log in; must be unique
+   */
   login(username: String): Observable<User> {
-    return this.http.post<User>(("/users/" + username), username, httpOptions);
+    return this.http.post<User>(("/users/" + username), username, httpOptions)
   }
 
   getAllUsers(): Observable<any> {

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiEndpointService } from '../api-endpoint.service'
-import { Subscription } from 'rxjs'
+import { pipe, Subscription } from 'rxjs'
 import { DataSharingService } from '../data-sharing.service'
-import { catchError } from 'rxjs/operators';
+import { User } from '../user-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,12 @@ export class LoginComponent implements OnInit {
   loggedIn: boolean;
   subscription: Subscription;
 
-  constructor(public api: ApiEndpointService, private dataSharing: DataSharingService) { }
+  /**
+   * Constructor
+   * @param {ApiEndpointService} api         service to send http requests to the backend
+   * @param {DataSharingService} dataSharing service to exchange data between components
+   */
+  constructor(public api: ApiEndpointService, private dataSharing: DataSharingService, private router: Router) { }
 
   ngOnInit(): void {
     this.subscription = this.dataSharing.currentLoggedInStatus.subscribe(message => this.loggedIn = message);
@@ -25,28 +31,21 @@ export class LoginComponent implements OnInit {
    * Login Method
    * Calls the Login Method of the api-endpoint. --> Creates new User in Backend 
    * 
-   * 
    * @param username 
    */
   async login(username: String) {
-    let success: Boolean
-    this.api.login(username).subscribe(data => {
-      // User created successfully
-      console.log(data)
-      success = true;
-    },
-    error => {
-      // User is not created successfully --> User needs to get feedback
-      success = false;
-      console.error("User existiert bereits.")
+    let success: Boolean = false;
+    this.api.login(username).subscribe((user: User) => {
+      this.dataSharing.changeCurrentUser(user);
+      success = true
     });
 
     await delay(400)
 
     if (success) {
       this.dataSharing.changeLogedInStatus(true);
+      this.router.navigateByUrl("/chats");
     }
-    
   }
 
 }

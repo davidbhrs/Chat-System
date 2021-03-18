@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { User } from './user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,9 @@ import { BehaviorSubject } from 'rxjs';
 export class DataSharingService {
 
   private loggedInStatus = new BehaviorSubject(false);
+  private user: Subject<User> = new Subject();
   currentLoggedInStatus = this.loggedInStatus.asObservable();
+  currentUser = this.user.asObservable();
 
   constructor() { }
 
@@ -17,6 +20,10 @@ export class DataSharingService {
    * @param message 
    */
   changeLogedInStatus(message: boolean) {
-    this.loggedInStatus.next(message)
+    this.loggedInStatus.next(message);
+  }
+
+  changeCurrentUser(message: User) {
+    this.user.next(message);
   }
 }
