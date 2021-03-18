@@ -17,7 +17,7 @@ import { ChatRoomListComponent } from './chat-room-list/chat-room-list.component
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
     PopUpLogoutComponent,
     PopUpNewChatComponent,
     ChatRoomListComponent

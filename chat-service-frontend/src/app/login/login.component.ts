@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ApiEndpointService } from '../api-endpoint.service'
-import { Subscription } from 'rxjs'
+import { pipe, Subscription } from 'rxjs'
 import { DataSharingService } from '../data-sharing.service'
-import { catchError } from 'rxjs/operators';
+import { User } from '../user-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
    * @param {ApiEndpointService} api         service to send http requests to the backend
    * @param {DataSharingService} dataSharing service to exchange data between components
    */
-  constructor(public api: ApiEndpointService, private dataSharing: DataSharingService) { }
+  constructor(public api: ApiEndpointService, private dataSharing: DataSharingService, private router: Router) { }
 
   ngOnInit(): void {
     this.subscription = this.dataSharing.currentLoggedInStatus.subscribe(message => this.loggedIn = message);
@@ -34,12 +34,17 @@ export class LoginComponent implements OnInit {
    * @param username 
    */
   async login(username: String) {
-    this.api.login(username);
+    let success: Boolean = false;
+    this.api.login(username).subscribe((user: User) => {
+      this.dataSharing.changeCurrentUser(user);
+      success = true
+    });
 
     await delay(400)
 
-    if (true) {
+    if (success) {
       this.dataSharing.changeLogedInStatus(true);
+      this.router.navigateByUrl("/chats");
     }
   }
 

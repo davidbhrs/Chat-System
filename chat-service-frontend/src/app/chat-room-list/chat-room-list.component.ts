@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiEndpointService } from '../api-endpoint.service';
+import { Subscription } from 'rxjs';
 import { ChatRoom } from '../chat-room-model';
+import { DataSharingService } from '../data-sharing.service';
 import { User } from '../user-model';
 
 @Component({
@@ -12,6 +13,7 @@ export class ChatRoomListComponent implements OnInit {
 
   // User which is currently logged in
   user: User;
+  subscription: Subscription;
 
   // Test data
   testUser: User = new User(69, "Darth Vader");
@@ -24,16 +26,14 @@ export class ChatRoomListComponent implements OnInit {
    * Constructor
    * @param {ApiEndpointService} api service to send http requests to the backend
    */
-  constructor(private api: ApiEndpointService) { }
+  constructor(private dataSharing: DataSharingService) { }
 
   /**
    * OnInit-Function when component is loaded
    * Asks for the user which is currently logged in
    */
   ngOnInit(): void {
-    this.api.getSubjectNewUser().subscribe((data: User) => {
-      this.user = data;
-    });
+    this.dataSharing.currentUser.subscribe(message => { this.user = message });
   }
 
   /**
