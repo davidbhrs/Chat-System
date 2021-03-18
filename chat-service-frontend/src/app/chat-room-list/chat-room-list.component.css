@@ -1,0 +1,28 @@
+/* Body of Component */
+:host {
+    display: flex;
+}
+
+.chatRoomList {
+    width: 33.33%;
+    float: left;
+}
+
+.chatRoomListElement-left {
+    float: left;
+    width: 90%;
+}
+
+.chatRoomListElement-right {
+    float: right;
+    width: 10%;
+}
+
+.welcomeImg {
+    float: right;
+    width: 66.66%;
+}
+
+.welcomeImg img {
+    width: 100%;
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiEndpointService } from '../api-endpoint.service'
 
 @Component({
@@ -8,7 +9,7 @@ import { ApiEndpointService } from '../api-endpoint.service'
 })
 export class LoginComponent {
 
-  constructor(public api: ApiEndpointService) { }
+  constructor(public api: ApiEndpointService, private router: Router) { }
 
   /**
    * Login Method
@@ -18,17 +19,7 @@ export class LoginComponent {
    * @param username 
    */
   login(username: String) {
-    let success: Boolean
-    this.api.login(username).subscribe(data => {
-      // User created successfully
-      console.log(data)
-      success = true;
-    },
-    error => {
-      // User is not created successfully --> User needs to get feedback
-      success = false;
-      console.error("User existiert bereits.")
-    });
+    this.api.login(username);
   }
 
 }

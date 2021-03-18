@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import{ HttpClient, HttpHeaders }from'@angular/common/http';
-import{ Observable }from'rxjs';
+import{ Observable, Subject }from'rxjs';
 import { logging } from 'selenium-webdriver';
 import { User } from './user-model';
+import { Router } from '@angular/router';
 
 
 
@@ -21,10 +22,19 @@ const httpOptions = {
 })
 export class ApiEndpointService {
 
-  constructor(private http: HttpClient) {   }
+  newUser: Subject<User> = new Subject();
 
-  login(username: String): Observable<User> {
-    return this.http.post<User>(("/users/" + username), username, httpOptions);
+  constructor(private http: HttpClient, private router: Router) {   }
+
+  login(username: String): any {
+    this.http.post<User>(("/users/" + username), username, httpOptions).subscribe((newUser: User) => {
+      this.newUser.next(newUser);
+      this.router.navigateByUrl("/chats");
+    });
+  }
+
+  getSubjectNewUser(): Subject<User> {
+    return this.newUser;
   }
 
   getAllUsers(): Observable<any> {

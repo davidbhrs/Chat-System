@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { PopUpLogoutComponent } from './pop-up-logout/pop-up-logout.component';
 import { PopUpNewChatComponent } from './pop-up-new-chat/pop-up-new-chat.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ChatRoomListComponent } from './chat-room-list/chat-room-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PopUpLogoutComponent,
-    PopUpNewChatComponent
+    PopUpNewChatComponent,
+    ChatRoomListComponent
   ],
   imports: [
     BrowserModule,
