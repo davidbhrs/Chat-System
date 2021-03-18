@@ -1,0 +1,30 @@
+mat-dialog-content p {
+    font-size: x-large;
+    font-weight: 600;
+    text-align: center;
+}
+
+div.searchBar {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border: solid 1pt black;
+    border-radius: 50px;
+    padding: 15px;
+}
+
+input {
+    width: 90%;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+td {
+    width: 550px;
+    margin-left: auto;
+    margin-left: auto;
+    text-align: center;
+}

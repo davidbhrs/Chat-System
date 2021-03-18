@@ -26,8 +26,8 @@ export class HeaderComponent implements OnInit {
     this.dataSharing.currentUser.subscribe((message: User) => {
       this.dialog.open(PopUpNewChatComponent, { 
         data: message,
-        width: '600px',
-        height: '800px'
+        width: '400px',
+        height: '500px'
       });
     });
   }
