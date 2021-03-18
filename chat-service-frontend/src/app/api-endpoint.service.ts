@@ -4,6 +4,7 @@ import { throwError } from 'rxjs';
 import{ HttpClient, HttpHeaders } from '@angular/common/http';
 import{ Observable } from 'rxjs';
 import { logging } from 'selenium-webdriver';
+import { User } from './user-model';
 
 
 
@@ -24,12 +25,20 @@ export class ApiEndpointService {
 
   constructor(private http: HttpClient) {   }
 
-  login(username: String): Observable<any> {
-    return this.http.post<String>(("/users/" + username), username, httpOptions);
+  login(username: String): Observable<User> {
+    return this.http.post<User>(("/users/" + username), username, httpOptions);
   }
 
   getAllUsers(): Observable<any> {
     return this.http.get("/users");
+  }
+
+  logOut(user: User): Observable<any> {
+    return this.http.delete(`/users/${user.id}`);
+  }
+
+  createNewChatRoom(participantOne: User, participantTwo: User): Observable<any> {
+    return this.http.post(`/users/${participantOne.id}/chat-rooms`, { participantOne, participantTwo });
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiEndpointService } from '../api-endpoint.service'
 import { Subscription } from 'rxjs'
 import { DataSharingService } from '../data-sharing.service'

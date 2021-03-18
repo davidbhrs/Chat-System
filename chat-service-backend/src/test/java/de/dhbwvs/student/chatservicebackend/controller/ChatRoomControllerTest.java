@@ -5,6 +5,8 @@ import de.dhbwvs.student.chatservicebackend.exceptions.ChatRoomNotFoundException
 import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
 import de.dhbwvs.student.chatservicebackend.models.ChatRoom;
 import de.dhbwvs.student.chatservicebackend.models.User;
+import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomParticipants;
+import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomDto;
 import de.dhbwvs.student.chatservicebackend.repositories.ChatRoomRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
@@ -14,12 +16,14 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ChatRoomControllerTest {
 
     private static final String TEST_USERNAME = "Test User";
+    private static final String TEST_USERNAME_TWO = "Test User Two";
     private static final String TEST_USERNAME_NOT_IN_DB = "Nicht in der Datenbank";
 
     private User userInDB;
@@ -36,11 +40,11 @@ public class ChatRoomControllerTest {
     public void setUp() {
         this.userRepository = Mockito.mock(UserRepository.class);
         this.userInDB = new User(TEST_USERNAME);
-        this.userInDBToo = new User(TEST_USERNAME);
+        this.userInDBToo = new User(TEST_USERNAME_TWO);
         this.userNotInDB = new User(TEST_USERNAME_NOT_IN_DB);
         this.userNotInDBToo = new User(TEST_USERNAME_NOT_IN_DB);
 
-        this.newChatRoom = new ChatRoom(this.userInDB, this.userInDBToo);
+        this.newChatRoom = new ChatRoom(this.userInDB, userInDBToo);
         this.chatRoomRepository = Mockito.mock(ChatRoomRepository.class);
     }
 
@@ -69,10 +73,11 @@ public class ChatRoomControllerTest {
     public void testCreateChatRoomThrowsErrorWhenTheUsersAreEqual() {
         // Arrange
         Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
+        ChatRoomParticipants chatRoomParticipants = new ChatRoomParticipants(userInDB, userInDB);
 
         // Act
         Exception exception = Assertions.assertThrows(ChatRoomCreationException.class, () ->
-                this.controller.createChatRoom(userInDB.getId(), userInDB, userInDB)
+                this.controller.createChatRoom(userInDB.getId(), chatRoomParticipants)
         );
 
         // Assert
@@ -85,10 +90,11 @@ public class ChatRoomControllerTest {
     public void testCreateChatRoomThrowsErrorWhenUsersDoNotMatchTheId() {
         // Arrange
         Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
+        ChatRoomParticipants chatRoomParticipants = new ChatRoomParticipants(userNotInDB, userNotInDBToo);
 
         // Act
         Exception exception = Assertions.assertThrows(ChatRoomCreationException.class, () ->
-                this.controller.createChatRoom(userInDB.getId(), userNotInDB, userNotInDBToo)
+                this.controller.createChatRoom(userInDB.getId(), chatRoomParticipants)
         );
 
         // Assert
@@ -102,15 +108,17 @@ public class ChatRoomControllerTest {
         // Arrange
         Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
         Mockito.when(this.chatRoomRepository.save(Mockito.any())).thenReturn(this.newChatRoom);
+        ChatRoomParticipants chatRoomParticipants = new ChatRoomParticipants(userInDB, userInDBToo);
 
         // Act
-        ResponseEntity<ChatRoom> responseEntity = this.controller.createChatRoom(userInDB.getId(), userInDB, userInDBToo);
+        ResponseEntity<ChatRoomDto> responseEntity =
+                this.controller.createChatRoom(userInDB.getId(), chatRoomParticipants);
 
         // Assert
         Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        Assertions.assertTrue(responseEntity.getBody() instanceof ChatRoom);
-        Assertions.assertEquals(userInDB, responseEntity.getBody().getParticipantOne());
-        Assertions.assertEquals(userInDBToo, responseEntity.getBody().getParticipantTwo());
+        Assertions.assertNotNull(responseEntity.getBody());
+        Assertions.assertEquals(userInDB.getName(), responseEntity.getBody().getParticipantOne().getName());
+        Assertions.assertEquals(userInDBToo.getName(), responseEntity.getBody().getParticipantTwo().getName());
     }
 
     @Test
@@ -124,12 +132,13 @@ public class ChatRoomControllerTest {
                 .thenReturn(listOfChatRooms);
 
         // Act
-        ResponseEntity<List<ChatRoom>> responseEntity = this.controller.getAllChatRoomsByUser(userInDB.getId());
+        ResponseEntity<List<ChatRoomDto>> responseEntity =
+                this.controller.getAllChatRoomsByUser(userInDB.getId());
 
         // Assert
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assertions.assertFalse(responseEntity.getBody().isEmpty());
-        Assertions.assertEquals(this.newChatRoom, responseEntity.getBody().get(0));
+        Assertions.assertFalse(Objects.requireNonNull(responseEntity.getBody()).isEmpty());
+        Assertions.assertEquals(this.newChatRoom.getId(), responseEntity.getBody().get(0).getId());
     }
 
     @Test
@@ -158,13 +167,13 @@ public class ChatRoomControllerTest {
                 userInDB, userInDB, this.newChatRoom.getId())).thenReturn(Optional.ofNullable(this.newChatRoom));
 
         // Act
-        ResponseEntity<ChatRoom> responseEntity = this.controller.getChatRoomById(userInDB.getId(), newChatRoom.getId());
+        ResponseEntity<ChatRoomDto> responseEntity = this.controller.getChatRoomById(userInDB.getId(), newChatRoom.getId());
 
         // Assert
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assertions.assertTrue(responseEntity.getBody() instanceof ChatRoom);
-        Assertions.assertEquals(userInDB, responseEntity.getBody().getParticipantOne());
-        Assertions.assertEquals(userInDBToo, responseEntity.getBody().getParticipantTwo());
+        Assertions.assertNotNull(responseEntity.getBody());
+        Assertions.assertEquals(userInDB.getName(), responseEntity.getBody().getParticipantOne().getName());
+        Assertions.assertEquals(userInDBToo.getName(), responseEntity.getBody().getParticipantTwo().getName());
     }
 
 }

@@ -23,10 +23,10 @@ public class TextMessage {
     private String content;
     private Date timestamp;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private User sentBy;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private ChatRoom chatRoom;
 
     /**
