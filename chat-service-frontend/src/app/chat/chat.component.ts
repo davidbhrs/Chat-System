@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChatRoom } from '../chat-room-model';
 import { TextMessage } from '../text-message-model'
 import { User } from '../user-model';
+import { FormControl, FormGroup } from "@angular/forms";
 
 
 @Component({
@@ -12,8 +13,11 @@ import { User } from '../user-model';
 export class ChatComponent implements OnInit {
 
   messages: TextMessage[];
-  //test id
-  myID = 13
+  chatroom: ChatRoom;
+  @Input() loggedInUser: User;
+
+  inputForm: FormGroup = new FormGroup({
+    message: new FormControl() });
 
   constructor() { }
 
@@ -59,6 +63,24 @@ export class ChatComponent implements OnInit {
 
   sendMessage(message: String) {
     // send message to Backend - oder wohin auch immer
+    
+    // test data
+    let user2 = new User(14, "testytest");
+    this.loggedInUser = new User(13, "test")
+
+    this.inputForm.setValue({
+      message: ''
+    });
+
+    let newMsg: TextMessage = {
+      id : 42, // Woher weiß ich die ID???
+      content: message,
+      timestamp: new Date(Date.now()),
+      sentBy: this.loggedInUser,
+      chatRoom: new ChatRoom(13, this.loggedInUser, user2)
+    }
+
+    this.messages.push(newMsg);
   }
 
 }

@@ -1,22 +1,29 @@
-<div class="flexElement chatRoomList">
-    <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element.id)">
-        <div class="chatRoomListElement-left">
-            <span *ngIf="element.participantOne.name === testUser.name">{{element.participantTwo.name}}</span>
-            <span *ngIf="element.participantTwo.name === testUser.name">{{element.participantOne.name}}</span><br>
-            <svg width="100" height="40">
-                <circle cx="5" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
-                <circle cx="15" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
-                <circle cx="25" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
-            </svg>
-        </div>
-        <div class="chatRoomListElement-right">
-            5:00
+<div class="flexContainer">
+    <div class="flexElement chatRoomList">
+        <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element.id)">
+            <div class="chatRoomListElement-left">
+                <span *ngIf="element.participantOne.name === testUser.name">{{element.participantTwo.name}}</span>
+                <span *ngIf="element.participantTwo.name === testUser.name">{{element.participantOne.name}}</span><br>
+                <svg width="100" height="40">
+                    <circle cx="5" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
+                    <circle cx="15" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
+                    <circle cx="25" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
+                </svg>
+            </div>
+            <div class="chatRoomListElement-right">
+                5:00
+            </div>
         </div>
     </div>
+    <div class="flexElement chat">
+        <app-chat [loggedInUser]="user"></app-chat>
+        <!-- <img src="/assets/img/stefan-cosma-YGzV2u31o9Q-unsplash.jpg"> -->
+    </div>
 </div>
-<app-chat></app-chat>
+
+
 <!--
 <div class="flexElement welcomeImg">
-    <img src="/assets/img/stefan-cosma-YGzV2u31o9Q-unsplash.jpg">
+    
 </div>
 -->

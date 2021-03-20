@@ -6,7 +6,7 @@ import { MatTableModule } from "@angular/material/table";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { PopUpLogoutComponent } from './pop-up-logout/pop-up-logout.component';
 import { PopUpNewChatComponent } from './pop-up-new-chat/pop-up-new-chat.component';
@@ -32,7 +32,8 @@ import { PictureComponent } from './picture/picture.component';
     HttpClientModule,
     MatDialogModule,
     MatTableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

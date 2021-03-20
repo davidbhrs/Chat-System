@@ -26,7 +26,7 @@
         </ng-template>
     </li>
 </div>
-<form #inputMessage="ngForm" (ngSubmit)="sendMessage(inputMessage.value.message)">
-    <input id="sendMessage" type="text" name="message" placeholder="Nachricht">
+<form [formGroup]="inputForm" (ngSubmit)="sendMessage(inputForm.value.message)">
+    <input id="sendMessage" type="text" name="message" placeholder="Nachricht" formControlName="message">
     <input id="sendMessageButton" type="submit">
 </form>

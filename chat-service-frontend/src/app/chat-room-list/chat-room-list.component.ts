@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ChatRoom } from '../chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
@@ -34,6 +34,7 @@ export class ChatRoomListComponent implements OnInit {
    */
   ngOnInit(): void {
     this.dataSharing.currentUser.subscribe(message => { this.user = message });
+    console.log("Chatrooms weiß, dass " + this.user + " angemeldet ist"); // this.user ist hier noch undefined
   }
 
   /**
