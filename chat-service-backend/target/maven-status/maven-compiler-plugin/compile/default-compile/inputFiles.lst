@@ -1,11 +1,9 @@
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\controller\TextMessageController.java
-E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\models\payrole\ChatRoomPayRole.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\exceptions\ChatRoomCreationException.java
-E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\mapper\UserUserPayRoleMapper.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\config\WebSocketConfig.java
-E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\models\payrole\UserPayRole.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\models\TextMessage.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\repositories\UserRepository.java
+E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\models\payrole\ChatRoomDto.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\exceptions\UserAlreadyExistsException.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\ChatServiceBackendApplication.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\websocket\SocketTextHandler.java
@@ -14,8 +12,11 @@ E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatserviceb
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\config\LoadDatabase.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\controller\ChatRoomController.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\repositories\ChatRoomRepository.java
+E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\mapper\UserUserDtoMapper.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\models\payrole\ChatRoomParticipants.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\exceptions\ChatRoomNotFoundException.java
+E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\mapper\ChatRoomChatRoomDtoMapper.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\models\ChatRoom.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\exceptions\UserNotFoundException.java
 E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\controller\UserController.java
+E:\Chat-System\chat-service-backend\src\main\java\de\dhbwvs\student\chatservicebackend\models\payrole\UserDto.java
