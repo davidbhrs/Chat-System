@@ -1,5 +1,9 @@
+:host {
+    margin-top: 10px;
+}
+
 #sendMessage {
-    width: 90%;
+    width: 100%;
     padding: 5px 15px 5px 15px;
     margin: 5px 5px 10px 5px;
     border-radius: 40px;
@@ -38,4 +42,9 @@ li {
 
 .time {
     text-align: right;
+}
+
+form {
+    text-align: center;
+    width: 99%;
 }

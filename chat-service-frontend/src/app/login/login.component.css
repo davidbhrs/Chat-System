@@ -1,5 +1,6 @@
 /* Body of Component */
-:host {
+
+.flexContainer {
     display: flex;
 }
 
@@ -11,8 +12,4 @@
 .welcomeImg {
     float: right;
     width: 66.66%;
-}
-
-.welcomeImg img {
-    width: 100%;
 }

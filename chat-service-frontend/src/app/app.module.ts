@@ -13,6 +13,7 @@ import { PopUpNewChatComponent } from './pop-up-new-chat/pop-up-new-chat.compone
 import { AppRoutingModule } from './app-routing.module';
 import { ChatRoomListComponent } from './chat-room-list/chat-room-list.component';
 import { ChatComponent } from './chat/chat.component';
+import { PictureComponent } from './picture/picture.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ChatComponent } from './chat/chat.component';
     PopUpLogoutComponent,
     PopUpNewChatComponent,
     ChatRoomListComponent,
-    ChatComponent
+    ChatComponent,
+    PictureComponent
   ],
   imports: [
     BrowserModule,
