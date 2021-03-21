@@ -1,0 +1,32 @@
+<div class="msgHistory">
+    <li class="msg" *ngFor="let message of messages">
+        <div *ngIf="message.sentBy.id !== myID
+            then incoming_msg
+            else outgoing_msg">
+        </div>
+        <ng-template #incoming_msg>
+            <div class="incoming_msg">
+                <div>
+                    <span> {{ message.content }} </span>
+                </div>
+                <div class="time text-muted">
+                    <small> {{ message.timestamp | date:"short" }} </small>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #outgoing_msg>
+            <div class="outgoing_msg">
+                <div>
+                    <span> {{ message.content }} </span>
+                </div>
+                <div class="time text-muted">
+                    <small> {{ message.timestamp | date:"short" }} </small>
+                </div>
+            </div>
+        </ng-template>
+    </li>
+</div>
+<form [formGroup]="inputForm" (ngSubmit)="sendMessage(inputForm.value.message)">
+    <input id="sendMessage" type="text" name="message" placeholder="Nachricht" formControlName="message">
+    <input id="sendMessageButton" type="submit">
+</form>

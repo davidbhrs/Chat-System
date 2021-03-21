@@ -1,5 +1,6 @@
 /* Body of Component */
-:host {
+
+.flexContainer {
     display: flex;
 }
 
@@ -18,11 +19,7 @@
     width: 10%;
 }
 
-.welcomeImg {
+.chat {
     float: right;
     width: 66.66%;
-}
-
-.welcomeImg img {
-    width: 100%;
 }
