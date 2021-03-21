@@ -14,8 +14,6 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loggedIn: boolean;
-  // current user
-  user: User;
   subscription: Subscription;
 
   /**
@@ -38,19 +36,16 @@ export class LoginComponent implements OnInit {
   async login(username: String) {
     let success: Boolean = false;
     this.api.login(username).subscribe((user: User) => {
-      this.user = user;
       this.dataSharing.changeCurrentUser(user);
-      success = true
+      success = true;
     });
 
-    await delay(400)
+    await delay(400);
 
     if (success) {
       this.dataSharing.changeLogedInStatus(true);
       this.router.navigateByUrl("/chats");
     }
-
-    console.log(this.user);
   }
 
 }

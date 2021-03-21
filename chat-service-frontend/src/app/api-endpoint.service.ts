@@ -52,4 +52,8 @@ export class ApiEndpointService {
     return this.http.post(`/users/${participantOne.id}/chat-rooms`, { participantOne, participantTwo });
   }
 
+  getAllChatRoomsByUser(user: User): Observable<any> {
+    return this.http.get(`/users/${user.id}/chat-rooms`);
+  }
+
 }

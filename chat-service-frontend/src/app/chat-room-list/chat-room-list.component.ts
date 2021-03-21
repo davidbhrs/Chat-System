@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ReplaySubject, Subject, Subscription } from 'rxjs';
+import { ApiEndpointService } from '../api-endpoint.service';
 import { ChatRoom } from '../chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
 import { User } from '../user-model';
@@ -13,7 +14,6 @@ export class ChatRoomListComponent implements OnInit {
 
   // User which is currently logged in
   user: User;
-  subscription: Subscription;
 
   // Test data
   testUser: User = new User(69, "Darth Vader");
@@ -26,23 +26,26 @@ export class ChatRoomListComponent implements OnInit {
    * Constructor
    * @param {ApiEndpointService} api service to send http requests to the backend
    */
-  constructor(private dataSharing: DataSharingService) { }
+  constructor(private dataSharing: DataSharingService, private api: ApiEndpointService) { 
+    
+  }
 
   /**
    * OnInit-Function when component is loaded
    * Asks for the user which is currently logged in
    */
   ngOnInit(): void {
-    this.dataSharing.currentUser.subscribe(message => { this.user = message });
-    console.log("Chatrooms weiß, dass " + this.user + " angemeldet ist"); // this.user ist hier noch undefined
+    this.dataSharing.currentUser.subscribe((message: User) => { 
+      this.user = message; 
+    });
   }
 
   /**
    * OnClick-Event to open a chat which another user
    * @param {number} id UserId of the chat partner 
    */
-  openChatRoom(id: number): void {
-    console.log(id);
+  openChatRoom(chatRoom: ChatRoom): void {
+    console.log(chatRoom);
   }
 
 }

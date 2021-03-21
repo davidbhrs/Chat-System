@@ -1,6 +1,6 @@
 <div class="flexContainer">
     <div class="flexElement chatRoomList">
-        <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element.id)">
+        <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element)">
             <div class="chatRoomListElement-left">
                 <span *ngIf="element.participantOne.name === testUser.name">{{element.participantTwo.name}}</span>
                 <span *ngIf="element.participantTwo.name === testUser.name">{{element.participantOne.name}}</span><br>
