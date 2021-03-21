@@ -1,15 +1,11 @@
-import { ChatRoom } from "./chat-room-model";
-import { TextMessage } from "./text-message-model";
-
 export class User {
 
     id: number;
-    name: String;
+    name: string;
 
-    //Constructor for test purposes
-    constructor(id: number, name: String) {
+    // Constructor for test purposes
+    constructor(id: number, name: string) {
         this.id = id;
         this.name = name;
     }
-
 }

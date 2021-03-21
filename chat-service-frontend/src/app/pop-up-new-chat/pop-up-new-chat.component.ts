@@ -14,11 +14,11 @@ export class PopUpNewChatComponent implements OnInit {
   listOfActiveUsers: User[];
 
   // current user -- initialization for test purposes
-  @Input() user: User = new User(1, "James T. Kirk");
+  @Input() user: User = new User(1, 'James T. Kirk');
 
   /**
    * Constructor
-   * @param {ApiEndpointService} api service to send http requests to the backend
+   * @param api service to send http requests to the backend
    */
   constructor(private api: ApiEndpointService) { }
 
@@ -35,7 +35,7 @@ export class PopUpNewChatComponent implements OnInit {
 
   /**
    * Creating a new Chat with the current user and the chat partner
-   * @param {User} chatPartner user with which the current user wants to chat
+   * @param chatPartner user with which the current user wants to chat
    */
   newChat(chatPartner: User): void {
     this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: any) => {

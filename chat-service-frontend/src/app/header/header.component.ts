@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs'
-import { DataSharingService } from '../data-sharing.service'
+import { Subscription } from 'rxjs';
+import { DataSharingService } from '../data-sharing.service';
 
 @Component({
   selector: 'app-header',

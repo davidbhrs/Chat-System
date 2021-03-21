@@ -16,36 +16,33 @@ export class ChatRoomListComponent implements OnInit {
   chatRoom: ChatRoom;
 
   // Test data
-  testUser: User = new User(69, "Darth Vader");
+  testUser: User = new User(69, 'Darth Vader');
   openChats: ChatRoom[] = [
-    new ChatRoom(1, new User(42, "Luke Skywalker"), new User(69, "Darth Vader")),
-    new ChatRoom(2, new User(69, "Darth Vader"), new User(17, "Obi-Wan Kenobi"))
-  ]
+    new ChatRoom(1, new User(42, 'Luke Skywalker'), new User(69, 'Darth Vader')),
+    new ChatRoom(2, new User(69, 'Darth Vader'), new User(17, 'Obi-Wan Kenobi'))
+  ];
 
   /**
    * Constructor
-   * @param {ApiEndpointService} api service to send http requests to the backend
+   * @param api service to send http requests to the backend
    */
-  constructor(private dataSharing: DataSharingService, private api: ApiEndpointService) { 
-    
-  }
+  constructor(private dataSharing: DataSharingService) {}
 
   /**
    * OnInit-Function when component is loaded
    * Asks for the user which is currently logged in
    */
   ngOnInit(): void {
-    this.dataSharing.currentUser.subscribe((message: User) => { 
-      this.user = message; 
+    this.dataSharing.currentUser.subscribe((message: User) => {
+      this.user = message;
     });
   }
 
   /**
    * OnClick-Event to open a chat which another user
-   * @param {number} id UserId of the chat partner 
+   * @param id UserId of the chat partner
    */
   openChatRoom(chatRoom: ChatRoom): void {
     this.chatRoom = chatRoom;
   }
-
 }
