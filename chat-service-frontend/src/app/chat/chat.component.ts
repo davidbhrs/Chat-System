@@ -3,6 +3,7 @@ import { ChatRoom } from '../chat-room-model';
 import { TextMessage } from '../text-message-model'
 import { User } from '../user-model';
 import { FormControl, FormGroup } from "@angular/forms";
+import { ApiEndpointService } from '../api-endpoint.service';
 
 
 @Component({
@@ -13,15 +14,20 @@ import { FormControl, FormGroup } from "@angular/forms";
 export class ChatComponent implements OnInit {
 
   messages: TextMessage[];
-  chatroom: ChatRoom;
+  @Input() chatRoom: ChatRoom;
   @Input() loggedInUser: User;
 
   inputForm: FormGroup = new FormGroup({
     message: new FormControl() });
 
-  constructor() { }
+  constructor(private api: ApiEndpointService) { }
 
   ngOnInit(): void {
+
+    this.api.getAllTextMessagesByChatRoomId(this.loggedInUser, this.chatRoom).subscribe((listOfTextMessages) => {
+      console.log(listOfTextMessages);
+    });
+
     // Test data
     let user1 = new User(13, "test")
     let user2 = new User(14, "testytest")
@@ -58,7 +64,7 @@ export class ChatComponent implements OnInit {
       chatRoom: new ChatRoom(13, user1, user2)
     }
 
-    this.messages = [msg1, msg2, msg3, msg4]
+    this.messages = [msg1, msg2, msg3, msg4];
   }
 
   sendMessage(message: String) {

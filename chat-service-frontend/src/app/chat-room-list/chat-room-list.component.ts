@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { ChatRoom } from '../chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
@@ -14,6 +13,7 @@ export class ChatRoomListComponent implements OnInit {
 
   // User which is currently logged in
   user: User;
+  chatRoom: ChatRoom;
 
   // Test data
   testUser: User = new User(69, "Darth Vader");
@@ -45,7 +45,7 @@ export class ChatRoomListComponent implements OnInit {
    * @param {number} id UserId of the chat partner 
    */
   openChatRoom(chatRoom: ChatRoom): void {
-    console.log(chatRoom);
+    this.chatRoom = chatRoom;
   }
 
 }

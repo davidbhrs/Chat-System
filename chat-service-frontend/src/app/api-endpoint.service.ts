@@ -6,6 +6,7 @@ import{ Observable } from 'rxjs';
 import { logging } from 'selenium-webdriver';
 import { User } from './user-model';
 import { Router } from '@angular/router';
+import { ChatRoom } from './chat-room-model';
 
 
 
@@ -52,8 +53,8 @@ export class ApiEndpointService {
     return this.http.post(`/users/${participantOne.id}/chat-rooms`, { participantOne, participantTwo });
   }
 
-  getAllChatRoomsByUser(user: User): Observable<any> {
-    return this.http.get(`/users/${user.id}/chat-rooms`);
+  getAllTextMessagesByChatRoomId(user: User, chatRoom: ChatRoom): Observable<any> {
+    return this.http.get(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`);
   }
 
 }
