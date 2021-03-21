@@ -62,7 +62,7 @@ public class ChatRoomController {
         } else {
             ChatRoom newChatRoom = chatRoomRepository.save(new ChatRoom(participantOne, participantTwo));
             ChatRoomDto chatRoomDto = ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(newChatRoom);
-            return new ResponseEntity(chatRoomDto, HttpStatus.CREATED);
+            return new ResponseEntity<>(chatRoomDto, HttpStatus.CREATED);
         }
     }
 

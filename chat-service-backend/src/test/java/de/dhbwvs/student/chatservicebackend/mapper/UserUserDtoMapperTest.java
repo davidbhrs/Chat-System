@@ -5,10 +5,10 @@ import de.dhbwvs.student.chatservicebackend.models.payrole.UserDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class UserUserDtoMapperTest {
+class UserUserDtoMapperTest {
 
     @Test
-    public void testMappingUserToUserDto() {
+    void testMappingUserToUserDto() {
         // Arrange
         Long id = 42L;
         String name = "Test Name";

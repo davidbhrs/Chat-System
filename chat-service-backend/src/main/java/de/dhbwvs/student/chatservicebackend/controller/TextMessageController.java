@@ -54,7 +54,7 @@ public class TextMessageController {
         ChatRoom chatRoom = getChatRoomByUserAndId(user, chatRoomId);
 
         TextMessage newTextMessage = textMessageRepository.save(new TextMessage(textMessage, user, chatRoom));
-        return new ResponseEntity(newTextMessage, HttpStatus.CREATED);
+        return new ResponseEntity<>(newTextMessage, HttpStatus.CREATED);
     }
 
     /**

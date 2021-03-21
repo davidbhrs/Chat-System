@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ChatRoomControllerTest {
+class ChatRoomControllerTest {
 
     private static final String TEST_USERNAME = "Test User";
     private static final String TEST_USERNAME_TWO = "Test User Two";
@@ -54,7 +54,7 @@ public class ChatRoomControllerTest {
     }
 
     @Test
-    public void testErrorIsThrownWhenUserCannotBeFound() {
+    void testErrorIsThrownWhenUserCannotBeFound() {
         // Arrange
         Long unknownId = 42L;
 
@@ -70,14 +70,15 @@ public class ChatRoomControllerTest {
     }
 
     @Test
-    public void testCreateChatRoomThrowsErrorWhenTheUsersAreEqual() {
+    void testCreateChatRoomThrowsErrorWhenTheUsersAreEqual() {
         // Arrange
-        Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
+        Long userId = this.userInDB.getId();
+        Mockito.when(this.userRepository.findById(userId)).thenReturn(Optional.ofNullable(this.userInDB));
         ChatRoomParticipants chatRoomParticipants = new ChatRoomParticipants(userInDB, userInDB);
 
         // Act
         Exception exception = Assertions.assertThrows(ChatRoomCreationException.class, () ->
-                this.controller.createChatRoom(userInDB.getId(), chatRoomParticipants)
+                this.controller.createChatRoom(userId, chatRoomParticipants)
         );
 
         // Assert
@@ -87,14 +88,15 @@ public class ChatRoomControllerTest {
     }
 
     @Test
-    public void testCreateChatRoomThrowsErrorWhenUsersDoNotMatchTheId() {
+    void testCreateChatRoomThrowsErrorWhenUsersDoNotMatchTheId() {
         // Arrange
-        Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
+        Long userId = this.userInDB.getId();
+        Mockito.when(this.userRepository.findById(userId)).thenReturn(Optional.ofNullable(this.userInDB));
         ChatRoomParticipants chatRoomParticipants = new ChatRoomParticipants(userNotInDB, userNotInDBToo);
 
         // Act
         Exception exception = Assertions.assertThrows(ChatRoomCreationException.class, () ->
-                this.controller.createChatRoom(userInDB.getId(), chatRoomParticipants)
+                this.controller.createChatRoom(userId, chatRoomParticipants)
         );
 
         // Assert
@@ -104,7 +106,7 @@ public class ChatRoomControllerTest {
     }
 
     @Test
-    public void testCreateChatRoomSuccess() {
+    void testCreateChatRoomSuccess() {
         // Arrange
         Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
         Mockito.when(this.chatRoomRepository.save(Mockito.any())).thenReturn(this.newChatRoom);
@@ -122,7 +124,7 @@ public class ChatRoomControllerTest {
     }
 
     @Test
-    public void testGetAllChatRoomsByUser() {
+    void testGetAllChatRoomsByUser() {
         // Arrange
         List<ChatRoom> listOfChatRooms = new ArrayList<>();
         listOfChatRooms.add(this.newChatRoom);
@@ -142,15 +144,17 @@ public class ChatRoomControllerTest {
     }
 
     @Test
-    public void testGetChatRoomByIdFails() {
+    void testGetChatRoomByIdFails() {
         // Arrange
+        Long userId = this.userInDB.getId();
+        Long chatRoomId = this.newChatRoom.getId();
         Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
         Mockito.when(this.chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(
                 userInDB, userInDB, this.newChatRoom.getId())).thenReturn(Optional.empty());
 
         // Act
         Exception exception = Assertions.assertThrows(ChatRoomNotFoundException.class, () ->
-                this.controller.getChatRoomById(userInDB.getId(), newChatRoom.getId())
+                this.controller.getChatRoomById(userId, chatRoomId)
         );
 
         // Assert
@@ -160,7 +164,7 @@ public class ChatRoomControllerTest {
     }
 
     @Test
-    public void testGetChatRoomByIdSuccess() {
+    void testGetChatRoomByIdSuccess() {
         // Arrange
         Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
         Mockito.when(this.chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(

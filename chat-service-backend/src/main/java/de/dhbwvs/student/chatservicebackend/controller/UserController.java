@@ -38,11 +38,11 @@ public class UserController {
      */
     @PostMapping("/users/{incomingUsername}")
     public ResponseEntity<UserDto> createNewUser(@PathVariable String incomingUsername) {
-        if (!doesUserExist(incomingUsername)) {
+        if (Boolean.FALSE.equals(doesUserExist(incomingUsername))) {
             User newUser = repository.save(new User(incomingUsername));
 
             UserDto userDto = UserUserDtoMapper.INSTANCE.userToUserDto(newUser);
-            return new ResponseEntity(userDto, HttpStatus.CREATED);
+            return new ResponseEntity<>(userDto, HttpStatus.CREATED);
         } else {
             throw(new UserAlreadyExistsException(incomingUsername));
         }

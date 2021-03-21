@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TextMessageControllerTest {
+class TextMessageControllerTest {
 
     private static final String TEST_USERNAME = "Test User";
     private static final String TEST_STRING = "Hello World!";
@@ -54,7 +54,7 @@ public class TextMessageControllerTest {
     }
 
     @Test
-    public void testErrorIsThrownWhenUserCannotBeFound() {
+    void testErrorIsThrownWhenUserCannotBeFound() {
         // Arrange
         Long unknownId = 42L;
 
@@ -70,7 +70,7 @@ public class TextMessageControllerTest {
     }
 
     @Test
-    public void testErrorIsThrownWhenChatRoomCannotBeFound() {
+    void testErrorIsThrownWhenChatRoomCannotBeFound() {
         // Arrange
         Long unknownId = 42L;
 
@@ -86,7 +86,7 @@ public class TextMessageControllerTest {
     }
 
     @Test
-    public void testPostNewTextMessageSuccess() {
+    void testPostNewTextMessageSuccess() {
         // Arrange
         Mockito.when(this.userRepository.findById(this.userInDB.getId())).thenReturn(Optional.ofNullable(this.userInDB));
         Mockito.when(this.chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(
@@ -107,7 +107,7 @@ public class TextMessageControllerTest {
     }
 
     @Test
-    public void testGetAllTextMessages() {
+    void testGetAllTextMessages() {
         // Arrange
         List<TextMessage> listOfTextMessages = new ArrayList<>();
         listOfTextMessages.add(this.newTextMessage);

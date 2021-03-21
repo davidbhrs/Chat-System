@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.331 s - in de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.71 s - in de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests
