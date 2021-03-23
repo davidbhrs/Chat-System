@@ -1,6 +1,6 @@
 <div class="flexContainer">
     <div class="flexElement chatRoomList">
-        <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element.id)">
+        <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element)">
             <div class="chatRoomListElement-left">
                 <span *ngIf="element.participantOne.name === testUser.name">{{element.participantTwo.name}}</span>
                 <span *ngIf="element.participantTwo.name === testUser.name">{{element.participantOne.name}}</span><br>
@@ -16,8 +16,8 @@
         </div>
     </div>
     <div class="flexElement chat">
-        <app-chat [loggedInUser]="user"></app-chat>
-        <!-- <img src="/assets/img/stefan-cosma-YGzV2u31o9Q-unsplash.jpg"> -->
+        <app-chat *ngIf="chatRoom" [loggedInUser]="user" [chatRoom]="chatRoom"></app-chat>
+        <app-picture *ngIf="!chatRoom"></app-picture>
     </div>
 </div>
 

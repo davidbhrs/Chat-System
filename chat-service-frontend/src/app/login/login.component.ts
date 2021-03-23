@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiEndpointService } from '../api-endpoint.service'
-import { pipe, Subscription } from 'rxjs'
-import { DataSharingService } from '../data-sharing.service'
+import { ApiEndpointService } from '../api-endpoint.service';
+import { Subscription } from 'rxjs';
+import { DataSharingService } from '../data-sharing.service';
 import { User } from '../user-model';
 import { Router } from '@angular/router';
 
@@ -14,14 +14,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loggedIn: boolean;
-  // current user
-  user: User;
   subscription: Subscription;
 
   /**
    * Constructor
-   * @param {ApiEndpointService} api         service to send http requests to the backend
-   * @param {DataSharingService} dataSharing service to exchange data between components
+   * @param api         service to send http requests to the backend
+   * @param dataSharing service to exchange data between components
+   * @param router      routing service to navigate to other components
    */
   constructor(public api: ApiEndpointService, private dataSharing: DataSharingService, private router: Router) { }
 
@@ -31,31 +30,28 @@ export class LoginComponent implements OnInit {
 
   /**
    * Login Method
-   * Calls the Login Method of the api-endpoint. --> Creates new User in Backend 
-   * 
-   * @param username 
+   * Calls the Login Method of the api-endpoint. --> Creates new User in Backend
+   *
+   * @param username name of the new user
    */
-  async login(username: String) {
-    let success: Boolean = false;
+  async login(username: string): Promise<void> {
+    let success = false;
     this.api.login(username).subscribe((user: User) => {
-      this.user = user;
       this.dataSharing.changeCurrentUser(user);
-      success = true
+      success = true;
     });
 
-    await delay(400)
+    await delay(400);
 
     if (success) {
       this.dataSharing.changeLogedInStatus(true);
-      this.router.navigateByUrl("/chats");
+      this.router.navigateByUrl('/chats');
     }
-
-    console.log(this.user);
   }
 
 }
 
 
-function delay(ms: number) {
+function delay(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }

@@ -1,21 +1,17 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, throwError } from 'rxjs';
-import{ HttpClient, HttpHeaders } from '@angular/common/http';
-import{ Observable } from 'rxjs';
-import { logging } from 'selenium-webdriver';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { User } from './user-model';
 import { Router } from '@angular/router';
-
-
+import { ChatRoom } from './chat-room-model';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:4200/',
-    'Content-Type': 'application/json', 
+    'Content-Type': 'application/json',
     'Cache-Control': 'no-cache',
-    'Content-Language': 'de-DE', 
+    'Content-Language': 'de-DE',
   })
 };
 
@@ -26,22 +22,21 @@ export class ApiEndpointService {
 
   /**
    * Constructor
-   * @param {HttpClient} http   Angular library to send http requests to a server
-   * @param {Router}     router routing service to navigate to other components
+   * @param http   Angular library to send http requests to a server
    */
-  constructor(private http: HttpClient, private router: Router) {   }
+  constructor(private http: HttpClient) {   }
 
   /**
    * Login-function sending a post request to the user resource in backend
    * After positive response is given, the function navigates to the ChatRoomListComponent
-   * @param {String} username The name of the new user which tries to log in; must be unique
+   * @param username The name of the new user which tries to log in; must be unique
    */
-  login(username: String): Observable<User> {
-    return this.http.post<User>(("/users/" + username), username, httpOptions)
+  login(username: string): Observable<User> {
+    return this.http.post<User>((`/users/${username}`), username, httpOptions);
   }
 
   getAllUsers(): Observable<any> {
-    return this.http.get("/users");
+    return this.http.get('/users');
   }
 
   logOut(user: User): Observable<any> {
@@ -50,6 +45,10 @@ export class ApiEndpointService {
 
   createNewChatRoom(participantOne: User, participantTwo: User): Observable<any> {
     return this.http.post(`/users/${participantOne.id}/chat-rooms`, { participantOne, participantTwo });
+  }
+
+  getAllTextMessagesByChatRoomId(user: User, chatRoom: ChatRoom): Observable<any> {
+    return this.http.get(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`);
   }
 
 }

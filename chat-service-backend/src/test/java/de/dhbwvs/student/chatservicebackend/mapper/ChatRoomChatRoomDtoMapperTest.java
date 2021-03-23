@@ -6,10 +6,10 @@ import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ChatRoomChatRoomDtoMapperTest {
+class ChatRoomChatRoomDtoMapperTest {
 
     @Test
-    public void testMappingChatRoomToChatRoomDto() {
+    void testMappingChatRoomToChatRoomDto() {
         // Arrange
         Long id = 42L;
         User participantOne = new User("Teilnehmer 1");

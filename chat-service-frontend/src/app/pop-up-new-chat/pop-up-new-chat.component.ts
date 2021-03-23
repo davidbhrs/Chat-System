@@ -21,7 +21,7 @@ export class PopUpNewChatComponent implements OnInit {
 
   /**
    * Constructor
-   * @param {ApiEndpointService} api service to send http requests to the backend
+   * @param api service to send http requests to the backend
    */
   constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService) { 
     this.user = data;
@@ -41,7 +41,7 @@ export class PopUpNewChatComponent implements OnInit {
 
   /**
    * Creating a new Chat with the current user and the chat partner
-   * @param {User} chatPartner user with which the current user wants to chat
+   * @param chatPartner user with which the current user wants to chat
    */
   newChat(chatPartner: User): void {
     this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: any) => {

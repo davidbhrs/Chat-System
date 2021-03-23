@@ -1,6 +1,5 @@
 package de.dhbwvs.student.chatservicebackend.models.payrole;
 
-import de.dhbwvs.student.chatservicebackend.models.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

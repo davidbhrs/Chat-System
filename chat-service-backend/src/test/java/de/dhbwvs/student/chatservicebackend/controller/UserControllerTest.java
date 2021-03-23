@@ -15,7 +15,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class UserControllerTest {
+class UserControllerTest {
 
     private static final String TEST_USERNAME = "Test User";
     private static final String TEST_USERNAME_NOT_IN_DB = "Nicht in der Datenbank";
@@ -38,7 +38,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCreateNewUserGivesPositiveResult() {
+    void testCreateNewUserGivesPositiveResult() {
         // Arrange
         Mockito.when(this.repository.save(Mockito.any())).thenReturn(this.newUser);
 
@@ -51,7 +51,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCreateNewUserThrowsError() {
+    void testCreateNewUserThrowsError() {
         // Arrange
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
@@ -67,7 +67,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCheckForUserTrue() {
+    void testCheckForUserTrue() {
         // Arrange
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
@@ -79,7 +79,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCheckForUserFalse() {
+    void testCheckForUserFalse() {
         // Act
         Boolean isUserInDB = this.controller.doesUserExist(TEST_USERNAME_NOT_IN_DB);
 
@@ -88,7 +88,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetAllUsers() {
+    void testGetAllUsers() {
         // Arrange
         List<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(this.user);

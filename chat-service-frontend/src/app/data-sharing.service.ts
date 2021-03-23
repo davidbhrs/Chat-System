@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { User } from './user-model';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { User } from './user-model';
 export class DataSharingService {
 
   private loggedInStatus = new BehaviorSubject(false);
-  private user: Subject<User> = new ReplaySubject();
+  private user: ReplaySubject<User> = new ReplaySubject();
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();
 
@@ -16,14 +16,19 @@ export class DataSharingService {
 
   /**
    * Service for Sharing the login Status between header and login component.
-   * 
-   * @param message 
+   *
+   * @param message the new LogInStatus
    */
-  changeLogedInStatus(message: boolean) {
+  changeLogedInStatus(message: boolean): void {
     this.loggedInStatus.next(message);
   }
 
-  changeCurrentUser(message: User) {
+  /**
+   * Service for Sharing the current user between components.
+   *
+   * @param message the user that just logged in
+   */
+  changeCurrentUser(message: User): void {
     this.user.next(message);
   }
 }
