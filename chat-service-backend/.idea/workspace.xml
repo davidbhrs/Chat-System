@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/mapper/TextMessageTextMessageDtoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/payrole/PlainTextMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/payrole/TextMessageDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/dhbwvs/student/chatservicebackend/mapper/TextMessageTextMessageDtoMapperTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/payrole/PlainTextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/payrole/PlainTextMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/UserUserDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/UserUserDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/api-endpoint.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/api-endpoint.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat-room-list/chat-room-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat-room-list/chat-room-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,7 +59,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.jsonOptions" />
   </component>
-  <component name="RunManager" selected="Spring Boot.ChatServiceBackendApplication">
+  <component name="RunManager" selected="JUnit.All in chat-service-backend">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -103,7 +97,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TextMessageControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chat-service-backend" />
       <extension name="coverage">
         <pattern>
@@ -112,13 +106,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.dhbwvs.student.chatservicebackend.controller" />
-      <option name="MAIN_CLASS_NAME" value="de.dhbwvs.student.chatservicebackend.controller.UserControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserUserDtoMapperTest.testMappingUserToUserDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TextMessageTextMessageDtoMapperTest.testMappingTextMessageToTextMessageDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chat-service-backend" />
       <extension name="coverage">
         <pattern>
@@ -127,8 +121,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.dhbwvs.student.chatservicebackend.mapper" />
-      <option name="MAIN_CLASS_NAME" value="de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapperTest" />
-      <option name="METHOD_NAME" value="testMappingUserToUserDto" />
+      <option name="MAIN_CLASS_NAME" value="de.dhbwvs.student.chatservicebackend.mapper.TextMessageTextMessageDtoMapperTest" />
+      <option name="METHOD_NAME" value="testMappingTextMessageToTextMessageDto" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -149,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.ChatServiceBackendApplication" />
         <item itemvalue="JUnit.All in chat-service-backend" />
+        <item itemvalue="JUnit.TextMessageTextMessageDtoMapperTest.testMappingTextMessageToTextMessageDto" />
+        <item itemvalue="JUnit.TextMessageControllerTest" />
+        <item itemvalue="Spring Boot.ChatServiceBackendApplication" />
         <item itemvalue="JUnit.ChatRoomChatRoomDtoMapperTest.testMappingChatRoomToChatRoomDto" />
-        <item itemvalue="JUnit.UserUserDtoMapperTest.testMappingUserToUserDto" />
-        <item itemvalue="JUnit.UserControllerTest" />
       </list>
     </recent_temporary>
   </component>

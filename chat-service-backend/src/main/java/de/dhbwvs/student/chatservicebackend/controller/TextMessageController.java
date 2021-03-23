@@ -65,7 +65,6 @@ public class TextMessageController {
 
         TextMessage newTextMessage = textMessageRepository.save(new TextMessage(textMessage.getContent(), user, chatRoom));
         TextMessageDto textMessageDto = TextMessageTextMessageDtoMapper.INSTANCE.textMessageToTextMessageDto(newTextMessage);
-        System.out.println(textMessageDto);
         return new ResponseEntity<>(textMessageDto, HttpStatus.CREATED);
     }
 
