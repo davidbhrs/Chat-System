@@ -1,8 +1,6 @@
-import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { ChatRoom } from '../chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
-import { PopUpNewChatComponent } from '../pop-up-new-chat/pop-up-new-chat.component';
 import { User } from '../user-model';
 
 @Component({
@@ -15,15 +13,13 @@ export class ChatRoomListComponent implements OnInit {
   // User which is currently logged in
   user: User;
   chatRoom: ChatRoom;
-
-  // Test data
   openChats: ChatRoom[] = [];
 
   /**
    * Constructor
    * @param api service to send http requests to the backend
    */
-  constructor(private dataSharing: DataSharingService, private dialog: MatDialog) { }
+  constructor(private dataSharing: DataSharingService) { }
 
   /**
    * OnInit-Function when component is loaded
@@ -44,6 +40,7 @@ export class ChatRoomListComponent implements OnInit {
    * @param id UserId of the chat partner
    */
   openChatRoom(chatRoom: ChatRoom): void {
+    this.chatRoom = null;
     this.chatRoom = chatRoom;
   }
 }
