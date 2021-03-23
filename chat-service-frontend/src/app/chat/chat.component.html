@@ -1,6 +1,6 @@
 <div class="msgHistory">
     <li class="msg" *ngFor="let message of messages">
-        <div *ngIf="message.sentBy.id !== myID
+        <div *ngIf="message.sentBy.id !== loggedInUser.id
             then incoming_msg
             else outgoing_msg">
         </div>

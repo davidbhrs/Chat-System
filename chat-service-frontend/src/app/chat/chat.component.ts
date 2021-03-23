@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit {
     });
 
     // Test data
-    const user1 = new User(13, 'test');
+    const user1 = this.loggedInUser;
     const user2 = new User(14, 'testytest');
 
     const msg1: TextMessage = {
@@ -73,7 +73,6 @@ export class ChatComponent implements OnInit {
 
     // test data
     const user2 = new User(14, 'testytest');
-    this.loggedInUser = new User(13, 'test');
 
     this.inputForm.setValue({
       message: ''
