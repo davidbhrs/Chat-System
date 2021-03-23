@@ -1,7 +1,8 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
-import { ApiEndpointService } from '../api-endpoint.service';
 import { ChatRoom } from '../chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
+import { PopUpNewChatComponent } from '../pop-up-new-chat/pop-up-new-chat.component';
 import { User } from '../user-model';
 
 @Component({
@@ -26,7 +27,7 @@ export class ChatRoomListComponent implements OnInit {
    * Constructor
    * @param api service to send http requests to the backend
    */
-  constructor(private dataSharing: DataSharingService) {}
+  constructor(private dataSharing: DataSharingService, private dialog: MatDialog) { }
 
   /**
    * OnInit-Function when component is loaded

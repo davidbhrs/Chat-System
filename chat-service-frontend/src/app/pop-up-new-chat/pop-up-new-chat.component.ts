@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { User } from '../user-model';
 
@@ -12,15 +13,19 @@ export class PopUpNewChatComponent implements OnInit {
   /** local variables */
   displayedColumns: string[] = ['name'];
   listOfActiveUsers: User[];
+  dataSource: User[];
+  searchword: String;
 
-  // current user -- initialization for test purposes
-  @Input() user: User = new User(1, 'James T. Kirk');
+  // current user
+  user: User;
 
   /**
    * Constructor
    * @param api service to send http requests to the backend
    */
-  constructor(private api: ApiEndpointService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService) { 
+    this.user = data;
+  }
 
   /**
    * OnInit-Function when component is loaded
@@ -28,8 +33,9 @@ export class PopUpNewChatComponent implements OnInit {
    */
   ngOnInit(): void {
     this.api.getAllUsers().subscribe((data: User[]) => {
+      data.splice(data.indexOf(this.user),1);
       this.listOfActiveUsers = data;
-      console.log(this.listOfActiveUsers);
+      this.dataSource = this.listOfActiveUsers;
     });
   }
 
@@ -41,5 +47,19 @@ export class PopUpNewChatComponent implements OnInit {
     this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: any) => {
       console.log(data);
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    var filteredList: User[] = [];
+
+    this.listOfActiveUsers.forEach(user => {
+      var comparisonValue = user.name.toLowerCase();
+      if (comparisonValue.indexOf(filterValue) !== -1) {
+        filteredList.push(user);
+      }
+    });
+
+    this.dataSource = filteredList;
   }
 }

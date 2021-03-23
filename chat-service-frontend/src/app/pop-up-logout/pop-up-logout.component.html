@@ -4,6 +4,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Abbrechen</button>
-    <button mat-button [mat-dialog-close]="true" (click)="logOut()" cdkFocusInitial>Abmelden</button>
+    <button id="cancel" mat-button [mat-dialog-close]="true" cdkFocusInitial>Abbrechen</button>
+    <button id="logOut" mat-button [mat-dialog-close]="true" (click)="logOut()" cdkFocusInitial>Abmelden</button>
 </mat-dialog-actions>
