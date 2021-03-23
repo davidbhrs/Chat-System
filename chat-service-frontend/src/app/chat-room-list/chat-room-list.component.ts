@@ -17,11 +17,7 @@ export class ChatRoomListComponent implements OnInit {
   chatRoom: ChatRoom;
 
   // Test data
-  testUser: User = new User(69, 'Darth Vader');
-  openChats: ChatRoom[] = [
-    new ChatRoom(1, new User(42, 'Luke Skywalker'), new User(69, 'Darth Vader')),
-    new ChatRoom(2, new User(69, 'Darth Vader'), new User(17, 'Obi-Wan Kenobi'))
-  ];
+  openChats: ChatRoom[] = [];
 
   /**
    * Constructor
@@ -36,6 +32,10 @@ export class ChatRoomListComponent implements OnInit {
   ngOnInit(): void {
     this.dataSharing.currentUser.subscribe((message: User) => {
       this.user = message;
+    });
+
+    this.dataSharing.observableNewestChatRoom.subscribe((message: ChatRoom) => {
+      this.openChats.push(message);
     });
   }
 
