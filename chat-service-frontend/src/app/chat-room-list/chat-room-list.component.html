@@ -2,8 +2,8 @@
     <div class="flexElement chatRoomList">
         <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element)">
             <div class="chatRoomListElement-left">
-                <span *ngIf="element.participantOne.name === testUser.name">{{element.participantTwo.name}}</span>
-                <span *ngIf="element.participantTwo.name === testUser.name">{{element.participantOne.name}}</span><br>
+                <span *ngIf="element.participantOne.name === user.name">{{element.participantTwo.name}}</span>
+                <span *ngIf="element.participantTwo.name === user.name">{{element.participantOne.name}}</span><br>
                 <svg width="100" height="40">
                     <circle cx="5" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
                     <circle cx="15" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
@@ -20,10 +20,3 @@
         <app-picture *ngIf="!chatRoom"></app-picture>
     </div>
 </div>
-
-
-<!--
-<div class="flexElement welcomeImg">
-    
-</div>
--->

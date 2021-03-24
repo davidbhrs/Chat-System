@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './user-model';
-import { Router } from '@angular/router';
 import { ChatRoom } from './chat-room-model';
 
 const httpOptions = {
@@ -51,4 +50,7 @@ export class ApiEndpointService {
     return this.http.get(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`);
   }
 
+  sendMessage(user: User, chatRoom: ChatRoom, message: string): Observable<any> {
+    return this.http.post(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, { content: message });
+  }
 }

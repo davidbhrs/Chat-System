@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiEndpointService } from '../api-endpoint.service';
+import { ChatRoom } from '../chat-room-model';
+import { DataSharingService } from '../data-sharing.service';
 import { User } from '../user-model';
 
 @Component({
@@ -23,7 +25,7 @@ export class PopUpNewChatComponent implements OnInit {
    * Constructor
    * @param api service to send http requests to the backend
    */
-  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService, private dataSharing: DataSharingService) { 
     this.user = data;
   }
 
@@ -44,8 +46,8 @@ export class PopUpNewChatComponent implements OnInit {
    * @param chatPartner user with which the current user wants to chat
    */
   newChat(chatPartner: User): void {
-    this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: any) => {
-      console.log(data);
+    this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: ChatRoom) => {
+      this.dataSharing.addNewestChatRoom(data);
     });
   }
 
