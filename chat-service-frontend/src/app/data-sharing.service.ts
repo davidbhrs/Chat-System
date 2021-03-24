@@ -9,7 +9,7 @@ import { User } from './user-model';
 export class DataSharingService {
 
   private loggedInStatus = new BehaviorSubject(false);
-  private user: ReplaySubject<User> = new ReplaySubject();
+  private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, ""));
   private newestChatRoom: Subject<ChatRoom> = new Subject();
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();
