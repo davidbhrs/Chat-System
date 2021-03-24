@@ -2,17 +2,23 @@ package de.dhbwvs.student.chatservicebackend.controller;
 
 import de.dhbwvs.student.chatservicebackend.exceptions.ChatRoomNotFoundException;
 import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
+import de.dhbwvs.student.chatservicebackend.mapper.TextMessageTextMessageDtoMapper;
 import de.dhbwvs.student.chatservicebackend.models.ChatRoom;
 import de.dhbwvs.student.chatservicebackend.models.TextMessage;
 import de.dhbwvs.student.chatservicebackend.models.User;
+import de.dhbwvs.student.chatservicebackend.models.payrole.PlainTextMessage;
+import de.dhbwvs.student.chatservicebackend.models.payrole.TextMessageDto;
 import de.dhbwvs.student.chatservicebackend.repositories.ChatRoomRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.TextMessageRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,17 +50,22 @@ public class TextMessageController {
      * @return A ResponseEntity with HTTPStatus.CREATED and the new TextMessage in the Body
      */
     @PostMapping("/users/{userId}/chat-rooms/{chatRoomId}/text-messages")
-    public ResponseEntity<TextMessage> sendNewTextMessage(
+    public ResponseEntity<TextMessageDto> sendNewTextMessage(
             @PathVariable Long userId,
             @PathVariable Long chatRoomId,
-            @RequestBody String textMessage
+            @RequestBody PlainTextMessage textMessage
     ) {
         User user = getUserById(userId);
 
-        ChatRoom chatRoom = getChatRoomByUserAndId(user, chatRoomId);
+        ChatRoom chatRoom = getChatRoomByUserAndId(chatRoomId);
 
-        TextMessage newTextMessage = textMessageRepository.save(new TextMessage(textMessage, user, chatRoom));
-        return new ResponseEntity<>(newTextMessage, HttpStatus.CREATED);
+        if (chatRoom.getParticipantOne() != user && chatRoom.getParticipantTwo() != user) {
+            throw new ChatRoomNotFoundException(chatRoomId);
+        }
+
+        TextMessage newTextMessage = textMessageRepository.save(new TextMessage(textMessage.getContent(), user, chatRoom));
+        TextMessageDto textMessageDto = TextMessageTextMessageDtoMapper.INSTANCE.textMessageToTextMessageDto(newTextMessage);
+        return new ResponseEntity<>(textMessageDto, HttpStatus.CREATED);
     }
 
     /**
@@ -69,16 +80,24 @@ public class TextMessageController {
      * @return A ResponseEntity with HTTPStatus.OK and the a List of TextMessages in the Body
      */
     @GetMapping("/users/{userId}/chat-rooms/{chatRoomId}/text-messages")
-    public ResponseEntity<List<TextMessage>> getAllTextMessagesByChatRoomId(
+    public ResponseEntity<List<TextMessageDto>> getAllTextMessagesByChatRoomId(
             @PathVariable Long userId,
             @PathVariable Long chatRoomId
     ) {
         User user = getUserById(userId);
 
-        ChatRoom chatRoom = getChatRoomByUserAndId(user, chatRoomId);
+        ChatRoom chatRoom = getChatRoomByUserAndId(chatRoomId);
+
+        if (chatRoom.getParticipantOne() != user && chatRoom.getParticipantTwo() != user) {
+            throw new ChatRoomNotFoundException(chatRoomId);
+        }
 
         List<TextMessage> listOfTextMessages = textMessageRepository.findAllByChatRoom(chatRoom);
-        return ResponseEntity.ok(listOfTextMessages);
+        List<TextMessageDto> listOfDtos = new ArrayList<>();
+        for (TextMessage textMessage: listOfTextMessages) {
+            listOfDtos.add(TextMessageTextMessageDtoMapper.INSTANCE.textMessageToTextMessageDto(textMessage));
+        }
+        return ResponseEntity.ok(listOfDtos);
     }
 
     /**
@@ -100,13 +119,12 @@ public class TextMessageController {
      * <p>
      * Throws a ChatRoomNotFoundException if there is no chat room with the given user entity or id
      *
-     * @param user The user that participates in the chat which shall be found
      * @param id The id of the chat room to be found
      * @return ChatRoom with the given id
      * @throws ChatRoomNotFoundException
      */
-    public ChatRoom getChatRoomByUserAndId(User user, Long id) throws ChatRoomNotFoundException {
-        return chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, id)
+    public ChatRoom getChatRoomByUserAndId(Long id) throws ChatRoomNotFoundException {
+        return chatRoomRepository.findById(id)
                 .orElseThrow(() -> new ChatRoomNotFoundException(id));
     }
 

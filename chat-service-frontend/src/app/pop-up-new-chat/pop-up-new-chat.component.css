@@ -22,9 +22,15 @@ input:focus {
     outline: none;
 }
 
-td {
-    width: 550px;
-    margin-left: auto;
-    margin-left: auto;
+div#table {
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%), 0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+}
+
+td.mat-cell {
+    width: 335px;
+    height: 50px;
     text-align: center;
+    padding-top: 16px;
 }
