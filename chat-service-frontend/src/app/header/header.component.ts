@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
         width: '400px',
         height: '500px'
       });
-    });
+    }).unsubscribe();
   }
 
   logOut(): void {
@@ -39,6 +39,6 @@ export class HeaderComponent implements OnInit {
         width: '600px',
         height: '300px'
       });
-    });
+    }).unsubscribe();
   }
 }
