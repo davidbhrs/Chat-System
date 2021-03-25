@@ -4,7 +4,7 @@ import { ChatRoom } from './chat-room-model';
 import { DataSharingService } from './data-sharing.service';
 import { User } from './user-model';
 
-fdescribe('DataSharingService', () => {
+describe('DataSharingService', () => {
   let service: DataSharingService;
 
   beforeEach(() => {

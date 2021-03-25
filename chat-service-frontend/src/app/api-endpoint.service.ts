@@ -35,22 +35,22 @@ export class ApiEndpointService {
   }
 
   getAllUsers(): Observable<any> {
-    return this.http.get('/users');
+    return this.http.get('/users', httpOptions);
   }
 
   logOut(user: User): Observable<any> {
-    return this.http.delete(`/users/${user.id}`);
+    return this.http.delete(`/users/${user.id}`, httpOptions);
   }
 
   createNewChatRoom(participantOne: User, participantTwo: User): Observable<any> {
-    return this.http.post(`/users/${participantOne.id}/chat-rooms`, { participantOne, participantTwo });
+    return this.http.post(`/users/${participantOne.id}/chat-rooms`, { participantOne, participantTwo }, httpOptions);
   }
 
   getAllTextMessagesByChatRoomId(user: User, chatRoom: ChatRoom): Observable<any> {
-    return this.http.get(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`);
+    return this.http.get(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, httpOptions);
   }
 
   sendMessage(user: User, chatRoom: ChatRoom, message: string): Observable<any> {
-    return this.http.post(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, { content: message });
+    return this.http.post(`/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, { content: message }, httpOptions);
   }
 }
