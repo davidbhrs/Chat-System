@@ -11,7 +11,7 @@ import { ChatComponent } from './chat.component';
 describe('ChatComponent', () => {
   let component: ChatComponent;
   let fixture: ComponentFixture<ChatComponent>;
-  let mockApiEndpointService;
+  let mockApiEndpointService: ApiEndpointService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

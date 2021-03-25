@@ -40,7 +40,6 @@ export class ChatRoomListComponent implements OnInit {
    * @param id UserId of the chat partner
    */
   openChatRoom(chatRoom: ChatRoom): void {
-    this.chatRoom = null;
     this.chatRoom = chatRoom;
   }
 }
