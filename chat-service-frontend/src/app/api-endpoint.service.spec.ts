@@ -6,7 +6,7 @@ import { ChatRoom } from './chat-room-model';
 import { TextMessage } from './text-message-model';
 import { User } from './user-model';
 
-fdescribe('ApiEndpointService', () => {
+describe('ApiEndpointService', () => {
   let service: ApiEndpointService;
   let httpMock: HttpTestingController
 
@@ -89,7 +89,10 @@ fdescribe('ApiEndpointService', () => {
     const userOne = new User(1, 'Test-User 1');
     const userTwo = new User(2, 'Test-User 2');
     const chatRoom = new ChatRoom(1, userOne, userTwo);
-    const textMessages = [new TextMessage(), new TextMessage()];
+    const textMessages = [
+      new TextMessage(1, 'Test message 1', new Date(), userOne, chatRoom), 
+      new TextMessage(2, 'Test message 2', new Date(), userTwo, chatRoom)
+    ];
 
     service.getAllTextMessagesByChatRoomId(userOne, chatRoom).subscribe((response: TextMessage[]) => {
       expect(response).toBe(textMessages);
@@ -109,8 +112,7 @@ fdescribe('ApiEndpointService', () => {
     const chatRoom = new ChatRoom(1, userOne, userTwo);
 
     const message = 'Test text message';
-    const textMessage = new TextMessage();
-    textMessage.content = message;
+    const textMessage = new TextMessage(1, message, new Date(), userOne, chatRoom);
 
     service.sendMessage(userOne, chatRoom, message).subscribe((response: TextMessage) => {
       expect(response.content).toBe(textMessage.content);

@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { PopUpNewChatComponent } from './pop-up-new-chat.component';
 
@@ -8,7 +10,11 @@ describe('PopUpNewChatComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PopUpNewChatComponent ]
+      declarations: [ PopUpNewChatComponent ],
+      imports: [ HttpClientTestingModule ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} }
+      ]
     })
     .compileComponents();
   });
