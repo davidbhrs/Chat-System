@@ -1,29 +1,23 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from "@angular/router/testing";
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
-import { MatDialogMock } from '../MatDialogMock';
+import { MatDialogMock } from '../mat-dialog-mock';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { of } from 'rxjs';
 import { User } from '../user-model';
 import { DataSharingService } from '../data-sharing.service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { MockRouter } from '../router-mock';
 
 describe('LoginComponent', () => {
-  class MockRouter {
-    navigateByUrl(url: string) { return url; }
-  }
-
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let mockApiEndpointService;
   let mockMatDialog;
   let mockDataSharingService;
-  let mockRouter;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -73,7 +67,7 @@ describe('LoginComponent', () => {
     expect(mockMatDialog.open).toHaveBeenCalled();
   });
 
-  it('should successfully set the new user and navigate', inject([Router], async (router:Router) => {
+  it('should successfully set the new user and navigate', inject([Router], async (router: Router) => {
     let newUser = new User(1, 'Test User'); 
 
     spyOn(mockApiEndpointService, 'login').and.returnValue(of(newUser));
