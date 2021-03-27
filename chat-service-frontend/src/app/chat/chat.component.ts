@@ -45,7 +45,7 @@ export class ChatComponent implements OnChanges {
       this.messages.push(data);
     });
 
-    var msgHist = document.getElementById("msgHistory");
+    let msgHist = document.getElementById("msgHistory");
     msgHist.scrollTop = msgHist.scrollHeight;
   }
 }
