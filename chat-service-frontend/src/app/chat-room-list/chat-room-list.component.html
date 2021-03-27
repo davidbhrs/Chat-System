@@ -1,6 +1,6 @@
 <div class="flexContainer">
     <div class="flexElement chatRoomList">
-        <div class="openChatRoom" *ngFor="let element of openChats" (click)="openChatRoom(element)">
+        <div class="openChatRoom bg-light" id="openChatRoom" *ngFor="let element of openChats; let i = index" (click)="openChatRoom(element, i)" [ngClass]="{'highlight': selectedIndex === i}">
             <div class="chatRoomListElement-left">
                 <span *ngIf="element.participantOne.name === user.name">{{element.participantTwo.name}}</span>
                 <span *ngIf="element.participantTwo.name === user.name">{{element.participantOne.name}}</span><br>

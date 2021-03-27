@@ -2,16 +2,36 @@
 
 .flexContainer {
     display: flex;
+    min-height: 91%;
 }
 
 .chatRoomList {
     width: 33.33%;
+    height: 91vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
     float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-right: 1px solid black;
+    background-color: #ffffff;
+}
+
+.openChatRoom {
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.openChatRoom:hover {
+    background-color: lightgray !important;
 }
 
 .chatRoomListElement-left {
     float: left;
     width: 90%;
+    flex-grow: 1;
 }
 
 .chatRoomListElement-right {
@@ -22,4 +42,9 @@
 .chat {
     float: right;
     width: 66.66%;
+}
+
+.highlight {
+    background-color: #e6ebf1 !important;
+    font-weight: bolder;
 }

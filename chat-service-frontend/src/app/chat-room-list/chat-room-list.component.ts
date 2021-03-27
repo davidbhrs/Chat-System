@@ -14,6 +14,7 @@ export class ChatRoomListComponent implements OnInit {
   user: User;
   chatRoom: ChatRoom;
   openChats: ChatRoom[] = [];
+  selectedIndex: number
 
   /**
    * Constructor
@@ -39,7 +40,10 @@ export class ChatRoomListComponent implements OnInit {
    * OnClick-Event to open a chat which another user
    * @param id UserId of the chat partner
    */
-  openChatRoom(chatRoom: ChatRoom): void {
+  openChatRoom(chatRoom: ChatRoom, index: number): void {
     this.chatRoom = chatRoom;
+    this.selectedIndex = index;
+    // document.getElementById("openChatRoom").style.fontWeight = "bold";
+    // document.getElementById("openChatRoom").style.backgroundColor = "#e6ebf1";
   }
 }
