@@ -43,7 +43,5 @@ export class ChatRoomListComponent implements OnInit {
   openChatRoom(chatRoom: ChatRoom, index: number): void {
     this.chatRoom = chatRoom;
     this.selectedIndex = index;
-    // document.getElementById("openChatRoom").style.fontWeight = "bold";
-    // document.getElementById("openChatRoom").style.backgroundColor = "#e6ebf1";
   }
 }
