@@ -11,7 +11,7 @@ export class TextMessage {
 
     // constructor for test purposes
     constructor(id: number, content: string, timestamp: Date, sentBy: User, chatRoom: ChatRoom) {
-        this.id= id;
+        this.id = id;
         this.content = content;
         this.timestamp = timestamp;
         this.sentBy = sentBy;

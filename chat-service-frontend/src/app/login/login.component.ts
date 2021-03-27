@@ -23,7 +23,12 @@ export class LoginComponent implements OnInit {
    * @param dataSharing service to exchange data between components
    * @param router      routing service to navigate to other components
    */
-  constructor(public api: ApiEndpointService, private dataSharing: DataSharingService, private router: Router, private dialog: MatDialog) { }
+  constructor(
+    public api: ApiEndpointService,
+    private dataSharing: DataSharingService,
+    private router: Router,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {}
 

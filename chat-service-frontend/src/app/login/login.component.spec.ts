@@ -22,7 +22,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports: [ 
+      imports: [
         HttpClientTestingModule,
         FormsModule
       ],
@@ -68,7 +68,7 @@ describe('LoginComponent', () => {
   });
 
   it('should successfully set the new user and navigate', inject([Router], async (router: Router) => {
-    let newUser = new User(1, 'Test User'); 
+    const newUser = new User(1, 'Test User');
 
     spyOn(mockApiEndpointService, 'login').and.returnValue(of(newUser));
     const spy = spyOn(router, 'navigateByUrl');

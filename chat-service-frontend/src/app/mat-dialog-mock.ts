@@ -1,9 +1,9 @@
-import { of } from "rxjs";
+import { of } from 'rxjs';
 
 export class MatDialogMock {
-    open() {
-     return {
-       afterClosed: () => of(true)
-     };
-   }
- }
+  open(): object {
+    return {
+      afterClosed: () => of(true)
+    };
+  }
+}

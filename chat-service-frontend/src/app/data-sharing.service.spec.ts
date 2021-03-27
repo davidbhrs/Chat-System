@@ -43,8 +43,8 @@ describe('DataSharingService', () => {
   });
 
   it('should change the value of currentUser', () => {
-    const initialUser = new User(null, "");
-    const newUser = new User(42, "Testname");
+    const initialUser = new User(null, '');
+    const newUser = new User(42, 'Testname');
 
     service.currentUser.subscribe((user: User) => {
       expect(user).toEqual(initialUser);
@@ -58,10 +58,10 @@ describe('DataSharingService', () => {
   });
 
   it('should change the value of newestChatRoom', () => {
-    const userOne = new User(1, "Test-User 1");
-    const userTwo = new User(2, "Test-User 2");
-    const userThree = new User(3, "Test-User 3");
-    const userFour = new User(4, "Test-User 4");
+    const userOne = new User(1, 'Test-User 1');
+    const userTwo = new User(2, 'Test-User 2');
+    const userThree = new User(3, 'Test-User 3');
+    const userFour = new User(4, 'Test-User 4');
     const chatRoomOne = new ChatRoom(1, userOne, userTwo);
     const chatRoomTwo = new ChatRoom(2, userThree, userFour);
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { ChatRoom } from './chat-room-model';
 import { User } from './user-model';
 
@@ -9,7 +9,7 @@ import { User } from './user-model';
 export class DataSharingService {
 
   private loggedInStatus = new BehaviorSubject(false);
-  private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, ""));
+  private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, ''));
   private newestChatRoom: Subject<ChatRoom> = new Subject();
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();

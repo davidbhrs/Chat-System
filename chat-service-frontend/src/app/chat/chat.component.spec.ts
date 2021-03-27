@@ -79,7 +79,7 @@ describe('ChatComponent', () => {
     const textMessage = new TextMessage(1, message, null, null, null);
 
     component.messages = [];
-    component.inputForm.setValue({ message: message });
+    component.inputForm.setValue({ message });
     spyOn(mockApiEndpointService, 'sendMessage').and.returnValue(of(textMessage));
 
     component.sendMessage(message);

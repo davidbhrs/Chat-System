@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { DataSharingService } from '../data-sharing.service';
 import { User } from '../user-model';
-import { MockRouter } from "../router-mock";
+import { MockRouter } from '../router-mock';
 
 import { PopUpLogoutComponent } from './pop-up-logout.component';
 

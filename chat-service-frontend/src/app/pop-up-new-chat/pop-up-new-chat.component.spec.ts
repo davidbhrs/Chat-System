@@ -13,7 +13,7 @@ import { PopUpNewChatComponent } from './pop-up-new-chat.component';
 describe('PopUpNewChatComponent', () => {
   let component: PopUpNewChatComponent;
   let fixture: ComponentFixture<PopUpNewChatComponent>;
-  let currentUser = new User(1, 'Test User');
+  const currentUser = new User(1, 'Test User');
   let mockApiEndpointService;
   let mockDataSharingService;
 
@@ -69,7 +69,7 @@ describe('PopUpNewChatComponent', () => {
 
   it('should filter the users according to the search term', () => {
     const users = [new User(2, 'Test User 2'), new User(3, 'Test User 3'), new User(5, 'Musternutzer 5')];
-    const finalList = [new User(2, 'Test User 2'), new User(3, 'Test User 3')]
+    const finalList = [new User(2, 'Test User 2'), new User(3, 'Test User 3')];
     component.listOfActiveUsers = users;
 
     const inputField = document.getElementById('searchTerm');

@@ -8,7 +8,7 @@ import { User } from './user-model';
 
 describe('ApiEndpointService', () => {
   let service: ApiEndpointService;
-  let httpMock: HttpTestingController
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,7 +24,7 @@ describe('ApiEndpointService', () => {
 
   it('should post a new user', (done) => {
     const username = 'Testname';
-    const newUser = new User(1, username)
+    const newUser = new User(1, username);
 
     service.login(username).subscribe((response: User) => {
       expect(response.name).toEqual(username);
@@ -34,7 +34,7 @@ describe('ApiEndpointService', () => {
     const postUserRequest = httpMock.expectOne(`/users/${username}`);
     expect(postUserRequest.request.method).toBe('POST');
     postUserRequest.flush(newUser);
-    
+
     httpMock.verify();
   });
 
@@ -55,7 +55,7 @@ describe('ApiEndpointService', () => {
 
   it('should delete a user', (done) => {
     const username = 'Testname';
-    const user = new User(1, username)
+    const user = new User(1, username);
 
     service.logOut(user).subscribe(() => {
       done();
@@ -81,7 +81,7 @@ describe('ApiEndpointService', () => {
     const postChatRoomRequest = httpMock.expectOne(`/users/${userOne.id}/chat-rooms`);
     expect(postChatRoomRequest.request.method).toBe('POST');
     postChatRoomRequest.flush(newChatRoom);
-    
+
     httpMock.verify();
   });
 
@@ -90,7 +90,7 @@ describe('ApiEndpointService', () => {
     const userTwo = new User(2, 'Test-User 2');
     const chatRoom = new ChatRoom(1, userOne, userTwo);
     const textMessages = [
-      new TextMessage(1, 'Test message 1', new Date(), userOne, chatRoom), 
+      new TextMessage(1, 'Test message 1', new Date(), userOne, chatRoom),
       new TextMessage(2, 'Test message 2', new Date(), userTwo, chatRoom)
     ];
 
@@ -102,7 +102,7 @@ describe('ApiEndpointService', () => {
     const getTextMessagesRequest = httpMock.expectOne(`/users/${userOne.id}/chat-rooms/${chatRoom.id}/text-messages`);
     expect(getTextMessagesRequest.request.method).toBe('GET');
     getTextMessagesRequest.flush(textMessages);
-    
+
     httpMock.verify();
   });
 
@@ -122,7 +122,7 @@ describe('ApiEndpointService', () => {
     const getTextMessagesRequest = httpMock.expectOne(`/users/${userOne.id}/chat-rooms/${chatRoom.id}/text-messages`);
     expect(getTextMessagesRequest.request.method).toBe('POST');
     getTextMessagesRequest.flush(textMessage);
-    
+
     httpMock.verify();
   });
 });

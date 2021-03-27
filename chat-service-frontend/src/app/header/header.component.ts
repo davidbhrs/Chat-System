@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs'
-import { DataSharingService } from '../data-sharing.service'
+import { Subscription } from 'rxjs';
+import { DataSharingService } from '../data-sharing.service';
 import { PopUpLogoutComponent } from '../pop-up-logout/pop-up-logout.component';
 import { PopUpNewChatComponent } from '../pop-up-new-chat/pop-up-new-chat.component';
 import { User } from '../user-model';
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
   newChat(): void {
     this.dataSharing.currentUser.subscribe((message: User) => {
-      this.dialog.open(PopUpNewChatComponent, { 
+      this.dialog.open(PopUpNewChatComponent, {
         data: message,
         width: '400px',
         height: '500px'
@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
 
   logOut(): void {
     this.dataSharing.currentUser.subscribe((message: User) => {
-      this.dialog.open(PopUpLogoutComponent, { 
+      this.dialog.open(PopUpLogoutComponent, {
         data: message,
         width: '600px',
         height: '300px'

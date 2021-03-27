@@ -1,3 +1,5 @@
 export class MockRouter {
-    navigateByUrl(url: string) { return url; }
+    navigateByUrl(url: string): string {
+        return url;
+    }
 }
