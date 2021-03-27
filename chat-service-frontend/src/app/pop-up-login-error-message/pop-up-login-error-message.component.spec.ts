@@ -11,7 +11,7 @@ describe('PopUpLoginErrorMessageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PopUpLoginErrorMessageComponent ],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: {} }
+        { provide: MAT_DIALOG_DATA, useValue: 'Test' }
       ]
     })
     .compileComponents();
@@ -25,5 +25,6 @@ describe('PopUpLoginErrorMessageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.errorCase).toBe('Test');
   });
 });
