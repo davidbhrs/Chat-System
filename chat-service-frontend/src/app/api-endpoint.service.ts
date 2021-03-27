@@ -38,6 +38,10 @@ export class ApiEndpointService {
     return this.http.get('/users', httpOptions);
   }
 
+  getAllChatRooms(user: User): Observable<any> {
+    return this.http.get(`/users/${user.id}/chat-rooms`, httpOptions);
+  }
+
   logOut(user: User): Observable<any> {
     return this.http.delete(`/users/${user.id}`, httpOptions);
   }
