@@ -15,6 +15,7 @@ export class PopUpNewChatComponent implements OnInit {
   /** local variables */
   displayedColumns: string[] = ['name'];
   listOfActiveUsers: User[];
+  listOfChatRooms: ChatRoom[];
   dataSource: User[];
   searchword: string;
 
@@ -39,6 +40,10 @@ export class PopUpNewChatComponent implements OnInit {
       this.listOfActiveUsers = data;
       this.dataSource = this.listOfActiveUsers;
     });
+
+    this.api.getAllChatRooms(this.user).subscribe((data: ChatRoom[]) => {
+      this.listOfChatRooms = data;
+    });
   }
 
   /**
@@ -46,9 +51,19 @@ export class PopUpNewChatComponent implements OnInit {
    * @param chatPartner user with which the current user wants to chat
    */
   newChat(chatPartner: User): void {
-    this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: ChatRoom) => {
-      this.dataSharing.addNewestChatRoom(data);
+    let shallCreate = true;
+    this.listOfChatRooms.forEach((chatRoom: ChatRoom) => {
+      if (chatRoom.participantOne.name === chatPartner.name || chatRoom.participantTwo.name === chatPartner.name) {
+        this.dataSharing.addNewestChatRoom(chatRoom);
+        shallCreate = false;
+      }
     });
+
+    if (shallCreate) {
+      this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: ChatRoom) => {
+        this.dataSharing.addNewestChatRoom(data);
+      });
+    }
   }
 
   applyFilter(event: Event): void {
