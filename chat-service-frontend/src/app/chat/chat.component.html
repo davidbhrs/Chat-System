@@ -1,4 +1,4 @@
-<div class="msgHistory">
+<div class="msgHistory" id="msgHistory">
     <li class="msg" *ngFor="let message of messages">
         <div *ngIf="message.sentBy.id !== loggedInUser.id
             then incoming_msg
@@ -25,6 +25,7 @@
             </div>
         </ng-template>
     </li>
+
 </div>
 <form [formGroup]="inputForm" (ngSubmit)="sendMessage(inputForm.value.message)">
     <input id="sendMessage" type="text" name="message" placeholder="Nachricht" formControlName="message">
