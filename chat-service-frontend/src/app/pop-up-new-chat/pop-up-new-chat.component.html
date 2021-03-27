@@ -5,7 +5,7 @@
 <mat-dialog-actions align="end">
     <div class="searchBar">
         <mat-icon aria-hidden="false" aria-label="Example search icon">search</mat-icon>
-        <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Suche...">
+        <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Suche..." id="searchTerm">
     </div>
     <div id="table">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

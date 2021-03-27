@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { ChatRoom } from '../chat-room-model';
@@ -16,7 +16,7 @@ export class PopUpNewChatComponent implements OnInit {
   displayedColumns: string[] = ['name'];
   listOfActiveUsers: User[];
   dataSource: User[];
-  searchword: String;
+  searchword: string;
 
   // current user
   user: User;
@@ -25,7 +25,7 @@ export class PopUpNewChatComponent implements OnInit {
    * Constructor
    * @param api service to send http requests to the backend
    */
-  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService, private dataSharing: DataSharingService) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService, private dataSharing: DataSharingService) {
     this.user = data;
   }
 
@@ -35,7 +35,7 @@ export class PopUpNewChatComponent implements OnInit {
    */
   ngOnInit(): void {
     this.api.getAllUsers().subscribe((data: User[]) => {
-      data.splice(data.indexOf(this.user),1);
+      data.splice(data.indexOf(this.user), 1);
       this.listOfActiveUsers = data;
       this.dataSource = this.listOfActiveUsers;
     });
@@ -51,12 +51,12 @@ export class PopUpNewChatComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    var filteredList: User[] = [];
+    const filteredList: User[] = [];
 
     this.listOfActiveUsers.forEach(user => {
-      var comparisonValue = user.name.toLowerCase();
+      const comparisonValue = user.name.toLowerCase();
       if (comparisonValue.indexOf(filterValue) !== -1) {
         filteredList.push(user);
       }

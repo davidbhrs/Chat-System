@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { PopUpLoginErrorMessageComponent } from './pop-up-login-error-message.component';
 
@@ -8,7 +9,10 @@ describe('PopUpLoginErrorMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PopUpLoginErrorMessageComponent ]
+      declarations: [ PopUpLoginErrorMessageComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: 'Test' }
+      ]
     })
     .compileComponents();
   });
@@ -21,5 +25,6 @@ describe('PopUpLoginErrorMessageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.errorCase).toBe('Test');
   });
 });
