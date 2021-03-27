@@ -2,20 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 import { DataSharingService } from '../data-sharing.service';
+import { MatDialogMock } from '../MatDialogMock';
 import { User } from '../user-model';
 
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
-
-  class MatDialogMock {
-    open() {
-     return {
-       afterClosed: () => of(true)
-     };
-   }
- }
-
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let mockDataSharingService;

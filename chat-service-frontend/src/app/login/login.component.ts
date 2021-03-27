@@ -15,7 +15,6 @@ import { PopUpLoginErrorMessageComponent } from '../pop-up-login-error-message/p
 
 export class LoginComponent implements OnInit {
 
-  loggedIn: boolean;
   subscription: Subscription;
 
   /**
@@ -26,9 +25,7 @@ export class LoginComponent implements OnInit {
    */
   constructor(public api: ApiEndpointService, private dataSharing: DataSharingService, private router: Router, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.subscription = this.dataSharing.currentLoggedInStatus.subscribe(message => this.loggedIn = message);
-  }
+  ngOnInit(): void {}
 
   /**
    * Login Method
