@@ -32,36 +32,35 @@ describe('ChatRoomListComponent', () => {
   });
 
   it('should get the current user', () => {
-    expect(fixture.componentInstance.user).toEqual(new User(null, ''));
+    expect(component.user).toEqual(new User(null, ''));
 
     const user = new User(1, 'Test User');
-    mockDataSharingService.currentUser= of(user);
+    mockDataSharingService.currentUser = of(user);
     mockDataSharingService.observableNewestChatRoom = of();
 
-    fixture.componentInstance.ngOnInit();
+    component.ngOnInit();
 
-    expect(fixture.componentInstance.user).toEqual(user);
+    expect(component.user).toEqual(user);
   });
 
   it('should get the newest chatRoom', () => {
-    expect(fixture.componentInstance.openChats).toEqual([]);
+    expect(component.openChats).toEqual([]);
 
     const chatRoom = new ChatRoom(1, new User(1, 'Test User 1'), new User(2, 'Test User 2'));
-    mockDataSharingService.currentUser= of();
+    mockDataSharingService.currentUser = of();
     mockDataSharingService.observableNewestChatRoom = of(chatRoom);
 
-    fixture.componentInstance.ngOnInit();
+    component.ngOnInit();
 
-    expect(fixture.componentInstance.openChats).toEqual([chatRoom]);
+    expect(component.openChats).toEqual([chatRoom]);
   });
 
   it('should choose the correct chat room', () => {
-    expect(fixture.componentInstance.chatRoom).toBeUndefined();
+    expect(component.chatRoom).toBeUndefined();
 
     const chatRoom = new ChatRoom(1, new User(1, 'Test User 1'), new User(2, 'Test User 2'));
-    fixture.componentInstance.openChatRoom(chatRoom);
+    component.openChatRoom(chatRoom);
 
-    expect(fixture.componentInstance.chatRoom).toBe(chatRoom);
-
+    expect(component.chatRoom).toBe(chatRoom);
   });
 });

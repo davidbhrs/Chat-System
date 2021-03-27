@@ -43,14 +43,14 @@ describe('ChatComponent', () => {
     const textMessageTwo = new TextMessage(2, 'Test message 2', null, null, null);
     const textMessages = [textMessageOne, textMessageTwo];
 
-    fixture.componentInstance.loggedInUser = userOne;
-    fixture.componentInstance.chatRoom = chatRoom;
-    fixture.componentInstance.messages = [];
+    component.loggedInUser = userOne;
+    component.chatRoom = chatRoom;
+    component.messages = [];
     spyOn(mockApiEndpointService, 'getAllTextMessagesByChatRoomId').and.returnValue(of(textMessages));
 
-    fixture.componentInstance.ngOnChanges();
+    component.ngOnChanges();
 
-    expect(fixture.componentInstance.messages).toEqual(textMessages);
+    expect(component.messages).toEqual(textMessages);
   });
 
   it('should set chat partner correctly', () => {
@@ -58,33 +58,33 @@ describe('ChatComponent', () => {
     const userTwo = new User(2, 'Test User 2');
     const chatRoom = new ChatRoom(1, userOne, userTwo);
 
-    fixture.componentInstance.loggedInUser = userOne;
-    fixture.componentInstance.chatRoom = chatRoom;
-    fixture.componentInstance.messages = [];
+    component.loggedInUser = userOne;
+    component.chatRoom = chatRoom;
+    component.messages = [];
     spyOn(mockApiEndpointService, 'getAllTextMessagesByChatRoomId').and.returnValue(of([]));
 
-    fixture.componentInstance.ngOnChanges();
+    component.ngOnChanges();
 
-    expect(fixture.componentInstance.chatPartner).toBe(userTwo);
+    expect(component.chatPartner).toBe(userTwo);
 
-    fixture.componentInstance.loggedInUser = userTwo;
+    component.loggedInUser = userTwo;
 
-    fixture.componentInstance.ngOnChanges();
+    component.ngOnChanges();
 
-    expect(fixture.componentInstance.chatPartner).toBe(userOne);
+    expect(component.chatPartner).toBe(userOne);
   });
 
   it('should send a text message', () => {
     const message = 'Test message';
     const textMessage = new TextMessage(1, message, null, null, null);
 
-    fixture.componentInstance.messages = [];
-    fixture.componentInstance.inputForm.setValue({ message: message });
+    component.messages = [];
+    component.inputForm.setValue({ message: message });
     spyOn(mockApiEndpointService, 'sendMessage').and.returnValue(of(textMessage));
 
-    fixture.componentInstance.sendMessage(message);
+    component.sendMessage(message);
 
-    expect(fixture.componentInstance.inputForm.getRawValue()).toEqual({ message: '' });
-    expect(fixture.componentInstance.messages).toEqual([textMessage]);
+    expect(component.inputForm.getRawValue()).toEqual({ message: '' });
+    expect(component.messages).toEqual([textMessage]);
   });
 });
