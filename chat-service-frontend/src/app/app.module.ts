@@ -17,6 +17,7 @@ import { ChatRoomListComponent } from './chat-room-list/chat-room-list.component
 import { ChatComponent } from './chat/chat.component';
 import { PictureComponent } from './picture/picture.component';
 import { PopUpLoginErrorMessageComponent } from './pop-up-login-error-message/pop-up-login-error-message.component';
+import { PopUpTextTooLongMessageComponent } from './pop-up-text-too-long-message/pop-up-text-too-long-message.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PopUpLoginErrorMessageComponent } from './pop-up-login-error-message/po
     ChatRoomListComponent,
     ChatComponent,
     PictureComponent,
-    PopUpLoginErrorMessageComponent
+    PopUpLoginErrorMessageComponent,
+    PopUpTextTooLongMessageComponent
   ],
   imports: [
     BrowserModule,

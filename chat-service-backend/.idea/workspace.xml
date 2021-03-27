@@ -6,23 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat-service-backend-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/chat-service-backend-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/TextMessageTextMessageDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/TextMessageTextMessageDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/UserUserDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/UserUserDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapperTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapperTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,19 +56,6 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.jsonOptions" />
   </component>
   <component name="RunManager" selected="Spring Boot.ChatServiceBackendApplication">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="All in chat-service-backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="chat-service-backend" />
       <option name="PACKAGE_NAME" value="" />
@@ -178,6 +148,7 @@
       <workItem from="1616349218792" duration="1111000" />
       <workItem from="1616351886819" duration="439000" />
       <workItem from="1616352342675" duration="997000" />
+      <workItem from="1616842220138" duration="438000" />
     </task>
     <servers />
   </component>
