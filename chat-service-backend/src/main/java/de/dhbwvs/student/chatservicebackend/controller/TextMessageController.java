@@ -12,10 +12,11 @@ import de.dhbwvs.student.chatservicebackend.repositories.ChatRoomRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.TextMessageRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import net.minidev.json.parser.JSONParser;
-import net.minidev.json.parser.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -49,17 +50,19 @@ public class TextMessageController {
      * @param textMessage The string message which was sent
      * @return A ResponseEntity with HTTPStatus.CREATED and the new TextMessage in the Body
      */
-    @PostMapping("/users/{userId}/chat-rooms/{chatRoomId}/text-messages")
+    @MessageMapping("/users/{userId}/chat-rooms/{chatRoomId}/text-messages")
+    @SendTo("/topic/chat-room")
     public ResponseEntity<TextMessageDto> sendNewTextMessage(
-            @PathVariable Long userId,
-            @PathVariable Long chatRoomId,
+            @DestinationVariable Long userId,
+            @DestinationVariable Long chatRoomId,
             @RequestBody PlainTextMessage textMessage
     ) {
         User user = getUserById(userId);
 
         ChatRoom chatRoom = getChatRoomByUserAndId(chatRoomId);
 
-        if (chatRoom.getParticipantOne() != user && chatRoom.getParticipantTwo() != user) {
+        if (!chatRoom.getParticipantOne().getName().equals(user.getName()) &&
+                !chatRoom.getParticipantTwo().getName().equals(user.getName())) {
             throw new ChatRoomNotFoundException(chatRoomId);
         }
 

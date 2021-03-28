@@ -5,6 +5,9 @@ import { User } from '../user-model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiEndpointService } from '../api-endpoint.service';
 
+import { DataSharingService } from '../data-sharing.service';
+import { Websocket } from '../websocket';
+
 
 @Component({
   selector: 'app-chat',
@@ -22,7 +25,7 @@ export class ChatComponent implements OnChanges {
     message: new FormControl()
   });
 
-  constructor(private api: ApiEndpointService) {}
+  constructor(private api: ApiEndpointService, private dataSharing: DataSharingService, private websocket: Websocket) {}
 
   ngOnChanges(): void {
     this.chatRoom.participantOne.id === this.loggedInUser.id ?
@@ -31,6 +34,12 @@ export class ChatComponent implements OnChanges {
 
     this.api.getAllTextMessagesByChatRoomId(this.loggedInUser, this.chatRoom).subscribe((listOfTextMessages: TextMessage[]) => {
       this.messages = listOfTextMessages;
+    });
+
+    this.dataSharing.observableNewestTextMessage.subscribe((textMessage: TextMessage) => {
+      if (textMessage !== null && textMessage.chatRoom.id === this.chatRoom.id) {
+        this.messages.push(textMessage);
+      }
     });
   }
 
@@ -41,11 +50,13 @@ export class ChatComponent implements OnChanges {
       message: ''
     });
 
-    this.api.sendMessage(this.loggedInUser, this.chatRoom, message).subscribe((data: TextMessage) => {
-      this.messages.push(data);
-    });
+    this.websocket.sendName(this.loggedInUser, this.chatRoom, message);
 
-    let msgHist = document.getElementById("msgHistory");
-    msgHist.scrollTop = msgHist.scrollHeight;
+    /* this.api.sendMessage(this.loggedInUser, this.chatRoom, message).subscribe((data: TextMessage) => {
+      this.messages.push(data);
+
+      let msgHist = document.getElementById("msgHistory");
+      msgHist.scrollTop = msgHist.scrollHeight;
+    }); */
   }
 }

@@ -55,3 +55,7 @@ Usrc/test/java/de/dhbwvs/student/chatservicebackend/controller/UserControllerTes
 Ysrc/test/java/de/dhbwvs/student/chatservicebackend/controller/ChatRoomControllerTest.java,e\3\e387cb8cd1e389554054fa293c4ce9c19fab94fa
 Š
 Zsrc/test/java/de/dhbwvs/student/chatservicebackend/ChatServiceBackendApplicationTests.java,0\a\0a9960452bd1608d8134067b455cbc5ae84af367
+‡
+Wsrc/main/java/de/dhbwvs/student/chatservicebackend/models/payrole/PlainTextMessage.java,7\d\7d38ccf68614a20881ce8cfe5a80fcbb174be324
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { User } from '../user-model';
 import { DataSharingService } from '../data-sharing.service';
+import { Websocket } from '../websocket';
+
 
 @Component({
   selector: 'app-pop-up-logout',
@@ -24,7 +26,8 @@ export class PopUpLogoutComponent {
     @Inject(MAT_DIALOG_DATA) data: User,
     public api: ApiEndpointService,
     private router: Router,
-    private dataSharing: DataSharingService
+    private dataSharing: DataSharingService,
+    private websocket: Websocket
   ) {
     this.user = data;
   }
@@ -33,6 +36,7 @@ export class PopUpLogoutComponent {
    * Deletes the current user and navigates to the login page
    */
   logOut(): void {
+    this.websocket.disconnect();
     this.dataSharing.changeLogedInStatus(false);
     this.api.logOut(this.user).subscribe(() => {
       this.router.navigateByUrl('/login');

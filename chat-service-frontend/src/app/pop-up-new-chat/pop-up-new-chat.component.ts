@@ -36,8 +36,12 @@ export class PopUpNewChatComponent implements OnInit {
    */
   ngOnInit(): void {
     this.api.getAllUsers().subscribe((data: User[]) => {
-      data.splice(data.indexOf(this.user), 1);
-      this.listOfActiveUsers = data;
+      this.listOfActiveUsers = []
+      data.forEach((user: User) => {
+        if (user.id !== this.user.id) {
+          this.listOfActiveUsers.push(user);
+        }
+      });
       this.dataSource = this.listOfActiveUsers;
     });
 

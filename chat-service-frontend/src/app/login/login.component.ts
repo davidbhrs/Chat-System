@@ -6,6 +6,7 @@ import { User } from '../user-model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpLoginErrorMessageComponent } from '../pop-up-login-error-message/pop-up-login-error-message.component';
+import { Websocket } from '../websocket';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
     public api: ApiEndpointService,
     private dataSharing: DataSharingService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private websocket: Websocket
   ) { }
 
   ngOnInit(): void {}
@@ -58,6 +60,7 @@ export class LoginComponent implements OnInit {
 
     if (success) {
       this.dataSharing.changeLogedInStatus(true);
+      this.websocket.connect();
       this.router.navigateByUrl('/chats');
     } else {
       this.dialog.open(PopUpLoginErrorMessageComponent, {
