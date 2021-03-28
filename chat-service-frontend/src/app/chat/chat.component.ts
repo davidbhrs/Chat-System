@@ -17,6 +17,7 @@ export class ChatComponent implements OnChanges {
   chatPartner: User;
   @Input() chatRoom: ChatRoom;
   @Input() loggedInUser: User;
+  remainingChars = 140;
 
   inputForm: FormGroup = new FormGroup({
     message: new FormControl()
@@ -44,5 +45,9 @@ export class ChatComponent implements OnChanges {
     this.api.sendMessage(this.loggedInUser, this.chatRoom, message).subscribe((data: TextMessage) => {
       this.messages.push(data);
     });
+  }
+
+  countChars(content: String) {
+    this.remainingChars = 140 - content.length;
   }
 }

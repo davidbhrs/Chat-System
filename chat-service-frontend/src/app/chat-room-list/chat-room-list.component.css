@@ -15,13 +15,13 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    border-right: 1px solid black;
     background-color: #ffffff;
 }
 
 .openChatRoom {
     border-bottom: 1px solid black;
     cursor: pointer;
+    padding: 5px 5px 5px 5px;
 }
 
 .openChatRoom:hover {

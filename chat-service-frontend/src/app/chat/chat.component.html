@@ -26,7 +26,17 @@
         </ng-template>
     </li>
 </div>
-<form [formGroup]="inputForm" (ngSubmit)="sendMessage(inputForm.value.message)">
-    <input id="sendMessage" type="text" name="message" placeholder="Nachricht" formControlName="message">
-    <input id="sendMessageButton" type="submit">
-</form>
+<div class="InputField">
+    <form class="InputFieldFlexBox" [formGroup]="inputForm" (ngSubmit)="sendMessage(inputForm.value.message)">
+        <div class="InputFieldFlexElement">
+            <input id="sendMessage" type="text" name="message" placeholder="Nachricht" formControlName="message" maxlength="140" (keyup)="countChars(inputForm.value.message)">
+        </div>
+        <div class="InputFieldFlexElement">
+            <small *ngIf="remainingChars > 0; else remainingCharsWarn" class="form-text text-muted remainingChars"> Noch {{ remainingChars }} Zeichen übrig </small>
+            <ng-template #remainingCharsWarn>
+                <small class="form-text text-danger remainingChars"> Noch {{ remainingChars }} Zeichen übrig </small>
+            </ng-template>
+        </div>
+        <input id="sendMessageButton" type="submit">
+    </form>
+</div>
