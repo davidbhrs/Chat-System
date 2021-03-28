@@ -32,7 +32,10 @@ export class ChatRoomListComponent implements OnInit {
     });
 
     this.dataSharing.observableNewestChatRoom.subscribe((message: ChatRoom) => {
-      this.openChats.push(message);
+      if (!this.openChats.find(chatRoom => chatRoom.id === message.id)) {
+        this.openChats.push(message);
+      }
+      this.openChatRoom(message);
     });
   }
 

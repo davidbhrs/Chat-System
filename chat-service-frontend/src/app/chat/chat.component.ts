@@ -45,6 +45,9 @@ export class ChatComponent implements OnChanges {
     this.api.sendMessage(this.loggedInUser, this.chatRoom, message).subscribe((data: TextMessage) => {
       this.messages.push(data);
     });
+
+    let msgHist = document.getElementById("msgHistory");
+    msgHist.scrollTop = msgHist.scrollHeight;
   }
 
   countChars(content: String) {
