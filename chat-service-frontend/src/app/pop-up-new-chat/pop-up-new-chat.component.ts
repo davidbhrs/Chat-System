@@ -27,7 +27,12 @@ export class PopUpNewChatComponent implements OnInit {
    * Constructor
    * @param api service to send http requests to the backend
    */
-  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService, private dataSharing: DataSharingService, private websocket: Websocket) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: User,
+    private api: ApiEndpointService,
+    private dataSharing: DataSharingService,
+    private websocket: Websocket
+  ) {
     this.user = data;
   }
 
@@ -37,7 +42,7 @@ export class PopUpNewChatComponent implements OnInit {
    */
   ngOnInit(): void {
     this.api.getAllUsers().subscribe((data: User[]) => {
-      this.listOfActiveUsers = []
+      this.listOfActiveUsers = [];
       data.forEach((user: User) => {
         if (user.id !== this.user.id) {
           this.listOfActiveUsers.push(user);

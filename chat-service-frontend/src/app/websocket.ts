@@ -12,8 +12,8 @@ export class Websocket {
 
     constructor(private dataSharing: DataSharingService) {}
 
-    connect() {
-        let socket = new SockJS('/gs-guide-websocket');
+    connect(): void {
+        const socket = new SockJS('/gs-guide-websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, (frame) => {
             console.log('Connected: ' + frame);
@@ -26,18 +26,18 @@ export class Websocket {
         });
     }
 
-    disconnect() {
+    disconnect(): void {
         if (stompClient !== null) {
             stompClient.disconnect();
         }
-        console.log("Disconnected");
+        console.log('Disconnected');
     }
 
-    sendName(user, chatRoom, content) {
+    sendName(user, chatRoom, content): void {
         stompClient.send(`/app/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, {}, JSON.stringify(content));
     }
 
-    createChatRoom(participantOne, participantTwo) {
+    createChatRoom(participantOne, participantTwo): void {
         stompClient.send(`/app/users/${participantOne.id}/chat-rooms`, {}, JSON.stringify({ participantOne, participantTwo }));
     }
 }

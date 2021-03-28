@@ -13,7 +13,7 @@ export class DataSharingService {
   private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, ''));
   private newestChatRoom: Subject<ChatRoom> = new Subject();
   private newestTextMessage: BehaviorSubject<TextMessage> = new BehaviorSubject(null);
-  
+
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();
   observableNewestChatRoom = this.newestChatRoom.asObservable();

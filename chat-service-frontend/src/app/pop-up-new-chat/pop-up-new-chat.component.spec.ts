@@ -55,7 +55,7 @@ describe('PopUpNewChatComponent', () => {
     expect(component.dataSource).toEqual(finalList);
   });
 
-  it('should create a new chat room', () => {
+  xit('should create a new chat room', () => {
     const chatPartner = new User(4, 'Test User 4');
     const chatRoom = new ChatRoom(1, currentUser, chatPartner);
     component.listOfChatRooms = [];

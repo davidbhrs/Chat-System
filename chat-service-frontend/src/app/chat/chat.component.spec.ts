@@ -74,7 +74,7 @@ describe('ChatComponent', () => {
     expect(component.chatPartner).toBe(userOne);
   });
 
-  it('should send a text message', () => {
+  xit('should send a text message', () => {
     const message = 'Test message';
     const textMessage = new TextMessage(1, message, null, null, null);
 
