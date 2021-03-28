@@ -16,7 +16,7 @@ import { Websocket } from '../websocket';
 })
 export class ChatComponent implements OnChanges {
 
-  messages: TextMessage[];
+  messages: TextMessage[] = [];
   chatPartner: User;
   @Input() chatRoom: ChatRoom;
   @Input() loggedInUser: User;
@@ -37,6 +37,9 @@ export class ChatComponent implements OnChanges {
     });
 
     this.dataSharing.observableNewestTextMessage.subscribe((textMessage: TextMessage) => {
+      if (this.messages.length > 0 && textMessage.id === this.messages[this.messages.length - 1].id) {
+        return;
+      }
       if (textMessage !== null && textMessage.chatRoom.id === this.chatRoom.id) {
         this.messages.push(textMessage);
       }

@@ -54,7 +54,6 @@ export class DataSharingService {
    * @param message the text message that was just sent
    */
   addNewestTextMessage(message: TextMessage): void {
-    console.log('Here 2');
     this.newestTextMessage.next(message);
   }
 }

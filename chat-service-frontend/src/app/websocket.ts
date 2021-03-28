@@ -18,7 +18,6 @@ export class Websocket {
         stompClient.connect({}, (frame) => {
             console.log('Connected: ' + frame);
             getStompClient().subscribe('/topic/chat-room', (textMessage) => {
-                console.log("Here 1");
                 this.dataSharing.addNewestTextMessage(JSON.parse(textMessage.body).body);
             });
         });
