@@ -4,6 +4,7 @@ import { ApiEndpointService } from '../api-endpoint.service';
 import { ChatRoom } from '../chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
 import { User } from '../user-model';
+import { Websocket } from '../websocket';
 
 @Component({
   selector: 'app-pop-up-new-chat',
@@ -26,7 +27,7 @@ export class PopUpNewChatComponent implements OnInit {
    * Constructor
    * @param api service to send http requests to the backend
    */
-  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService, private dataSharing: DataSharingService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: User, private api: ApiEndpointService, private dataSharing: DataSharingService, private websocket: Websocket) {
     this.user = data;
   }
 
@@ -64,9 +65,7 @@ export class PopUpNewChatComponent implements OnInit {
     });
 
     if (shallCreate) {
-      this.api.createNewChatRoom(this.user, chatPartner).subscribe((data: ChatRoom) => {
-        this.dataSharing.addNewestChatRoom(data);
-      });
+      this.websocket.createChatRoom(this.user, chatPartner);
     }
   }
 

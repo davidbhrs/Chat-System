@@ -17,8 +17,11 @@ export class Websocket {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, (frame) => {
             console.log('Connected: ' + frame);
-            getStompClient().subscribe('/topic/chat-room', (textMessage) => {
+            getStompClient().subscribe('/topic/chat', (textMessage) => {
                 this.dataSharing.addNewestTextMessage(JSON.parse(textMessage.body).body);
+            });
+            getStompClient().subscribe('/topic/chat-room', (chatRoom) => {
+                this.dataSharing.addNewestChatRoom(JSON.parse(chatRoom.body).body);
             });
         });
     }
@@ -32,6 +35,10 @@ export class Websocket {
 
     sendName(user, chatRoom, content) {
         stompClient.send(`/app/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, {}, JSON.stringify(content));
+    }
+
+    createChatRoom(participantOne, participantTwo) {
+        stompClient.send(`/app/users/${participantOne.id}/chat-rooms`, {}, JSON.stringify({ participantOne, participantTwo }));
     }
 }
 

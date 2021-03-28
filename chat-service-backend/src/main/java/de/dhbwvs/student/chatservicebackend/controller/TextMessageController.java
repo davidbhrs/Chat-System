@@ -51,7 +51,7 @@ public class TextMessageController {
      * @return A ResponseEntity with HTTPStatus.CREATED and the new TextMessage in the Body
      */
     @MessageMapping("/users/{userId}/chat-rooms/{chatRoomId}/text-messages")
-    @SendTo("/topic/chat-room")
+    @SendTo("/topic/chat")
     public ResponseEntity<TextMessageDto> sendNewTextMessage(
             @DestinationVariable Long userId,
             @DestinationVariable Long chatRoomId,

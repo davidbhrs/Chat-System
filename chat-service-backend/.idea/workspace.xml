@@ -5,48 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_github_classgraph_classgraph_4_8_69.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_bootstrap_3_3_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_jquery_3_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_sockjs_client_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_stomp_websocket_2_3_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_webjars_locator_core_0_46.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/4/24891bf4c7f8d98ef10a50fea64e4f1dfff8e8ed" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/4/24891bf4c7f8d98ef10a50fea64e4f1dfff8e8ed" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9f028d781fff96a36c2ccf683465ed361b6158d5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9f028d781fff96a36c2ccf683465ed361b6158d5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/0/a0d8f27ff41a1a58a3af2f5e850ec310de54ed52" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/0/a0d8f27ff41a1a58a3af2f5e850ec310de54ed52" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service-backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/config/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/ChatRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/ChatRoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/websocket/SocketTextHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/websocket/SocketTextHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat-service-backend-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/chat-service-backend-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/ChatRoomChatRoomDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/TextMessageTextMessageDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/TextMessageTextMessageDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/UserUserDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/de/dhbwvs/student/chatservicebackend/mapper/UserUserDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.TextMessageTextMessageDtoMapperTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.TextMessageTextMessageDtoMapperTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapperTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapperTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.ChatRoomControllerTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.controller.UserControllerTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.TextMessageTextMessageDtoMapperTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.TextMessageTextMessageDtoMapperTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapperTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.dhbwvs.student.chatservicebackend.mapper.UserUserDtoMapperTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/pop-up-logout/pop-up-logout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/pop-up-logout/pop-up-logout.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/pop-up-new-chat/pop-up-new-chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/pop-up-new-chat/pop-up-new-chat.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +156,8 @@
       <workItem from="1616352342675" duration="997000" />
       <workItem from="1616851426778" duration="6083000" />
       <workItem from="1616871796542" duration="253000" />
-      <workItem from="1616912170461" duration="2467000" />
+      <workItem from="1616912170461" duration="2510000" />
+      <workItem from="1616961700631" duration="1343000" />
     </task>
     <servers />
   </component>
