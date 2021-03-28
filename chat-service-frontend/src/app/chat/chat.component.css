@@ -9,24 +9,41 @@ div.msgHistory {
     padding: 20px;
 }
 
+.InputField {
+    position: absolute;
+    width: 66%;
+    bottom: 0;
+    right: 0;
+}
+
+.InputFieldFlexBox {
+    display: flex;
+    flex-direction: column;
+
 .msg {
     display: flex;
 }
 
 #sendMessage {
-    width: 66.6%;
+    width: 100%;
     padding: 5px 15px 5px 15px;
-    margin: 5px 5px 10px 5px;
+    margin: 0px 0px 0px 0px;
     border-radius: 40px;
     background-color: #f8f9fa;
     border: 2px solid #707070;
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
 
 #sendMessageButton {
     display: none;
+}
+
+.remainingChars {
+    margin: 0px 10px 2.5px 0px;
+    float: right;
+}
+
+.text-danger {
+    font-weight: bold !important;
 }
 
 li {

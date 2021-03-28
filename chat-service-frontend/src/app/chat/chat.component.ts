@@ -17,6 +17,7 @@ export class ChatComponent implements OnChanges {
   chatPartner: User;
   @Input() chatRoom: ChatRoom;
   @Input() loggedInUser: User;
+  remainingChars = 140;
 
   inputForm: FormGroup = new FormGroup({
     message: new FormControl()
@@ -47,5 +48,9 @@ export class ChatComponent implements OnChanges {
 
     let msgHist = document.getElementById("msgHistory");
     msgHist.scrollTop = msgHist.scrollHeight;
+  }
+
+  countChars(content: String) {
+    this.remainingChars = 140 - content.length;
   }
 }
