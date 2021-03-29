@@ -1,6 +1,8 @@
+import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { ChatRoom } from '../chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
+import { TextMessage } from '../text-message-model';
 import { User } from '../user-model';
 
 @Component({
@@ -15,6 +17,7 @@ export class ChatRoomListComponent implements OnInit {
   chatRoom: ChatRoom;
   openChats: ChatRoom[] = [];
   selectedIndex: number;
+  openChatsDisplay = [];
 
   /**
    * Constructor
@@ -43,6 +46,31 @@ export class ChatRoomListComponent implements OnInit {
         }
         this.openChatRoom(message, this.openChats.indexOf(message));
       }
+    });
+
+    this.dataSharing.observableNewestTextMessage.subscribe((message: TextMessage) => {
+      if (message !== null) {
+        for (let openChat of this.openChats) {
+          if (openChat.id === message.chatRoom.id) {
+            let chatEntry: Object = [message.chatRoom.id, message.chatRoom.participantOne, message.chatRoom.participantTwo, message.content, message.timestamp]
+            // check if openChatsDisplay already contains chatroom.id
+            let found = false
+            for (let i = 0; i < this.openChatsDisplay.length; i++) {
+              if (this.openChatsDisplay[i][0] === message.chatRoom.id) {
+                found = true;
+                this.openChatsDisplay[i] = chatEntry;
+                break
+              } 
+            }
+            if (!found) {
+              this.openChatsDisplay.push(chatEntry);
+            }
+          }
+        }
+      }
+      
+      // let chatEntry: Object = {[message.chatRoom.id]: [message.chatRoom.participantOne, message.chatRoom.participantTwo, message.timestamp]}
+      //console.log(this.openChatsDisplay);    
     });
   }
 

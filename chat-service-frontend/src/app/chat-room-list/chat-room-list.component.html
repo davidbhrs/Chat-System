@@ -4,14 +4,18 @@
             <div class="chatRoomListElement-left">
                 <span *ngIf="element.participantOne.name === user.name">{{element.participantTwo.name}}</span>
                 <span *ngIf="element.participantTwo.name === user.name">{{element.participantOne.name}}</span><br>
-                <svg width="100" height="40">
-                    <circle cx="5" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
-                    <circle cx="15" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
-                    <circle cx="25" cy="30" r="2" stroke="black" stroke-width="2" fill="black" />
-                </svg>
+                <span *ngFor="let elem of openChatsDisplay">
+                    <span *ngIf="element.id === elem[0]" class="messagePreview text-muted">
+                        {{ elem[3] | slice:0:20 }}
+                    </span>
+                </span>
             </div>
             <div class="chatRoomListElement-right">
-                5:00
+                <span *ngFor="let elem of openChatsDisplay">
+                    <span *ngIf="element.id === elem[0]" class="lastMessageTimestamp text-muted">
+                        {{ elem[4] | date: 'HH:mm' }}
+                    </span>
+                </span>
             </div>
         </div>
     </div>
