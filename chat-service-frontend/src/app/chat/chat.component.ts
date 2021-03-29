@@ -46,11 +46,11 @@ export class ChatComponent implements OnChanges {
       this.messages.push(data);
     });
 
-    let msgHist = document.getElementById("msgHistory");
+    const msgHist = document.getElementById('msgHistory');
     msgHist.scrollTop = msgHist.scrollHeight;
   }
 
-  countChars(content: String) {
+  countChars(content: string): void {
     this.remainingChars = this.maxLengthOfTextMessage - content.length;
   }
 }

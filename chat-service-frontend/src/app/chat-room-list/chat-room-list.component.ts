@@ -14,7 +14,7 @@ export class ChatRoomListComponent implements OnInit {
   user: User;
   chatRoom: ChatRoom;
   openChats: ChatRoom[] = [];
-  selectedIndex: number
+  selectedIndex: number;
 
   /**
    * Constructor
