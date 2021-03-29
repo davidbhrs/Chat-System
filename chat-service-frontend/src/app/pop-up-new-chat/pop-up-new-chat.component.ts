@@ -41,6 +41,7 @@ export class PopUpNewChatComponent implements OnInit {
    * Asks for all active users in the database
    */
   ngOnInit(): void {
+    // getting all users from the database and filtering so the user cannot see himself in the list
     this.api.getAllUsers().subscribe((data: User[]) => {
       this.listOfActiveUsers = [];
       data.forEach((user: User) => {
@@ -48,9 +49,12 @@ export class PopUpNewChatComponent implements OnInit {
           this.listOfActiveUsers.push(user);
         }
       });
+      // it needs to be distinguished between dataSource and listOfActiveUsers
+      // because when using search term filters the dataSource is shortened
       this.dataSource = this.listOfActiveUsers;
     });
 
+    // getting all existing chat rooms the user participates in to prevent creating a chat twice
     this.api.getAllChatRooms(this.user).subscribe((data: ChatRoom[]) => {
       this.listOfChatRooms = data;
     });
@@ -62,6 +66,7 @@ export class PopUpNewChatComponent implements OnInit {
    */
   newChat(chatPartner: User): void {
     let shallCreate = true;
+    // checking whether chat room already exists in the chat room list and opening it if so
     this.listOfChatRooms.forEach((chatRoom: ChatRoom) => {
       if (chatRoom.participantOne.name === chatPartner.name || chatRoom.participantTwo.name === chatPartner.name) {
         this.dataSharing.addNewestChatRoom(chatRoom);
@@ -69,11 +74,17 @@ export class PopUpNewChatComponent implements OnInit {
       }
     });
 
+    // creating a new chat room if it does not exist yet
     if (shallCreate) {
       this.websocket.createChatRoom(this.user, chatPartner);
     }
   }
 
+  /**
+   * function for filtering all active users by a search term
+   * 
+   * @param event keyup-event on the HTMLInputElement to trigger the function
+   */
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
     const filteredList: User[] = [];

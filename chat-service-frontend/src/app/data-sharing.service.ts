@@ -9,16 +9,21 @@ import { User } from './user-model';
 })
 export class DataSharingService {
 
+  // local variables to manipulate in the functions below
   private loggedInStatus = new BehaviorSubject(false);
   private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, ''));
   private newestChatRoom: Subject<ChatRoom> = new Subject();
   private newestTextMessage: BehaviorSubject<TextMessage> = new BehaviorSubject(null);
 
+  // observables which can be subscribed on inside the components
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();
   observableNewestChatRoom = this.newestChatRoom.asObservable();
   observableNewestTextMessage = this.newestTextMessage.asObservable();
 
+  /**
+   * Constructor
+   */
   constructor() { }
 
   /**

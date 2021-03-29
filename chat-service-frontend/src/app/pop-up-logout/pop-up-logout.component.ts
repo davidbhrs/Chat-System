@@ -19,8 +19,10 @@ export class PopUpLogoutComponent {
 
   /**
    * Constructor
-   * @param api    service to send http requests to the backend
-   * @param router routing service to navigate to other components
+   * @param api         service to send http requests to the backend
+   * @param router      routing service to navigate to other components
+   * @param dataSharing service to exchange data between components
+   * @param websocket   socket service dealing with data which is needed by multiple clients
    */
   constructor(
     @Inject(MAT_DIALOG_DATA) data: User,
@@ -33,7 +35,7 @@ export class PopUpLogoutComponent {
   }
 
   /**
-   * Deletes the current user and navigates to the login page
+   * Deletes the current user, disconnects from the websocket and navigates to the login page
    */
   logOut(): void {
     this.websocket.disconnect();
