@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { DataSharingService } from './data-sharing.service';
@@ -9,6 +10,8 @@ let stompClient = null;
     providedIn: 'root'
 })
 export class Websocket {
+
+    websocketReady: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
     /**
      * Constructor
@@ -21,6 +24,7 @@ export class Websocket {
      * connecting to the backend websocket
      */
     connect(): void {
+        this.websocketReady.next(false);
         const socket = new SockJS('/gs-guide-websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, (frame) => {
@@ -37,6 +41,7 @@ export class Websocket {
             getStompClient().subscribe('/topic/user-delete', (user) => {
                 this.dataSharing.announceDeletionOfUser(JSON.parse(user.body).body);
             });
+            this.websocketReady.next(true);
         });
     }
 

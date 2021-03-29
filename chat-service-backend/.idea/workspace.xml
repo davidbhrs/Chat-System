@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat-room-list/chat-room-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat-room-list/chat-room-list.component.ts" afterDir="false" />
-    </list>
+    <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +152,7 @@
       <workItem from="1616912170461" duration="2510000" />
       <workItem from="1616961700631" duration="1343000" />
       <workItem from="1616842220138" duration="1196000" />
-      <workItem from="1617021718935" duration="1882000" />
+      <workItem from="1617021718935" duration="2185000" />
     </task>
     <servers />
   </component>

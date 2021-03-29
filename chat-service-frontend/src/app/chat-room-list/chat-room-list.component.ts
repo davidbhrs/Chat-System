@@ -47,6 +47,9 @@ export class ChatRoomListComponent implements OnInit {
     this.dataSharing.observableDeletedUser.subscribe((message: User) => {
       this.openChats.forEach((chatRoom: ChatRoom, index: number) => {
         if (chatRoom.participantOne.id === message.id || chatRoom.participantTwo.id === message.id) {
+          if (chatRoom.id === this.chatRoom.id) {
+            this.chatRoom = null;
+          }
           this.openChats.splice(index, 1);
           return;
         }
