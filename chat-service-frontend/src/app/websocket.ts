@@ -62,7 +62,7 @@ export class Websocket {
      * @param chatRoom chat room where the message was sent
      * @param content  the content of the message
      */
-    sendName(user, chatRoom, content): void {
+    sendMessage(user, chatRoom, content): void {
         stompClient.send(`/app/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, {}, JSON.stringify(content));
     }
 

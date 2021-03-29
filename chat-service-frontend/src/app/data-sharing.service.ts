@@ -15,7 +15,7 @@ export class DataSharingService {
   private newestChatRoom: Subject<ChatRoom> = new Subject();
   private newestTextMessage: BehaviorSubject<TextMessage> = new BehaviorSubject(null);
   private deletedUser: BehaviorSubject<User> = new BehaviorSubject(new User(null, ''));
-
+  
   // observables which can be subscribed on inside the components
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();
