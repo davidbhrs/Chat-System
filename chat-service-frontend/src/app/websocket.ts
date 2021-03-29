@@ -33,6 +33,10 @@ export class Websocket {
             getStompClient().subscribe('/topic/chat-room', (chatRoom) => {
                 this.dataSharing.addNewestChatRoom(JSON.parse(chatRoom.body).body);
             });
+            // subscription on resource - deleted user
+            getStompClient().subscribe('/topic/user-delete', (user) => {
+                this.dataSharing.announceDeletionOfUser(JSON.parse(user.body).body);
+            });
         });
     }
 
@@ -65,6 +69,13 @@ export class Websocket {
      */
     createChatRoom(participantOne, participantTwo): void {
         stompClient.send(`/app/users/${participantOne.id}/chat-rooms`, {}, JSON.stringify({ participantOne, participantTwo }));
+    }
+
+    /**
+     * sending the a user which shall be deleted
+     */
+    deleteUser(user): void {
+        stompClient.send(`/app/users/${user.id}`, {}, {});
     }
 }
 
