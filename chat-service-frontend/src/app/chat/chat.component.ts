@@ -20,6 +20,8 @@ export class ChatComponent implements OnChanges {
   chatPartner: User;
   @Input() chatRoom: ChatRoom;
   @Input() loggedInUser: User;
+  maxLengthOfTextMessage = 140;
+  remainingChars = 140;
 
   inputForm: FormGroup = new FormGroup({
     message: new FormControl()
@@ -50,7 +52,7 @@ export class ChatComponent implements OnChanges {
       if (textMessage !== null && textMessage.chatRoom.id === this.chatRoom.id) {
         this.messages.push(textMessage);
 
-        let msgHist = document.getElementById("msgHistory");
+        const msgHist = document.getElementById("msgHistory");
         msgHist.scrollTop = msgHist.scrollHeight;
       }
     });
@@ -64,5 +66,9 @@ export class ChatComponent implements OnChanges {
 
     // send message to Backend
     this.websocket.sendName(this.loggedInUser, this.chatRoom, message);
+  }
+
+  countChars(content: string): void {
+    this.remainingChars = this.maxLengthOfTextMessage - content.length;
   }
 }

@@ -11,6 +11,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/ChatRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/ChatRoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/TextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/TextMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +159,7 @@
       <workItem from="1616871796542" duration="253000" />
       <workItem from="1616912170461" duration="2510000" />
       <workItem from="1616961700631" duration="1343000" />
+      <workItem from="1616842220138" duration="1196000" />
     </task>
     <servers />
   </component>
