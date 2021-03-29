@@ -13,6 +13,9 @@ import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -44,9 +47,10 @@ public class ChatRoomController {
      * @param chatRoomParticipants Custom Entity to contain both participants of a chat room
      * @return A ResponseEntity with HTTPStatus.CREATED and the new ChatRoom in the Body
      */
-    @PostMapping("/users/{userId}/chat-rooms")
+    @MessageMapping("/users/{userId}/chat-rooms")
+    @SendTo("/topic/chat-room")
     public ResponseEntity<ChatRoomDto> createChatRoom(
-            @PathVariable Long userId,
+            @DestinationVariable Long userId,
             @RequestBody ChatRoomParticipants chatRoomParticipants
     ) {
         User user = getUserById(userId);
