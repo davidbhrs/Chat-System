@@ -19,6 +19,7 @@ div.msgHistory {
 .InputFieldFlexBox {
     display: flex;
     flex-direction: column;
+}
 
 .msg {
     display: flex;

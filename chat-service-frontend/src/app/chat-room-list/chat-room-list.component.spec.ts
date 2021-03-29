@@ -59,7 +59,7 @@ describe('ChatRoomListComponent', () => {
     expect(component.chatRoom).toBeUndefined();
 
     const chatRoom = new ChatRoom(1, new User(1, 'Test User 1'), new User(2, 'Test User 2'));
-    component.openChatRoom(chatRoom);
+    component.openChatRoom(chatRoom, 1);
 
     expect(component.chatRoom).toBe(chatRoom);
   });

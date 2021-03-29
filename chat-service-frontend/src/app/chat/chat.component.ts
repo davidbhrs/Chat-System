@@ -4,8 +4,6 @@ import { TextMessage } from '../text-message-model';
 import { User } from '../user-model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiEndpointService } from '../api-endpoint.service';
-import { MatDialog } from '@angular/material/dialog';
-import { PopUpTextTooLongMessageComponent } from '../pop-up-text-too-long-message/pop-up-text-too-long-message.component';
 
 
 @Component({
@@ -17,16 +15,16 @@ export class ChatComponent implements OnChanges {
 
   messages: TextMessage[];
   chatPartner: User;
-  maxLengthOfTextMessage = 140;
   @Input() chatRoom: ChatRoom;
   @Input() loggedInUser: User;
+  maxLengthOfTextMessage = 140;
   remainingChars = 140;
 
   inputForm: FormGroup = new FormGroup({
     message: new FormControl()
   });
 
-  constructor(private api: ApiEndpointService, private dialog: MatDialog) {}
+  constructor(private api: ApiEndpointService) {}
 
   ngOnChanges(): void {
     this.chatRoom.participantOne.id === this.loggedInUser.id ?
@@ -40,15 +38,6 @@ export class ChatComponent implements OnChanges {
 
   sendMessage(message: string): void {
     // send message to Backend
-    if (message.length > this.maxLengthOfTextMessage) {
-      this.dialog.open(PopUpTextTooLongMessageComponent, {
-        data: this.maxLengthOfTextMessage,
-        width: '800px',
-        height: '150px'
-      });
-      return;
-    }
-
     this.inputForm.setValue({
       message: ''
     });
@@ -62,6 +51,6 @@ export class ChatComponent implements OnChanges {
   }
 
   countChars(content: String) {
-    this.remainingChars = 140 - content.length;
+    this.remainingChars = this.maxLengthOfTextMessage - content.length;
   }
 }

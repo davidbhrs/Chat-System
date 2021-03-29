@@ -35,7 +35,7 @@ export class ChatRoomListComponent implements OnInit {
       if (!this.openChats.find(chatRoom => chatRoom.id === message.id)) {
         this.openChats.push(message);
       }
-      this.openChatRoom(message);
+      this.openChatRoom(message, this.openChats.indexOf(message));
     });
   }
 
