@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { never, of } from 'rxjs';
+import { of } from 'rxjs';
 import { ChatRoom } from '../models/chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
 import { User } from '../models/user-model';
 
 import { ChatRoomListComponent } from './chat-room-list.component';
+import { TextMessage } from '../models/text-message-model';
 
 describe('ChatRoomListComponent', () => {
   let component: ChatRoomListComponent;
@@ -36,7 +37,6 @@ describe('ChatRoomListComponent', () => {
 
     const user = new User(1, 'Test User');
     mockDataSharingService.currentUser = of(user);
-    mockDataSharingService.observableNewestChatRoom = of();
 
     component.ngOnInit();
 
@@ -50,11 +50,43 @@ describe('ChatRoomListComponent', () => {
     const chatRoom = new ChatRoom(1, user, new User(2, 'Test User 2'));
     mockDataSharingService.currentUser = of(user);
     mockDataSharingService.observableNewestChatRoom = of(chatRoom);
-    mockDataSharingService.observableNewestTextMessage = of();
 
     component.ngOnInit();
 
     expect(component.openChats).toEqual([chatRoom]);
+  });
+
+  it('should get the newest textMessage', () => {
+    expect(component.openChatsDisplay).toEqual([]);
+
+    const userOne = new User(1, 'Test User 1');
+    const userTwo = new User(2, 'Test User 2');
+    const chatRoom = new ChatRoom(1, userOne, userTwo);
+    const textMessage = new TextMessage(1, 'Test message', new Date(), userOne, chatRoom);
+    const chatEntry = [1, userOne, userTwo, textMessage.content, textMessage.timestamp];
+
+    component.user = userOne;
+    component.openChats.push(chatRoom);
+    mockDataSharingService.observableNewestTextMessage = of(textMessage);
+
+    component.ngOnInit();
+
+    expect(component.openChatsDisplay).toEqual([chatEntry]);
+  });
+
+  it('should get the recently deleted user', () => {
+    const userOne = new User(1, 'Test User 1');
+    const userTwo = new User(2, 'Test User 2');
+    const chatRoom = new ChatRoom(1, userOne, userTwo);
+
+    component.user = userOne;
+    component.openChats.push(chatRoom);
+    component.chatRoom = chatRoom;
+    mockDataSharingService.observableDeletedUser = of(userTwo);
+
+    component.ngOnInit();
+
+    expect(component.openChats).toEqual([]);
   });
 
   it('should choose the correct chat room', () => {

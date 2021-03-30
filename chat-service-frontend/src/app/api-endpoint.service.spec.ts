@@ -53,6 +53,23 @@ describe('ApiEndpointService', () => {
     httpMock.verify();
   });
 
+  it('should get all chat rooms', (done) => {
+    const userOne = new User(1, 'Test-User 1');
+    const userTwo = new User(2, 'Test-User 2');
+    const chatRoom = new ChatRoom(1, userOne, userTwo);
+
+    service.getAllChatRooms(userOne).subscribe((response: ChatRoom[]) => {
+      expect(response).toEqual([chatRoom]);
+      done();
+    });
+
+    const getChatRoomsRequest = httpMock.expectOne(`/users/${userOne.id}/chat-rooms`);
+    expect(getChatRoomsRequest.request.method).toBe('GET');
+    getChatRoomsRequest.flush([chatRoom]);
+
+    httpMock.verify();
+  });
+
   it('should get all text messages by chat room', (done) => {
     const userOne = new User(1, 'Test-User 1');
     const userTwo = new User(2, 'Test-User 2');

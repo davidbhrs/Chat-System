@@ -59,6 +59,24 @@ describe('ChatComponent', () => {
     expect(component.messages).toEqual(textMessages);
   });
 
+  it('should insert a newly created text message', () => {
+    const userOne = new User(1, 'Test User 1');
+    const userTwo = new User(2, 'Test User 2');
+    const chatRoom = new ChatRoom(1, userOne, userTwo);
+
+    const textMessage = new TextMessage(1, 'Test message 1', new Date(), userOne, chatRoom);
+
+    component.loggedInUser = userOne;
+    component.chatRoom = chatRoom;
+    component.messages = [];
+    spyOn(mockApiEndpointService, 'getAllTextMessagesByChatRoomId').and.returnValue(of([]));
+    mockDataSharingService.observableNewestTextMessage = of(textMessage);
+
+    component.ngOnChanges();
+
+    expect(component.messages).toEqual([textMessage]);
+  });
+
   it('should set chat partner correctly', () => {
     const userOne = new User(1, 'Test User 1');
     const userTwo = new User(2, 'Test User 2');
@@ -92,4 +110,13 @@ describe('ChatComponent', () => {
 
     expect(component.inputForm.getRawValue()).toEqual({ message: '' });
   });
+
+  it('should count the characters correctly', () => {
+    expect(component.remainingChars).toBe(140);
+
+    const content = 'TestTestTest';
+    component.countChars(content);
+
+    expect(component.remainingChars).toBe(128);
+  })
 });

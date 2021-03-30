@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0fccef5-42ea-4334-9724-a7dff02f6fd3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageControllerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="d0fccef5-42ea-4334-9724-a7dff02f6fd3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
