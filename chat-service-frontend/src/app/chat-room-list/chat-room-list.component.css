@@ -19,9 +19,11 @@
 }
 
 .openChatRoom {
+    position: relative;
     border-bottom: 1px solid black;
     cursor: pointer;
     padding: 5px 5px 5px 5px;
+    height: 75px;
 }
 
 .openChatRoom:hover {
@@ -47,4 +49,15 @@
 .highlight {
     background-color: #e6ebf1 !important;
     font-weight: bolder;
+}
+
+.lastMessageTimestamp {
+    font-size: 9pt;
+}
+
+.messagePreview {
+    position: absolute;
+    bottom: 0px;
+    font-size: 9pt;
+    max-width: 325px;
 }
