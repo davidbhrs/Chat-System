@@ -98,8 +98,8 @@ class TextMessageControllerTest {
         Mockito.when(this.textMessageRepository.save(Mockito.any())).thenReturn(this.newTextMessage);
 
         // Act
-        /*ResponseEntity<TextMessageDto> responseEntity = this.textMessageController.sendNewTextMessage(
-                this.userInDB.getId(), this.chatRoom.getId(), new PlainTextMessage(TEST_STRING), null);
+        ResponseEntity<TextMessageDto> responseEntity = this.textMessageController.sendNewTextMessage(
+                this.userInDB.getId(), this.chatRoom.getId(), new PlainTextMessage(TEST_STRING));
 
         // Assert
         Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
@@ -107,7 +107,7 @@ class TextMessageControllerTest {
         Assertions.assertEquals(TEST_STRING, responseEntity.getBody().getContent());
         Assertions.assertEquals(userInDB.getName(), responseEntity.getBody().getSentBy().getName());
         Assertions.assertEquals(chatRoom.getId(), responseEntity.getBody().getChatRoom().getId());
-        Assertions.assertNotNull(responseEntity.getBody().getTimestamp());*/
+        Assertions.assertNotNull(responseEntity.getBody().getTimestamp());
     }
 
     @Test

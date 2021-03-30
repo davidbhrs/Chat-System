@@ -59,6 +59,15 @@ describe('PopUpNewChatComponent', () => {
     expect(component.dataSource).toEqual(finalList);
   });
 
+  it('should get all chat rooms', () => {
+    const chatRooms = [new ChatRoom(1, currentUser, new User(2, 'Test User 2')), new ChatRoom(2, currentUser, new User(3, 'Test User 3'))]
+    spyOn(mockApiEndpointService, 'getAllChatRooms').and.returnValue(of(chatRooms));
+
+    component.ngOnInit();
+
+    expect(component.listOfChatRooms).toEqual(chatRooms);
+  });
+
   it('should create a new chat room', () => {
     const chatPartner = new User(4, 'Test User 4');
     const chatRoom = new ChatRoom(1, currentUser, chatPartner);
