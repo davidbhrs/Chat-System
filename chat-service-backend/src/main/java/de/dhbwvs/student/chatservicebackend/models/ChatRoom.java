@@ -30,7 +30,6 @@ public class ChatRoom {
     @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<TextMessage> textMessages;
 
-
     /**
      * Constructor
      *
