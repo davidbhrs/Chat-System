@@ -5,6 +5,7 @@ import de.dhbwvs.student.chatservicebackend.models.User;
 import de.dhbwvs.student.chatservicebackend.models.payrole.UserDto;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -102,6 +103,21 @@ class UserControllerTest {
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertFalse(Objects.requireNonNull(responseEntity.getBody()).isEmpty());
         Assertions.assertEquals(this.user.getId(), responseEntity.getBody().get(0).getId());
+    }
+
+    @Test
+    void testDeleteUser() {
+        // Arrange
+        Mockito.when(this.repository.findById(this.user.getId())).thenReturn(Optional.ofNullable(this.user));
+        Mockito.doNothing().when(this.repository).deleteById(this.user.getId());
+
+        // Act
+        ResponseEntity<UserDto> responseEntity = this.controller.logOut(this.user.getId());
+
+        // Assert
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertNotNull(responseEntity.getBody());
+        Assertions.assertEquals(this.user.getId(), responseEntity.getBody().getId());
     }
 
 }
