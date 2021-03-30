@@ -97,14 +97,4 @@ public class UserController {
         repository.deleteById(id);
         return new ResponseEntity<>(UserUserDtoMapper.INSTANCE.userToUserDto(user), HttpStatus.OK);
     }
-
-    /**
-     * Method deleting the user on logOut
-     *
-     * @param id The id of the user which shall be deleted
-     */
-    @DeleteMapping("/users/{id}")
-    public void logOut(@PathVariable Long id) {
-        repository.deleteById(id);
-    }
 }

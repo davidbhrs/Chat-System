@@ -1,10 +1,6 @@
 package de.dhbwvs.student.chatservicebackend.config;
 
-import de.dhbwvs.student.chatservicebackend.models.ChatRoom;
-import de.dhbwvs.student.chatservicebackend.models.TextMessage;
 import de.dhbwvs.student.chatservicebackend.models.User;
-import de.dhbwvs.student.chatservicebackend.repositories.ChatRoomRepository;
-import de.dhbwvs.student.chatservicebackend.repositories.TextMessageRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

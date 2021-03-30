@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-28T15:26:35+0200",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.10 (Ubuntu)"
+    date = "2021-03-30T16:14:16+0200",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 public class ChatRoomChatRoomDtoMapperImpl implements ChatRoomChatRoomDtoMapper {
 

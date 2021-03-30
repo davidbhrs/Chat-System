@@ -107,7 +107,7 @@ public class ChatRoomController {
 
         ChatRoom chatRoom = chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, chatRoomId)
                 .orElseThrow(() -> new ChatRoomNotFoundException(chatRoomId));
-      
+
         ChatRoomDto chatRoomDto = ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(chatRoom);
         return ResponseEntity.ok(chatRoomDto);
     }
