@@ -38,10 +38,9 @@ export class PopUpLogoutComponent {
    * Deletes the current user, disconnects from the websocket and navigates to the login page
    */
   logOut(): void {
-    this.websocket.disconnect();
     this.dataSharing.changeLogedInStatus(false);
-    this.api.logOut(this.user).subscribe(() => {
-      this.router.navigateByUrl('/login');
-    });
+    this.websocket.deleteUser(this.user);
+    this.websocket.disconnect();
+    this.router.navigateByUrl('/login');
   }
 }
