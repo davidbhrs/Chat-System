@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/4/24891bf4c7f8d98ef10a50fea64e4f1dfff8e8ed" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/4/24891bf4c7f8d98ef10a50fea64e4f1dfff8e8ed" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9f028d781fff96a36c2ccf683465ed361b6158d5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9f028d781fff96a36c2ccf683465ed361b6158d5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/ChatRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/ChatRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/controller/TextMessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/TextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/dhbwvs/student/chatservicebackend/models/TextMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +156,8 @@
       <workItem from="1616912170461" duration="2510000" />
       <workItem from="1616961700631" duration="1343000" />
       <workItem from="1616842220138" duration="1196000" />
+      <workItem from="1617021718935" duration="2850000" />
+      <workItem from="1617045016211" duration="842000" />
     </task>
     <servers />
   </component>

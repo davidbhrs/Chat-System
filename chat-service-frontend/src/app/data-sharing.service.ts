@@ -14,12 +14,14 @@ export class DataSharingService {
   private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, ''));
   private newestChatRoom: Subject<ChatRoom> = new Subject();
   private newestTextMessage: BehaviorSubject<TextMessage> = new BehaviorSubject(null);
-
+  private deletedUser: BehaviorSubject<User> = new BehaviorSubject(new User(null, ''));
+  
   // observables which can be subscribed on inside the components
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();
   observableNewestChatRoom = this.newestChatRoom.asObservable();
   observableNewestTextMessage = this.newestTextMessage.asObservable();
+  observableDeletedUser = this.deletedUser.asObservable();
 
   /**
    * Constructor
@@ -60,5 +62,14 @@ export class DataSharingService {
    */
   addNewestTextMessage(message: TextMessage): void {
     this.newestTextMessage.next(message);
+  }
+
+  /**
+   * Service for Announcing that a user has been deleted
+   *
+   * @param message the user that was deleted
+   */
+   announceDeletionOfUser(message: User): void {
+    this.deletedUser.next(message);
   }
 }

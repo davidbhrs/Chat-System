@@ -65,7 +65,7 @@ export class ChatComponent implements OnChanges {
     });
 
     // send message to Backend
-    this.websocket.sendName(this.loggedInUser, this.chatRoom, message);
+    this.websocket.sendMessage(this.loggedInUser, this.chatRoom, message);
   }
 
   countChars(content: string): void {

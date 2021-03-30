@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { DataSharingService } from './data-sharing.service';
@@ -9,6 +10,8 @@ let stompClient = null;
     providedIn: 'root'
 })
 export class Websocket {
+
+    websocketReady: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
     /**
      * Constructor
@@ -21,6 +24,7 @@ export class Websocket {
      * connecting to the backend websocket
      */
     connect(): void {
+        this.websocketReady.next(false);
         const socket = new SockJS('/gs-guide-websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, (frame) => {
@@ -33,6 +37,11 @@ export class Websocket {
             getStompClient().subscribe('/topic/chat-room', (chatRoom) => {
                 this.dataSharing.addNewestChatRoom(JSON.parse(chatRoom.body).body);
             });
+            // subscription on resource - deleted user
+            getStompClient().subscribe('/topic/user-delete', (user) => {
+                this.dataSharing.announceDeletionOfUser(JSON.parse(user.body).body);
+            });
+            this.websocketReady.next(true);
         });
     }
 
@@ -53,7 +62,7 @@ export class Websocket {
      * @param chatRoom chat room where the message was sent
      * @param content  the content of the message
      */
-    sendName(user, chatRoom, content): void {
+    sendMessage(user, chatRoom, content): void {
         stompClient.send(`/app/users/${user.id}/chat-rooms/${chatRoom.id}/text-messages`, {}, JSON.stringify(content));
     }
 
@@ -65,6 +74,13 @@ export class Websocket {
      */
     createChatRoom(participantOne, participantTwo): void {
         stompClient.send(`/app/users/${participantOne.id}/chat-rooms`, {}, JSON.stringify({ participantOne, participantTwo }));
+    }
+
+    /**
+     * sending the a user which shall be deleted
+     */
+    deleteUser(user): void {
+        stompClient.send(`/app/users/${user.id}`, {}, {});
     }
 }
 
