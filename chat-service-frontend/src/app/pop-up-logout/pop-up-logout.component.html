@@ -1,8 +1,10 @@
+<!-- message text -->
 <mat-dialog-content class="mat-typography">
     <p>Wollen Sie sich wirklich abmelden?</p>
     <p>Alle Ihre Chats werden gelöscht.</p>
 </mat-dialog-content>
 
+<!-- buttons -->
 <mat-dialog-actions align="end">
     <button id="cancel" mat-button [mat-dialog-close]="true" cdkFocusInitial>Abbrechen</button>
     <button id="logOut" mat-button [mat-dialog-close]="true" (click)="logOut()" cdkFocusInitial>Abmelden</button>

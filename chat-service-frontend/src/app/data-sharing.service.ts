@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { ChatRoom } from './chat-room-model';
-import { TextMessage } from './text-message-model';
-import { User } from './user-model';
+import { ChatRoom } from './models/chat-room-model';
+import { TextMessage } from './models/text-message-model';
+import { User } from './models/user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class DataSharingService {
   private newestChatRoom: Subject<ChatRoom> = new Subject();
   private newestTextMessage: BehaviorSubject<TextMessage> = new BehaviorSubject(null);
   private deletedUser: BehaviorSubject<User> = new BehaviorSubject(new User(null, ''));
-  
+
   // observables which can be subscribed on inside the components
   currentLoggedInStatus = this.loggedInStatus.asObservable();
   currentUser = this.user.asObservable();

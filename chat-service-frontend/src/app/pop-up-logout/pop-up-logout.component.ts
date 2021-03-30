@@ -1,8 +1,7 @@
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiEndpointService } from '../api-endpoint.service';
-import { User } from '../user-model';
+import { User } from '../models/user-model';
 import { DataSharingService } from '../data-sharing.service';
 import { Websocket } from '../websocket';
 
@@ -14,19 +13,18 @@ import { Websocket } from '../websocket';
 })
 export class PopUpLogoutComponent {
 
-  // Current user -- Initialization is for test purposes
+  // Current user
   user: User;
 
   /**
    * Constructor
-   * @param api         service to send http requests to the backend
+   * @param data        user object representing the current user
    * @param router      routing service to navigate to other components
    * @param dataSharing service to exchange data between components
    * @param websocket   socket service dealing with data which is needed by multiple clients
    */
   constructor(
     @Inject(MAT_DIALOG_DATA) data: User,
-    public api: ApiEndpointService,
     private router: Router,
     private dataSharing: DataSharingService,
     private websocket: Websocket

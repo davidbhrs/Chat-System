@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { never, of } from 'rxjs';
-import { ChatRoom } from '../chat-room-model';
+import { ChatRoom } from '../models/chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
-import { User } from '../user-model';
+import { User } from '../models/user-model';
 
 import { ChatRoomListComponent } from './chat-room-list.component';
 
@@ -43,12 +43,14 @@ describe('ChatRoomListComponent', () => {
     expect(component.user).toEqual(user);
   });
 
-  xit('should get the newest chatRoom', () => {
+  it('should get the newest chatRoom', () => {
     expect(component.openChats).toEqual([]);
 
-    const chatRoom = new ChatRoom(1, new User(1, 'Test User 1'), new User(2, 'Test User 2'));
-    mockDataSharingService.currentUser = of();
+    const user = new User(1, 'Test User 1');
+    const chatRoom = new ChatRoom(1, user, new User(2, 'Test User 2'));
+    mockDataSharingService.currentUser = of(user);
     mockDataSharingService.observableNewestChatRoom = of(chatRoom);
+    mockDataSharingService.observableNewestTextMessage = of();
 
     component.ngOnInit();
 

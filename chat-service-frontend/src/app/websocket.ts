@@ -11,11 +11,12 @@ let stompClient = null;
 })
 export class Websocket {
 
+    /** Class properties */
     websocketReady: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
     /**
      * Constructor
-     * 
+     *
      * @param dataSharing service to exchange data between components
      */
     constructor(private dataSharing: DataSharingService) {}
@@ -57,7 +58,7 @@ export class Websocket {
 
     /**
      * send a new text message to the websocket
-     * 
+     *
      * @param user     user sending the message
      * @param chatRoom chat room where the message was sent
      * @param content  the content of the message
@@ -68,7 +69,7 @@ export class Websocket {
 
     /**
      * sending the participants of a new chat room to create it
-     * 
+     *
      * @param participantOne user participating in the chat
      * @param participantTwo user participating in the chat
      */
@@ -87,7 +88,7 @@ export class Websocket {
 /**
  * function returning the stomp client
  * this is necessary because type script otherwise does not recognize the stomp client in the subscriptions in connect()
- * 
+ *
  * @returns the stomp client element necessary to interact with the websocket
  */
 function getStompClient(): any {

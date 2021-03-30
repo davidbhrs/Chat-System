@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatRoomListComponent } from './chat-room-list/chat-room-list.component';
 import { LoginComponent } from './login/login.component';
 
+// url routes
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

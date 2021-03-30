@@ -1,9 +1,9 @@
 import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
-import { ChatRoom } from '../chat-room-model';
+import { ChatRoom } from '../models/chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
-import { TextMessage } from '../text-message-model';
-import { User } from '../user-model';
+import { TextMessage } from '../models/text-message-model';
+import { User } from '../models/user-model';
 
 @Component({
   selector: 'app-chat-room-list',
@@ -12,7 +12,7 @@ import { User } from '../user-model';
 })
 export class ChatRoomListComponent implements OnInit {
 
-  // User which is currently logged in
+  /** Class Properties */
   user: User;
   chatRoom: ChatRoom;
   openChats: ChatRoom[] = [];
@@ -21,6 +21,7 @@ export class ChatRoomListComponent implements OnInit {
 
   /**
    * Constructor
+   *
    * @param dataSharing service to exchange data between components
    */
   constructor(private dataSharing: DataSharingService) { }
@@ -47,19 +48,28 @@ export class ChatRoomListComponent implements OnInit {
       }
     });
 
+    // get the information about the newest text message that arrived via websocket
     this.dataSharing.observableNewestTextMessage.subscribe((message: TextMessage) => {
+      // initial subscription is always null
       if (message !== null) {
-        for (let openChat of this.openChats) {
+        // searching in openChats whether the text message is relevant for this client
+        for (const openChat of this.openChats) {
           if (openChat.id === message.chatRoom.id) {
-            let chatEntry: any[] = [message.chatRoom.id, message.chatRoom.participantOne, message.chatRoom.participantTwo, message.content, message.timestamp]
+            const chatEntry: any[] = [
+              message.chatRoom.id,
+              message.chatRoom.participantOne,
+              message.chatRoom.participantTwo,
+              message.content,
+              message.timestamp
+            ];
             // check if openChatsDisplay already contains chatroom.id
-            let found = false
+            let found = false;
             for (let i = 0; i < this.openChatsDisplay.length; i++) {
               if (this.openChatsDisplay[i][0] === message.chatRoom.id) {
                 found = true;
                 this.openChatsDisplay[i] = chatEntry;
-                break
-              } 
+                break;
+              }
             }
             if (!found) {
               this.openChatsDisplay.push(chatEntry);
@@ -69,7 +79,9 @@ export class ChatRoomListComponent implements OnInit {
       }
     });
 
+    // get the information about the recently deleted user
     this.dataSharing.observableDeletedUser.subscribe((message: User) => {
+      // checking whether this client has an open chat room with the deleted user
       this.openChats.forEach((chatRoom: ChatRoom, index: number) => {
         if (chatRoom.participantOne.id === message.id || chatRoom.participantTwo.id === message.id) {
           if (chatRoom.id === this.chatRoom.id) {

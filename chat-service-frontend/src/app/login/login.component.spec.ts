@@ -4,13 +4,13 @@ import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
-import { MatDialogMock } from '../mat-dialog-mock';
+import { MatDialogMock } from '../mocks/mat-dialog-mock';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { of } from 'rxjs';
-import { User } from '../user-model';
+import { User } from '../models/user-model';
 import { DataSharingService } from '../data-sharing.service';
 import { Router } from '@angular/router';
-import { MockRouter } from '../router-mock';
+import { MockRouter } from '../mocks/router-mock';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

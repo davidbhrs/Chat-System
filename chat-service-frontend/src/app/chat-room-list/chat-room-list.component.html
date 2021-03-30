@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+    <!-- right part of the page - opened chat room or picture -->
     <div class="flexElement chat">
         <app-chat *ngIf="chatRoom" [loggedInUser]="user" [chatRoom]="chatRoom"></app-chat>
         <app-picture *ngIf="!chatRoom"></app-picture>

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { ChatRoom } from './chat-room-model';
+import { ChatRoom } from './models/chat-room-model';
 
 import { DataSharingService } from './data-sharing.service';
-import { User } from './user-model';
+import { User } from './models/user-model';
 
 describe('DataSharingService', () => {
   let service: DataSharingService;

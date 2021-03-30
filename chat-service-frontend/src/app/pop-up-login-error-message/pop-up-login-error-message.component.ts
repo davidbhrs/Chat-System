@@ -8,8 +8,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class PopUpLoginErrorMessageComponent {
 
+  /** Class properties */
   errorCase: string;
 
+  /**
+   * Constructor
+   *
+   * @param data a string error case given by the component opening the pop up
+   */
   constructor(@Inject(MAT_DIALOG_DATA) data: string) {
     this.errorCase = data;
   }

@@ -1,9 +1,11 @@
+<!-- message history -->
 <div class="msgHistory" id="msgHistory">
     <li class="msg" *ngFor="let message of messages">
         <div *ngIf="message.sentBy.id !== loggedInUser.id
             then incoming_msg
             else outgoing_msg">
         </div>
+        <!-- Design for incoming messages -->
         <ng-template #incoming_msg>
             <div class="incoming_msg">
                 <div>
@@ -14,6 +16,7 @@
                 </div>
             </div>
         </ng-template>
+        <!-- Design for outgoing messages -->
         <ng-template #outgoing_msg>
             <div class="outgoing_msg">
                 <div>
@@ -25,12 +28,14 @@
             </div>
         </ng-template>
     </li>
-
 </div>
+
+<!-- Input field for text messages -->
 <div class="InputField">
     <form class="InputFieldFlexBox" [formGroup]="inputForm" (ngSubmit)="sendMessage(inputForm.value.message)">
         <div class="InputFieldFlexElement">
-            <input id="sendMessage" type="text" name="message" placeholder="Nachricht" formControlName="message" maxlength="140" (keyup)="countChars(inputForm.value.message)" autocomplete="off">
+            <input id="sendMessage" type="text" name="message" placeholder="Nachricht" formControlName="message"
+                maxlength="140" (keyup)="countChars(inputForm.value.message)" autocomplete="off">
         </div>
         <div class="InputFieldFlexElement">
             <small *ngIf="remainingChars > 0; else remainingCharsWarn" class="form-text text-muted remainingChars"> Noch

@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 import { DataSharingService } from '../data-sharing.service';
-import { MatDialogMock } from '../mat-dialog-mock';
-import { User } from '../user-model';
+import { MatDialogMock } from '../mocks/mat-dialog-mock';
+import { User } from '../models/user-model';
 
 import { HeaderComponent } from './header.component';
 

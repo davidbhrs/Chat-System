@@ -2,9 +2,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
-import { ChatRoom } from '../chat-room-model';
-import { TextMessage } from '../text-message-model';
-import { User } from '../user-model';
+import { ChatRoom } from '../models/chat-room-model';
+import { DataSharingService } from '../data-sharing.service';
+import { TextMessage } from '../models/text-message-model';
+import { User } from '../models/user-model';
+import { Websocket } from '../websocket';
 
 import { ChatComponent } from './chat.component';
 
@@ -12,16 +14,20 @@ describe('ChatComponent', () => {
   let component: ChatComponent;
   let fixture: ComponentFixture<ChatComponent>;
   let mockApiEndpointService: ApiEndpointService;
+  let mockDataSharingService: DataSharingService;
+  let mockWebsocket: Websocket;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ChatComponent ],
       imports: [ HttpClientTestingModule ],
-      providers: [ ApiEndpointService ]
+      providers: [ ApiEndpointService, DataSharingService, Websocket ]
     })
     .compileComponents();
 
     mockApiEndpointService = TestBed.inject(ApiEndpointService);
+    mockDataSharingService = TestBed.inject(DataSharingService);
+    mockWebsocket = TestBed.inject(Websocket);
   });
 
   beforeEach(() => {
@@ -62,6 +68,7 @@ describe('ChatComponent', () => {
     component.chatRoom = chatRoom;
     component.messages = [];
     spyOn(mockApiEndpointService, 'getAllTextMessagesByChatRoomId').and.returnValue(of([]));
+    mockDataSharingService.observableNewestTextMessage = of();
 
     component.ngOnChanges();
 
@@ -74,17 +81,15 @@ describe('ChatComponent', () => {
     expect(component.chatPartner).toBe(userOne);
   });
 
-  xit('should send a text message', () => {
+  it('should send a text message', () => {
     const message = 'Test message';
-    const textMessage = new TextMessage(1, message, null, null, null);
 
     component.messages = [];
     component.inputForm.setValue({ message });
-    spyOn(mockApiEndpointService, 'sendMessage').and.returnValue(of(textMessage));
+    spyOn(mockWebsocket, 'sendMessage').and.returnValue();
 
     component.sendMessage(message);
 
     expect(component.inputForm.getRawValue()).toEqual({ message: '' });
-    expect(component.messages).toEqual([textMessage]);
   });
 });

@@ -6,15 +6,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { DataSharingService } from '../data-sharing.service';
-import { User } from '../user-model';
-import { MockRouter } from '../router-mock';
+import { User } from '../models/user-model';
+import { MockRouter } from '../mocks/router-mock';
 
 import { PopUpLogoutComponent } from './pop-up-logout.component';
+import { Websocket } from '../websocket';
 
 describe('PopUpLogoutComponent', () => {
   let component: PopUpLogoutComponent;
   let fixture: ComponentFixture<PopUpLogoutComponent>;
-  let mockApiEndpointService;
+  let mockWebsocket;
   let mockDataSharingService;
 
   beforeEach(async () => {
@@ -25,7 +26,7 @@ describe('PopUpLogoutComponent', () => {
         RouterTestingModule
       ],
       providers: [
-        ApiEndpointService,
+        Websocket,
         DataSharingService,
         { provide: Router, useClass: MockRouter },
         { provide: MAT_DIALOG_DATA, useValue: new User(1, 'Test User') }
@@ -33,7 +34,7 @@ describe('PopUpLogoutComponent', () => {
     })
     .compileComponents();
 
-    mockApiEndpointService = TestBed.inject(ApiEndpointService);
+    mockWebsocket = TestBed.inject(Websocket);
     mockDataSharingService = TestBed.inject(DataSharingService);
   });
 
@@ -49,7 +50,8 @@ describe('PopUpLogoutComponent', () => {
   });
 
   it('should log the current user out and navigate', inject([Router], async (router: Router) => {
-    spyOn(mockApiEndpointService, 'logOut').and.returnValue(of(undefined));
+    spyOn(mockWebsocket, 'deleteUser').and.returnValue(of(undefined));
+    spyOn(mockWebsocket, 'disconnect').and.returnValue(null);
     const spy = spyOn(router, 'navigateByUrl');
 
     await component.logOut();

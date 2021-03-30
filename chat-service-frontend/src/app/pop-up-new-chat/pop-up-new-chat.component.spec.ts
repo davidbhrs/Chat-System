@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
-import { ChatRoom } from '../chat-room-model';
+import { ChatRoom } from '../models/chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
-import { User } from '../user-model';
+import { User } from '../models/user-model';
+import { Websocket } from '../websocket';
 
 import { PopUpNewChatComponent } from './pop-up-new-chat.component';
 
@@ -16,6 +17,7 @@ describe('PopUpNewChatComponent', () => {
   const currentUser = new User(1, 'Test User');
   let mockApiEndpointService;
   let mockDataSharingService;
+  let mockWebsocket;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,6 +26,7 @@ describe('PopUpNewChatComponent', () => {
       providers: [
         ApiEndpointService,
         DataSharingService,
+        Websocket,
         { provide: MAT_DIALOG_DATA, useValue: currentUser }
       ]
     })
@@ -31,6 +34,7 @@ describe('PopUpNewChatComponent', () => {
 
     mockApiEndpointService = TestBed.inject(ApiEndpointService);
     mockDataSharingService = TestBed.inject(DataSharingService);
+    mockWebsocket = TestBed.inject(Websocket);
   });
 
   beforeEach(() => {
@@ -55,11 +59,11 @@ describe('PopUpNewChatComponent', () => {
     expect(component.dataSource).toEqual(finalList);
   });
 
-  xit('should create a new chat room', () => {
+  it('should create a new chat room', () => {
     const chatPartner = new User(4, 'Test User 4');
     const chatRoom = new ChatRoom(1, currentUser, chatPartner);
     component.listOfChatRooms = [];
-    spyOn(mockApiEndpointService, 'createNewChatRoom').and.returnValue(of(chatRoom));
+    spyOn(mockWebsocket, 'createChatRoom').and.returnValue(null);
 
     component.newChat(chatPartner);
 

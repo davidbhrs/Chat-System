@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiEndpointService } from '../api-endpoint.service';
-import { ChatRoom } from '../chat-room-model';
+import { ChatRoom } from '../models/chat-room-model';
 import { DataSharingService } from '../data-sharing.service';
-import { User } from '../user-model';
+import { User } from '../models/user-model';
 import { Websocket } from '../websocket';
 
 @Component({
@@ -25,7 +25,10 @@ export class PopUpNewChatComponent implements OnInit {
 
   /**
    * Constructor
-   * @param api service to send http requests to the backend
+   * @param data        user object representing the current user
+   * @param api         service to send http requests to the backend
+   * @param dataSharing service to exchange data between components
+   * @param websocket   socket service dealing with data which is needed by multiple clients
    */
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: User,
@@ -62,6 +65,7 @@ export class PopUpNewChatComponent implements OnInit {
 
   /**
    * Creating a new Chat with the current user and the chat partner
+   *
    * @param chatPartner user with which the current user wants to chat
    */
   newChat(chatPartner: User): void {
@@ -82,7 +86,7 @@ export class PopUpNewChatComponent implements OnInit {
 
   /**
    * function for filtering all active users by a search term
-   * 
+   *
    * @param event keyup-event on the HTMLInputElement to trigger the function
    */
   applyFilter(event: Event): void {

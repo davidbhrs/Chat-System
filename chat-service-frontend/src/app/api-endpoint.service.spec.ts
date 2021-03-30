@@ -2,9 +2,9 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 
 import { ApiEndpointService } from './api-endpoint.service';
-import { ChatRoom } from './chat-room-model';
-import { TextMessage } from './text-message-model';
-import { User } from './user-model';
+import { ChatRoom } from './models/chat-room-model';
+import { TextMessage } from './models/text-message-model';
+import { User } from './models/user-model';
 
 describe('ApiEndpointService', () => {
   let service: ApiEndpointService;
@@ -53,38 +53,6 @@ describe('ApiEndpointService', () => {
     httpMock.verify();
   });
 
-  it('should delete a user', (done) => {
-    const username = 'Testname';
-    const user = new User(1, username);
-
-    service.logOut(user).subscribe(() => {
-      done();
-    });
-
-    const deleteUserRequest = httpMock.expectOne(`/users/${user.id}`);
-    expect(deleteUserRequest.request.method).toBe('DELETE');
-    deleteUserRequest.flush({});
-
-    httpMock.verify();
-  });
-
-  it('should create new chat room', (done) => {
-    const userOne = new User(1, 'Test-User 1');
-    const userTwo = new User(2, 'Test-User 2');
-    const newChatRoom = new ChatRoom(1, userOne, userTwo);
-
-    service.createNewChatRoom(userOne, userTwo).subscribe((response: ChatRoom) => {
-      expect(response).toEqual(newChatRoom);
-      done();
-    });
-
-    const postChatRoomRequest = httpMock.expectOne(`/users/${userOne.id}/chat-rooms`);
-    expect(postChatRoomRequest.request.method).toBe('POST');
-    postChatRoomRequest.flush(newChatRoom);
-
-    httpMock.verify();
-  });
-
   it('should get all text messages by chat room', (done) => {
     const userOne = new User(1, 'Test-User 1');
     const userTwo = new User(2, 'Test-User 2');
@@ -102,26 +70,6 @@ describe('ApiEndpointService', () => {
     const getTextMessagesRequest = httpMock.expectOne(`/users/${userOne.id}/chat-rooms/${chatRoom.id}/text-messages`);
     expect(getTextMessagesRequest.request.method).toBe('GET');
     getTextMessagesRequest.flush(textMessages);
-
-    httpMock.verify();
-  });
-
-  it('should send a text message', (done) => {
-    const userOne = new User(1, 'Test-User 1');
-    const userTwo = new User(2, 'Test-User 2');
-    const chatRoom = new ChatRoom(1, userOne, userTwo);
-
-    const message = 'Test text message';
-    const textMessage = new TextMessage(1, message, new Date(), userOne, chatRoom);
-
-    service.sendMessage(userOne, chatRoom, message).subscribe((response: TextMessage) => {
-      expect(response.content).toBe(textMessage.content);
-      done();
-    });
-
-    const getTextMessagesRequest = httpMock.expectOne(`/users/${userOne.id}/chat-rooms/${chatRoom.id}/text-messages`);
-    expect(getTextMessagesRequest.request.method).toBe('POST');
-    getTextMessagesRequest.flush(textMessage);
 
     httpMock.verify();
   });
