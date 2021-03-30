@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/chat/chat.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chat-service-frontend/src/app/websocket.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1pfNm0qUVKod8p3f0elzmhtUmA9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="h2" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.jsonOptions" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.ChatServiceBackendApplication">
+    <configuration name="All in chat-service-backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chat-service-backend" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChatRoomChatRoomDtoMapperTest.testMappingChatRoomToChatRoomDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chat-service-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.dhbwvs.student.chatservicebackend.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.dhbwvs.student.chatservicebackend.mapper" />
+      <option name="MAIN_CLASS_NAME" value="de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapperTest" />
+      <option name="METHOD_NAME" value="testMappingChatRoomToChatRoomDto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextMessageControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chat-service-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.dhbwvs.student.chatservicebackend.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.dhbwvs.student.chatservicebackend.controller" />
+      <option name="MAIN_CLASS_NAME" value="de.dhbwvs.student.chatservicebackend.controller.TextMessageControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextMessageTextMessageDtoMapperTest.testMappingTextMessageToTextMessageDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chat-service-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.dhbwvs.student.chatservicebackend.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.dhbwvs.student.chatservicebackend.mapper" />
+      <option name="MAIN_CLASS_NAME" value="de.dhbwvs.student.chatservicebackend.mapper.TextMessageTextMessageDtoMapperTest" />
+      <option name="METHOD_NAME" value="testMappingTextMessageToTextMessageDto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChatServiceBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="chat-service-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.dhbwvs.student.chatservicebackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="de.dhbwvs.student.chatservicebackend.ChatServiceBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ChatServiceBackendApplication" />
+        <item itemvalue="JUnit.All in chat-service-backend" />
+        <item itemvalue="JUnit.TextMessageTextMessageDtoMapperTest.testMappingTextMessageToTextMessageDto" />
+        <item itemvalue="JUnit.TextMessageControllerTest" />
+        <item itemvalue="JUnit.ChatRoomChatRoomDtoMapperTest.testMappingChatRoomToChatRoomDto" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9876286e-8d08-40f5-af13-6b1641b692ac" name="Default Changelist" comment="" />
+      <created>1615570342948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615570342948</updated>
+      <workItem from="1615922747786" duration="5417000" />
+      <workItem from="1615967327844" duration="9745000" />
+      <workItem from="1616336293976" duration="1120000" />
+      <workItem from="1616349218792" duration="1111000" />
+      <workItem from="1616351886819" duration="439000" />
+      <workItem from="1616352342675" duration="997000" />
+      <workItem from="1616851426778" duration="6083000" />
+      <workItem from="1616871796542" duration="253000" />
+      <workItem from="1616912170461" duration="2510000" />
+      <workItem from="1616961700631" duration="1343000" />
+      <workItem from="1616842220138" duration="1196000" />
+      <workItem from="1617021718935" duration="2850000" />
+      <workItem from="1617045016211" duration="842000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

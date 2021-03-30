@@ -1,0 +1,10 @@
+mat-dialog-content {
+    margin: auto;
+    margin-top: 20px;
+}
+
+mat-dialog-content p {
+    font-size: x-large;
+    font-weight: 600;
+    text-align: center;
+}

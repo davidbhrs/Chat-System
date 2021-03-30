@@ -20,13 +20,14 @@ public class TextMessage {
      * Entity's Attributes
      */
     private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
+    @Column(length = 140)
     private String content;
     private Date timestamp;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private User sentBy;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private ChatRoom chatRoom;
 
     /**

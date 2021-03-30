@@ -1,14 +1,14 @@
 package de.dhbwvs.student.chatservicebackend.websocket;
 
 import org.json.JSONObject;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
 
-@Component
+@Controller
 public class SocketTextHandler extends TextWebSocketHandler {
 
     @Override

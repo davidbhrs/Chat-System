@@ -1,0 +1,36 @@
+mat-dialog-content p {
+    font-size: x-large;
+    font-weight: 600;
+    text-align: center;
+}
+
+div.searchBar {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border: solid 1pt black;
+    border-radius: 50px;
+    padding: 15px;
+}
+
+input {
+    width: 90%;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+div#table {
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%), 0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+}
+
+td.mat-cell {
+    width: 335px;
+    height: 50px;
+    text-align: center;
+    padding-top: 16px;
+}

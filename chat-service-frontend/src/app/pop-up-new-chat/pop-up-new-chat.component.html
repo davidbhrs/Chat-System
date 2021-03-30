@@ -1,0 +1,23 @@
+<!-- title -->
+<mat-dialog-content class="mat-typography">
+    <p>Aktive Teilnehmer</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <!-- search bar -->
+    <div class="searchBar">
+        <mat-icon aria-hidden="false" aria-label="Example search icon">search</mat-icon>
+        <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Suche..." id="searchTerm">
+    </div>
+
+    <!-- table of all active users -->
+    <div id="table">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <td mat-cell *matCellDef="let element" (click)="newChat(element)" [mat-dialog-close]="true">{{element.name}}</td>
+            </ng-container>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</mat-dialog-actions>

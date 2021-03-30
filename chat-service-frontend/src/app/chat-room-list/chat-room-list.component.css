@@ -1,0 +1,62 @@
+/* Body of Component */
+.flexContainer {
+    display: flex;
+    min-height: 91%;
+}
+
+.chatRoomList {
+    width: 33.33%;
+    height: 91vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: #ffffff;
+}
+
+.openChatRoom {
+    position: relative;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    padding: 5px 5px 5px 5px;
+    height: 75px;
+}
+
+.openChatRoom:hover {
+    background-color: lightgray !important;
+}
+
+.chatRoomListElement-left {
+    float: left;
+    width: 90%;
+    flex-grow: 1;
+}
+
+.chatRoomListElement-right {
+    float: right;
+    width: 10%;
+}
+
+.chat {
+    float: right;
+    width: 66.66%;
+}
+
+.highlight {
+    background-color: #e6ebf1 !important;
+    font-weight: bolder;
+}
+
+.lastMessageTimestamp {
+    font-size: 9pt;
+}
+
+.messagePreview {
+    position: absolute;
+    bottom: 0px;
+    font-size: 9pt;
+    max-width: 325px;
+}

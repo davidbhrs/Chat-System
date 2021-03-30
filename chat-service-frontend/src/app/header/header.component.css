@@ -1,0 +1,23 @@
+svg {
+    width: 40px;
+    height: 40px;
+    fill: #fff;
+    cursor: pointer;
+}
+
+#header {
+    background-color: #6e7578;
+    padding: 20px 0px 20px 0px;
+}
+
+.bl {
+    width: 1px;
+    background-color: #fff;
+    margin: 0px 25px 0px 27px;
+}
+
+.homeLink {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}

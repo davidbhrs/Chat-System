@@ -1,0 +1,27 @@
+<div class="flexContainer">
+    <div class="flexElement chatRoomList">
+        <div class="openChatRoom bg-light" id="openChatRoom" *ngFor="let element of openChats; let i = index" (click)="openChatRoom(element, i)" [ngClass]="{'highlight': selectedIndex === i}">
+            <div class="chatRoomListElement-left">
+                <span *ngIf="element.participantOne.name === user.name">{{element.participantTwo.name}}</span>
+                <span *ngIf="element.participantTwo.name === user.name">{{element.participantOne.name}}</span><br>
+                <span *ngFor="let elem of openChatsDisplay">
+                    <span *ngIf="element.id === elem[0]" class="messagePreview text-muted">
+                        {{ elem[3] | slice:0:20 }}
+                    </span>
+                </span>
+            </div>
+            <div class="chatRoomListElement-right">
+                <span *ngFor="let elem of openChatsDisplay">
+                    <span *ngIf="element.id === elem[0]" class="lastMessageTimestamp text-muted">
+                        {{ elem[4] | date: 'HH:mm' }}
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- right part of the page - opened chat room or picture -->
+    <div class="flexElement chat">
+        <app-chat *ngIf="chatRoom" [loggedInUser]="user" [chatRoom]="chatRoom"></app-chat>
+        <app-picture *ngIf="!chatRoom"></app-picture>
+    </div>
+</div>

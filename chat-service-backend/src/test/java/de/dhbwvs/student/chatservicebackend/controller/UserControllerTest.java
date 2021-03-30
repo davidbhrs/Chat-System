@@ -2,6 +2,7 @@ package de.dhbwvs.student.chatservicebackend.controller;
 
 import de.dhbwvs.student.chatservicebackend.exceptions.UserAlreadyExistsException;
 import de.dhbwvs.student.chatservicebackend.models.User;
+import de.dhbwvs.student.chatservicebackend.models.payrole.UserDto;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
@@ -10,10 +11,11 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class UserControllerTest {
+class UserControllerTest {
 
     private static final String TEST_USERNAME = "Test User";
     private static final String TEST_USERNAME_NOT_IN_DB = "Nicht in der Datenbank";
@@ -36,20 +38,20 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCreateNewUserGivesPositiveResult() {
+    void testCreateNewUserGivesPositiveResult() {
         // Arrange
         Mockito.when(this.repository.save(Mockito.any())).thenReturn(this.newUser);
 
         // Act
-        ResponseEntity<User> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
+        ResponseEntity<UserDto> responseEntity = this.controller.createNewUser(TEST_USERNAME_NOT_IN_DB);
 
         // Assert
         Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        Assertions.assertTrue(responseEntity.getBody() instanceof User);
+        Assertions.assertNotNull(responseEntity.getBody());
     }
 
     @Test
-    public void testCreateNewUserThrowsError() {
+    void testCreateNewUserThrowsError() {
         // Arrange
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
@@ -65,7 +67,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCheckForUserTrue() {
+    void testCheckForUserTrue() {
         // Arrange
         Mockito.when(this.repository.findByName(TEST_USERNAME)).thenReturn(Optional.ofNullable(this.user));
 
@@ -77,7 +79,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCheckForUserFalse() {
+    void testCheckForUserFalse() {
         // Act
         Boolean isUserInDB = this.controller.doesUserExist(TEST_USERNAME_NOT_IN_DB);
 
@@ -86,7 +88,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetAllUsers() {
+    void testGetAllUsers() {
         // Arrange
         List<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(this.user);
@@ -94,12 +96,12 @@ public class UserControllerTest {
         Mockito.when(this.repository.findAll()).thenReturn(listOfUsers);
 
         // Act
-        ResponseEntity<List<User>> responseEntity = this.controller.getAllUsers();
+        ResponseEntity<List<UserDto>> responseEntity = this.controller.getAllUsers();
 
         // Assert
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assertions.assertFalse(responseEntity.getBody().isEmpty());
-        Assertions.assertEquals(this.user, responseEntity.getBody().get(0));
+        Assertions.assertFalse(Objects.requireNonNull(responseEntity.getBody()).isEmpty());
+        Assertions.assertEquals(this.user.getId(), responseEntity.getBody().get(0).getId());
     }
 
 }

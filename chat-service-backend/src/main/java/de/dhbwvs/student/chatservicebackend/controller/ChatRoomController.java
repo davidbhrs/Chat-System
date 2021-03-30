@@ -3,15 +3,22 @@ package de.dhbwvs.student.chatservicebackend.controller;
 import de.dhbwvs.student.chatservicebackend.exceptions.ChatRoomCreationException;
 import de.dhbwvs.student.chatservicebackend.exceptions.ChatRoomNotFoundException;
 import de.dhbwvs.student.chatservicebackend.exceptions.UserNotFoundException;
+import de.dhbwvs.student.chatservicebackend.mapper.ChatRoomChatRoomDtoMapper;
 import de.dhbwvs.student.chatservicebackend.models.ChatRoom;
+import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomParticipants;
 import de.dhbwvs.student.chatservicebackend.models.User;
+import de.dhbwvs.student.chatservicebackend.models.payrole.ChatRoomDto;
 import de.dhbwvs.student.chatservicebackend.repositories.ChatRoomRepository;
 import de.dhbwvs.student.chatservicebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,23 +44,29 @@ public class ChatRoomController {
      * Throws ChatRoomCreationException, when the users are equal or none of the users is equal to the user that is found
      *
      * @param userId Id of the user that caused the request
-     * @param participantOne User entity participating in the new chat room
-     * @param participantTwo User entity participating in the new chat room
+     * @param chatRoomParticipants Custom Entity to contain both participants of a chat room
      * @return A ResponseEntity with HTTPStatus.CREATED and the new ChatRoom in the Body
      */
-    @PostMapping("/users/{userId}/chat-rooms")
-    public ResponseEntity<ChatRoom> createChatRoom(
-            @PathVariable Long userId,
-            @RequestBody User participantOne,
-            @RequestBody User participantTwo
+    @MessageMapping("/users/{userId}/chat-rooms")
+    @SendTo("/topic/chat-room")
+    public ResponseEntity<ChatRoomDto> createChatRoom(
+            @DestinationVariable Long userId,
+            @RequestBody ChatRoomParticipants chatRoomParticipants
     ) {
         User user = getUserById(userId);
 
-        if (participantOne == participantTwo || (user != participantOne && user != participantTwo)) {
+        User participantOne = chatRoomParticipants.getParticipantOne();
+        String participantOneName = participantOne.getName();
+        User participantTwo = chatRoomParticipants.getParticipantTwo();
+        String participantTwoName = participantTwo.getName();
+
+        if (participantOneName.equals(participantTwoName) ||
+                (!user.getName().equals(participantOneName) && !user.getName().equals(participantTwoName))) {
             throw new ChatRoomCreationException();
         } else {
             ChatRoom newChatRoom = chatRoomRepository.save(new ChatRoom(participantOne, participantTwo));
-            return new ResponseEntity(newChatRoom, HttpStatus.CREATED);
+            ChatRoomDto chatRoomDto = ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(newChatRoom);
+            return new ResponseEntity<>(chatRoomDto, HttpStatus.CREATED);
         }
     }
 
@@ -66,11 +79,15 @@ public class ChatRoomController {
      * @return A ResponseEntity with HTTPStatus.OK and the a List of ChatRooms in the Body
      */
     @GetMapping("/users/{userId}/chat-rooms")
-    public ResponseEntity<List<ChatRoom>> getAllChatRoomsByUser(@PathVariable Long userId) {
+    public ResponseEntity<List<ChatRoomDto>> getAllChatRoomsByUser(@PathVariable Long userId) {
         User user = getUserById(userId);
 
         List<ChatRoom> listOfChatRooms = chatRoomRepository.findAllByParticipantOneOrParticipantTwo(user, user);
-        return ResponseEntity.ok(listOfChatRooms);
+        List<ChatRoomDto> listOfDtos = new ArrayList<>();
+        for (ChatRoom chatRoom: listOfChatRooms) {
+            listOfDtos.add(ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(chatRoom));
+        }
+        return ResponseEntity.ok(listOfDtos);
     }
 
     /**
@@ -85,12 +102,14 @@ public class ChatRoomController {
      * @return A ResponseEntity with HTTPStatus.OK and the a ChatRooms in the Body
      */
     @GetMapping("/users/{userId}/chat-rooms/{chatRoomId}")
-    public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable Long userId, @PathVariable Long chatRoomId) {
+    public ResponseEntity<ChatRoomDto> getChatRoomById(@PathVariable Long userId, @PathVariable Long chatRoomId) {
         User user = getUserById(userId);
 
         ChatRoom chatRoom = chatRoomRepository.findByParticipantOneOrParticipantTwoAndId(user, user, chatRoomId)
                 .orElseThrow(() -> new ChatRoomNotFoundException(chatRoomId));
-        return ResponseEntity.ok(chatRoom);
+      
+        ChatRoomDto chatRoomDto = ChatRoomChatRoomDtoMapper.INSTANCE.chatRoomToChatRoomDto(chatRoom);
+        return ResponseEntity.ok(chatRoomDto);
     }
 
     /**

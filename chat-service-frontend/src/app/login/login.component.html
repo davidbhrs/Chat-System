@@ -1,0 +1,19 @@
+<div class="flexContainer bg-light">
+    <!-- login form -->
+    <div class="flexElement login">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value.username)">
+            <div class="form-group">
+                <h3 class="font-weight-bold">Nutzername</h3>
+                <div class="inputContainer">
+                    <input class="form-control inputElement" type="text" name="username" placeholder="Benutzername" ngModel>
+                </div>
+                <br>
+                <button class="form-control btn" type="submit" vlaue="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    <!-- picture on the right side -->
+    <div class="flexElement welcomeImg">
+        <app-picture></app-picture>
+    </div>
+</div>
